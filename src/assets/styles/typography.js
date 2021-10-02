@@ -83,6 +83,7 @@ const FontFace = css`
 const primary = css`
   font-family: "Vogue", serif;
   text-transform: uppercase;
+  font-weight: normal;
 `
 
 const secondary = css`
@@ -106,23 +107,40 @@ const Typography = css`
   h1,
   .h1 {
     ${primary}
-    font-size: 2.5rem;
-    line-height: 1.1;
+    font-size: 3rem;
+    line-height: 0.9;
+    letter-spacing: -0.1rem;
+
+    @media ${({ theme }) => theme.mediaQuery.medium} {
+      font-size: 3rem;
+    }
+
+    @media ${({ theme }) => theme.mediaQuery.large} {
+      font-size: 4rem;
+    }
+
+    @media ${({ theme }) => theme.mediaQuery.xlarge} {
+      font-size: 5rem;
+    }
 
     &.big {
-      font-size: 3.4rem;
-      line-height: 1;
+      font-size: 5.5rem;
+      line-height: 0.8;
+
+      @media ${({ theme }) => theme.mediaQuery.small} {
+        font-size: 7rem;
+      }
 
       @media ${({ theme }) => theme.mediaQuery.medium} {
-        font-size: 5rem;
+        font-size: 9.5rem;
       }
 
       @media ${({ theme }) => theme.mediaQuery.large} {
-        font-size: 6rem;
+        font-size: 11rem;
       }
 
       @media ${({ theme }) => theme.mediaQuery.xlarge} {
-        font-size: 7rem;
+        font-size: 14rem;
       }
     }
   }
