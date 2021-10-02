@@ -39,6 +39,7 @@ const GlobalStyle = createGlobalStyle`
     font-size: 1rem;
     font-family: 'Lora', serif;
     color: ${({ theme }) => theme.colors.text };
+    font-weight: normal;
   }
 
   ${Typography}

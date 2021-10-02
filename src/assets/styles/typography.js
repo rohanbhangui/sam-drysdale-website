@@ -97,7 +97,6 @@ const Typography = css`
     margin-top: 0.75rem;
     line-height: 1.2rem;
     font-size: 1rem;
-    font-weight: bold;
 
     @media ${({ theme }) => theme.mediaQuery.medium} {
       font-size: 0.8rem;
@@ -126,21 +125,23 @@ const Typography = css`
     &.big {
       font-size: 5.5rem;
       line-height: 0.8;
+      letter-spacing: -0.4rem;
+
 
       @media ${({ theme }) => theme.mediaQuery.small} {
         font-size: 7rem;
       }
 
       @media ${({ theme }) => theme.mediaQuery.medium} {
-        font-size: 9.5rem;
+        font-size: 8rem;
       }
 
       @media ${({ theme }) => theme.mediaQuery.large} {
-        font-size: 11rem;
+        font-size: 9.5rem;
       }
 
       @media ${({ theme }) => theme.mediaQuery.xlarge} {
-        font-size: 14rem;
+        font-size: 12rem;
       }
     }
   }

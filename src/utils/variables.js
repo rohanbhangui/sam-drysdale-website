@@ -9,3 +9,5 @@ export const LG = 1024;
 export const XLG = 1200;
 
 export const XXL = 1440;
+
+export const XXXL = 1600;
