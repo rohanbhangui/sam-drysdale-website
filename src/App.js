@@ -1,25 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import styled from "styled-components";
 
-function App() {
+import GlobalStyle from "./assets/styles/globalStyles";
+
+import Home from "./pages/home";
+
+import Header from "./components/header";
+import Footer from "./components/footer";
+import ScrollToTop from "./components/scrollToTop";
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <main>
+        <GlobalStyle />
+        <Router>
+          <ScrollToTop />
+          <Header />
+          <Switch>
+            <Route path="/properties">
+            </Route>
+            <Route path="/investments">
+            </Route>
+            <Route path="/" exact>
+              <Home />
+            </Route>
+          </Switch>
+          <Footer id="contact" />
+        </Router>
+      </main>
+    </>
   );
-}
+};
 
 export default App;
