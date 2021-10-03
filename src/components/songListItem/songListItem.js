@@ -1,14 +1,12 @@
 import React from "react"
 import styled from "styled-components"
 
-import useAudio from "../../utils/hooks/useAudio"
-
 const SongListItem = (props) => {
   const {
-    item: { id, img, title, subtitle, url, audio },
+    item: { img, title, subtitle, url },
+    player,
+    toggle,
   } = props
-
-  const [playing, toggle] = useAudio(audio)
 
   return (
     <Container>
@@ -16,12 +14,14 @@ const SongListItem = (props) => {
         <AudioPlayer
           onClick={toggle}
           background={img}
-          className={playing ? "isPlaying" : ""}
+          className={player.playing ? "isPlaying" : ""}
         >
           <PlayButton>
             <ion-icon
               name={
-                playing ? "pause-circle-sharp" : "play-circle-sharp"
+                player.playing
+                  ? "pause-circle-sharp"
+                  : "play-circle-sharp"
               }
             ></ion-icon>
           </PlayButton>

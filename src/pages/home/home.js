@@ -3,6 +3,7 @@ import styled from "styled-components"
 import { v4 as uuid } from "uuid"
 
 import { XXXL, XXL, XLG } from "../../utils/variables"
+import useMultiAudio from "../../utils/hooks/useMultiAudio"
 
 import IntroShotImg from "../../assets/img/intro-shot.png"
 import BiographyImg from "../../assets/img/biography.png"
@@ -18,10 +19,13 @@ const Home = () => {
     SONGS.map((item) => {
       return {
         ...item,
-        audio: new Audio(item.audio),
         id: uuid(),
       }
     }),
+  )
+
+  const [players, toggle] = useMultiAudio(
+    songsArr.map((item) => item.audio),
   )
 
   return (
@@ -117,10 +121,12 @@ const Home = () => {
             </MusicIcon>
           </SongReleasesTitle>
           <SongsList>
-            {songsArr.map((item) => (
+            {songsArr.map((item, index) => (
               <SongListItem
                 key={item.id}
                 item={item}
+                player={players[index]}
+                toggle={toggle(index)}
                 songsArr={songsArr}
                 setSongsArr={setSongsArr}
               />
