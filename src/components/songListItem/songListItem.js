@@ -36,7 +36,7 @@ const SongListItem = ({ img, title, subtitle, url, audio }) => {
 
 const Container = styled.div`
   display: inline-block;
-  border-bottom: 1px solid #c9c9c9;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.25);
   min-width: 20rem;
   padding: 0 0 1rem;
 

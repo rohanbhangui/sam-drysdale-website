@@ -12,13 +12,11 @@ export const SOCIALS = {
   "apple music": {
     url: "https://music.apple.com/ca/artist/sam-drysdale/589211182",
     icon: AppleMusic,
-    iconType: "image",
     name: "Apple Music",
   },
   spotify: {
     url: "https://open.spotify.com/artist/6zWCrZExrSgGtBjCO1jkjY?si=gFSYnljRTRWhiDluzR6Lmg&nd=1",
     icon: Spotify,
-    iconType: "image",
     name: "Spotify",
   },
 }

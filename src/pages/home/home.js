@@ -101,16 +101,10 @@ const Home = () => {
           <SongReleasesTitle>
             <h2>Latest Releases</h2>
             <MusicIcon href={SOCIALS["apple music"].url}>
-              <img
-                src={SOCIALS["apple music"].icon}
-                alt={SOCIALS["apple music"].name}
-              />
+              <ion-icon src={SOCIALS["apple music"].icon} />
             </MusicIcon>
             <MusicIcon href={SOCIALS["spotify"].url}>
-              <img
-                src={SOCIALS["spotify"].icon}
-                alt={SOCIALS["spotify"].name}
-              />
+              <ion-icon src={SOCIALS["spotify"].icon} />
             </MusicIcon>
           </SongReleasesTitle>
           <SongsList>
@@ -308,13 +302,14 @@ const MusicIcon = styled.a`
   margin: 0 0.4rem;
   display: inline-block;
 
-  img {
+  ion-icon {
+    font-size: 1.5rem;
     opacity: 0.33;
     transition: opacity 0.3s cubic-bezier(0.77, 0, 0.175, 1);
   }
 
   &:hover {
-    img {
+    ion-icon {
       opacity: 1;
     }
   }
