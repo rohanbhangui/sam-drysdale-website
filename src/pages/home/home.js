@@ -12,6 +12,7 @@ import ListenImg from "../../assets/img/listen.png"
 import { ALBUMS, SOCIALS, SONGS } from "../../utils/data"
 import Album from "../../components/albumItem"
 import SongListItem from "../../components/songListItem/songListItem"
+import { Grid } from "../../assets/styles/grid"
 
 const Home = () => {
   return (
@@ -321,8 +322,12 @@ const MusicIcon = styled.a`
 
 const SongsList = styled.div`
   overflow: auto;
-  column-count: 3;
-  column-gap: 1rem;
+  display: grid;
+  grid-gap: 1rem;
+  grid-template-rows: repeat(3, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  grid-auto-flow: column;
+  margin-top: 3rem;
 `
 
 export default Home

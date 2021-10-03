@@ -26,6 +26,9 @@ const SongListItem = ({ img, title, subtitle, url, audio }) => {
           <h3>{title}</h3>
           <p>{subtitle}</p>
         </AudioText>
+        <a className="goToSong" href={url}>
+          <ion-icon name="chevron-forward-sharp"></ion-icon>
+        </a>
       </div>
     </Container>
   )
@@ -35,12 +38,24 @@ const Container = styled.div`
   display: inline-block;
   border-bottom: 1px solid #c9c9c9;
   min-width: 20rem;
-  margin: 0 0.5rem;
-  padding: 1rem 0;
-  width: 100%;
+  padding: 0 0 1rem;
 
   .flex-container {
     display: flex;
+    align-items: center;
+
+    .goToSong {
+      height: 100%;
+      opacity: 0;
+      display: flex;
+      align-items: center;
+    }
+
+    &:hover {
+      .goToSong {
+        opacity: 1;
+      }
+    }
   }
 
   &:nth-of-type(4n),
