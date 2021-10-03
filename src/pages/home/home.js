@@ -5,14 +5,16 @@ import { v4 as uuid } from "uuid"
 import { XXXL, XXL, XLG } from "../../utils/variables"
 import useMultiAudio from "../../utils/hooks/useMultiAudio"
 
+//data imports
+import { ALBUMS, SOCIALS, SONGS, VIDEOS } from "../../utils/data"
+
 import IntroShotImg from "../../assets/img/intro-shot.png"
 import BiographyImg from "../../assets/img/biography.png"
 import ListenImg from "../../assets/img/listen.png"
 
-//data imports
-import { ALBUMS, SOCIALS, SONGS } from "../../utils/data"
 import Album from "../../components/albumItem"
 import SongListItem from "../../components/songListItem/songListItem"
+import Button from "../../components/button"
 
 const Home = () => {
   const [songsArr, setSongsArr] = useState(
@@ -74,7 +76,7 @@ const Home = () => {
           </p>
         </BiographyText>
       </Biography>
-      <Listen>
+      <Listen id="listen">
         <RestrictContainer dimension={XLG}>
           <div className="content-container">
             <h2 className="h1">Listen</h2>
@@ -134,6 +136,48 @@ const Home = () => {
           </SongsList>
         </SongReleases>
       </Listen>
+      <RestrictContainer dimension={XXL} id="watch">
+        <Watch>
+          <div className="videos">
+            {VIDEOS.map((video) => (
+              <Video key={uuid()} cover={video.img}>
+                <div className="video-content">
+                  <h3 className="h2">{video.name}</h3>
+                  <Button
+                    linkto={video.link}
+                    label="WATCH"
+                    type="outline-invert-pure"
+                  />
+                </div>
+              </Video>
+            ))}
+          </div>
+          <div className="content">
+            <h2 className="h1">Watch</h2>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+              sed do eiusmod tempor incididunt ut labore et dolore
+              magna aliqua. Ut enim ad minim veniam, quis nostrud
+              exercitation ullamco laboris nisi ut aliquip ex ea
+              commodo consequat.
+            </p>
+            <p>
+              Duis aute irure dolor in reprehenderit in voluptate
+              velit esse cillum dolore eu fugiat nulla pariatur.
+              Excepteur sint occaecat cupidatat non proident, sunt in
+              culpa qui officia deserunt mollit anim id est laborum.
+            </p>
+
+            <h3 className="h2">See More</h3>
+            <MusicIcon
+              className="watch-link"
+              href={SOCIALS["youtube"].url}
+            >
+              <ion-icon name={SOCIALS["youtube"].icon} />
+            </MusicIcon>
+          </div>
+        </Watch>
+      </RestrictContainer>
     </>
   )
 }
@@ -147,12 +191,16 @@ const RestrictContainer = styled.div`
 const LowKey = styled.h1`
   @supports (-webkit-text-stroke: 1px white) {
     -webkit-text-stroke-color: ${({ theme }) => theme.colors.text};
-    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-width: 0.5px;
     -webkit-text-fill-color: rgba(0, 0, 0, 0);
   }
 
   @supports not (-webkit-text-stroke: 1px white) {
     color: ${({ theme }) => theme.colors.text};
+  }
+
+  @media ${({ theme }) => theme.mediaQuery.medium} {
+    -webkit-text-stroke-width: 1px;
   }
 `
 
@@ -182,13 +230,13 @@ const Name = styled.h1`
 `
 
 const Biography = styled.div`
-  width: 90%;
   display: flex;
   margin: 6rem 0;
   flex-wrap: wrap;
 
   @media ${({ theme }) => theme.mediaQuery.medium} {
     flex-wrap: nowrap;
+    width: 90%;
   }
 
   @media ${({ theme }) => theme.mediaQuery.xlarge} {
@@ -230,7 +278,7 @@ const BiographyText = styled.div`
   top: 20px;
 
   @media ${({ theme }) => theme.mediaQuery.medium} {
-    flex 1 0 auto;
+    flex: 1 0 auto;
     margin-top: 2rem;
     padding: 1rem 1rem 1rem 3rem;
   }
@@ -245,6 +293,8 @@ const BiographyText = styled.div`
 `
 
 const Listen = styled.div`
+  padding-top: 2rem;
+
   .content-container {
     display: flex;
     flex-wrap: wrap;
@@ -273,7 +323,7 @@ const Listen = styled.div`
         padding-left: 3rem;
       }
 
-      p {
+      p:first-child {
         margin-top: 0;
       }
     }
@@ -292,6 +342,7 @@ const ListenHeroImage = styled.img`
 const AlbumGroup = styled.div`
   display: flex;
   margin-top: 4rem;
+  overflow: auto;
 `
 
 const SongReleases = styled(RestrictContainer)`
@@ -336,6 +387,72 @@ const SongsList = styled.div`
   grid-template-rows: repeat(4, 1fr);
   grid-auto-flow: column;
   margin-top: 3rem;
+`
+
+const Watch = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  margin: 4rem 0;
+
+  @media ${({ theme }) => theme.mediaQuery.medium} {
+    flex-wrap: nowrap;
+    margin: 8rem 0;
+  }
+
+  .videos {
+    flex: 1 1 100%;
+
+    @media ${({ theme }) => theme.mediaQuery.medium} {
+      flex: 1 1 auto;
+    }
+  }
+
+  .content {
+    padding: 1rem;
+    flex: 1 1 100%;
+
+    @media ${({ theme }) => theme.mediaQuery.medium} {
+      width: 20rem;
+      flex: 0 0 auto;
+      padding: 1rem 1rem 1rem 3rem;
+      margin-top: 4rem;
+    }
+
+    h3.h2 {
+      margin-top: 3rem;
+    }
+
+    .watch-link {
+      margin: 0.5rem 0 0 0;
+    }
+  }
+`
+
+const Video = styled.div`
+  background: url(${({ cover }) => cover});
+  background-size: cover;
+  background-position: center center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 15rem;
+  margin: 1rem 0;
+
+  @media ${({ theme }) => theme.mediaQuery.small} {
+    height: 17rem;
+  }
+
+  @media ${({ theme }) => theme.mediaQuery.large} {
+    height: 20rem;
+  }
+
+  .video-content {
+    text-align: center;
+
+    .outline-invert-pure {
+      margin-top: 0.75rem;
+    }
+  }
 `
 
 export default Home

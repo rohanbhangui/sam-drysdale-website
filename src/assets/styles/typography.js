@@ -106,13 +106,9 @@ const Typography = css`
   h1,
   .h1 {
     ${primary}
-    font-size: 3rem;
+    font-size: 3.5rem;
     line-height: 0.9;
     letter-spacing: -0.1rem;
-
-    @media ${({ theme }) => theme.mediaQuery.medium} {
-      font-size: 3rem;
-    }
 
     @media ${({ theme }) => theme.mediaQuery.large} {
       font-size: 4rem;

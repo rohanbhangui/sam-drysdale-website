@@ -3,6 +3,7 @@ import styled, { css } from "styled-components"
 import { useLocation } from "react-router-dom"
 import { v4 as uuid } from "uuid"
 
+import { SOCIALS } from "../../utils/data"
 import { XLG } from "../../utils/variables"
 
 export const socials = [
@@ -64,16 +65,27 @@ const Footer = ({ id }) => {
         <FooterContainer id={id}>
           {titleCopy === "Get In Touch" && (
             <Socials>
-              {socials.map(({ label, url, icon }) => (
-                <li key={uuid()}>
-                  {url && (
-                    <Link href={url} className="h2">
-                      <ion-icon name={icon}></ion-icon>
-                    </Link>
-                  )}
-                  {!url && <Text className="h2">{label}</Text>}
-                </li>
-              ))}
+              {Object.keys(SOCIALS).map((socialKey) => {
+                const { url, icon, name } = SOCIALS[socialKey]
+
+                return (
+                  <li key={uuid()}>
+                    {url && (
+                      <Link href={url} className="h2">
+                        {(socialKey === "apple music" ||
+                          socialKey === "spotify") && (
+                          <ion-icon src={icon}></ion-icon>
+                        )}
+                        {socialKey !== "apple music" &&
+                          socialKey !== "spotify" && (
+                            <ion-icon name={icon}></ion-icon>
+                          )}
+                      </Link>
+                    )}
+                    {!url && <Text className="h2">{name}</Text>}
+                  </li>
+                )
+              })}
             </Socials>
           )}
           <Copyright>

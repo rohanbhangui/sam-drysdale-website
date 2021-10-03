@@ -4,6 +4,8 @@ import {
   useLocation,
   Link,
 } from "react-router-dom"
+import { HashLink } from "react-router-hash-link"
+
 import styled, { css } from "styled-components"
 import { secondary } from "../../assets/styles/typography"
 
@@ -11,7 +13,7 @@ import LogoImg from "../../assets/img/logo.svg"
 import { XXXL } from "../../utils/variables"
 
 const Header = () => {
-  const { pathname } = useLocation()
+  const location = useLocation()
 
   const [isMobileOpen, setIsMobileOpen] = useState("close")
 
@@ -25,7 +27,7 @@ const Header = () => {
 
   useEffect(() => {
     setIsMobileOpen("close")
-  }, [pathname])
+  }, [location])
 
   return (
     <HeaderContainer mobileopen={isMobileOpen}>
@@ -43,29 +45,29 @@ const Header = () => {
         ></ion-icon>
         <ul>
           <NavItem>
-            <NavLink to="/" activeClassName="selected">
-              Watch
-            </NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink to="/properties" activeClassName="selected">
+            <NavHashLink to="/#listen" activeClassName="selected">
               Listen
-            </NavLink>
+            </NavHashLink>
           </NavItem>
           <NavItem>
-            <NavLink to="/investments" activeClassName="selected">
+            <NavHashLink to="/#watch" activeClassName="selected">
+              Watch
+            </NavHashLink>
+          </NavItem>
+          <NavItem>
+            <NavLink to="/merch" activeClassName="selected">
               Merch
             </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink to="/investments" activeClassName="selected">
+            <NavLink to="/news" activeClassName="selected">
               News
             </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink to="/investments" activeClassName="selected">
+            <NavHashLink to="/#contact" activeClassName="selected">
               Contact
-            </NavLink>
+            </NavHashLink>
           </NavItem>
         </ul>
       </nav>
@@ -237,6 +239,10 @@ const NavLinkStyles = css`
 `
 
 const NavLink = styled(_NavLink)`
+  ${NavLinkStyles}
+`
+
+const NavHashLink = styled(HashLink)`
   ${NavLinkStyles}
 `
 

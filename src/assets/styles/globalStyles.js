@@ -21,6 +21,7 @@ const GlobalStyle = createGlobalStyle`
 
   html {
     font-size: calc(60% + 0.8vmin);
+    scroll-behavior: smooth;
 
     &.smooth-scroll {
       scroll-behavior: smooth;

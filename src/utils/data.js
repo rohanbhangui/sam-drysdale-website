@@ -3,13 +3,17 @@ import { v4 as uuid } from "uuid"
 // album cover imports
 import OneMoreNight from "../assets/img/music/one-more-night.jpg"
 
-//audio imports
+// audio imports
 import Sample1 from "../assets/audio/sample-1.mp3"
 import Sample2 from "../assets/audio/sample-2.mp3"
 
 // icon imports
 import Spotify from "../assets/img/spotify.svg"
 import AppleMusic from "../assets/img/apple-music.svg"
+
+// video cover imports
+import LikeAMan from "../assets/img/videos/like-a-man-videocover.png"
+import Wasted from "../assets/img/videos/wasted-videocover.png"
 
 export const SOCIALS = {
   "apple music": {
@@ -18,9 +22,29 @@ export const SOCIALS = {
     name: "Apple Music",
   },
   spotify: {
-    url: "https://open.spotify.com/artist/6zWCrZExrSgGtBjCO1jkjY?si=gFSYnljRTRWhiDluzR6Lmg&nd=1",
+    url: "https://open.spotify.com/artist/6zWCrZExrSgGtBjCO1jkjY?si=uo0MJu_ARC2Sag8OFnsRuQ&dl_branch=1",
     icon: Spotify,
     name: "Spotify",
+  },
+  twitter: {
+    url: "https://twitter.com/SDrysdaleMusic",
+    icon: "logo-twitter",
+    name: "Twitter",
+  },
+  facebook: {
+    url: "https://www.facebook.com/SamDrysdaleMusic",
+    icon: "logo-facebook",
+    name: "Facebook",
+  },
+  instagram: {
+    url: "https://www.instagram.com/greyspacegroup/?hl=en",
+    icon: "logo-instagram",
+    name: "Instagram",
+  },
+  youtube: {
+    url: "https://www.youtube.com/channel/UCnoTxG--1KoEY-zfd5JaqgA",
+    icon: "logo-youtube",
+    name: "Youtube",
   },
 }
 
@@ -121,5 +145,17 @@ export const SONGS = [
     subtitle: "Lorem ipesum",
     url: "#",
     audio: Sample2,
+  },
+]
+export const VIDEOS = [
+  {
+    name: "Like a Man",
+    link: "https://www.youtube.com/watch?v=wEQDLstNwDM",
+    img: LikeAMan,
+  },
+  {
+    name: "Wasted",
+    link: "https://www.youtube.com/watch?v=QdStHkV1U7s",
+    img: Wasted,
   },
 ]
