@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import { useState, useEffect } from "react"
 
 const useMultiAudio = (urls) => {
   const [sources] = useState(
@@ -35,7 +35,7 @@ const useMultiAudio = (urls) => {
 
   useEffect(() => {
     sources.forEach((source, i) => {
-      if(players[i].playing) {
+      if (players[i].playing) {
         source.audio.play()
       } else {
         source.audio.pause()
@@ -61,6 +61,7 @@ const useMultiAudio = (urls) => {
         })
       })
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return [players, toggle]

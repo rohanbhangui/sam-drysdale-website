@@ -1,5 +1,3 @@
-import { v4 as uuid } from "uuid"
-
 // album cover imports
 import OneMoreNight from "../assets/img/music/one-more-night.jpg"
 
