@@ -24,6 +24,16 @@ export const SOCIALS = {
     icon: Spotify,
     name: "Spotify",
   },
+  youtube: {
+    url: "https://www.youtube.com/channel/UCnoTxG--1KoEY-zfd5JaqgA",
+    icon: "logo-youtube",
+    name: "Youtube",
+  },
+  instagram: {
+    url: "https://www.instagram.com/samdrysdalemusic/?hl=en",
+    icon: "logo-instagram",
+    name: "Instagram",
+  },
   twitter: {
     url: "https://twitter.com/SDrysdaleMusic",
     icon: "logo-twitter",
@@ -33,16 +43,6 @@ export const SOCIALS = {
     url: "https://www.facebook.com/SamDrysdaleMusic",
     icon: "logo-facebook",
     name: "Facebook",
-  },
-  instagram: {
-    url: "https://www.instagram.com/greyspacegroup/?hl=en",
-    icon: "logo-instagram",
-    name: "Instagram",
-  },
-  youtube: {
-    url: "https://www.youtube.com/channel/UCnoTxG--1KoEY-zfd5JaqgA",
-    icon: "logo-youtube",
-    name: "Youtube",
   },
 }
 

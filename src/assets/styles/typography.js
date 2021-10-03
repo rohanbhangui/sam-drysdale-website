@@ -22,8 +22,8 @@ const FontFace = css`
   @font-face {
     font-family: "Across the Road";
     src: local("Across the Road"), local("AcrosstheRoad"),
-      url("${AcrossTheRoadWoff}") format("woff2"),
-      url("${AcrossTheRoadWoff2}") format("woff");
+      url("${AcrossTheRoadWoff2}") format("woff2"),
+      url("${AcrossTheRoadWoff}") format("woff");
     font-weight: normal;
     font-style: normal;
     font-display: swap;
