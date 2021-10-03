@@ -3,7 +3,11 @@ import styled from "styled-components"
 
 import useAudio from "../../utils/hooks/useAudio"
 
-const SongListItem = ({ img, title, subtitle, url, audio }) => {
+const SongListItem = (props) => {
+  const {
+    item: { id, img, title, subtitle, url, audio },
+  } = props
+
   const [playing, toggle] = useAudio(audio)
 
   return (
@@ -64,11 +68,12 @@ const Container = styled.div`
   }
 `
 
+const dimension = "3.5rem"
 const AudioPlayer = styled.div`
   background: url(${({ background }) => background});
   background-size: cover;
-  width: 3.5rem;
-  height: 3.5rem;
+  width: ${dimension};
+  height: ${dimension};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -82,17 +87,17 @@ const AudioPlayer = styled.div`
   }
 `
 
+const size = "2rem"
 const PlayButton = styled.button`
   cursor: pointer;
   background: none;
   border: none;
-  position: relative;
-  z-index: 10;
+  height: ${size};
   opacity: 0;
 
   ion-icon {
     color: white;
-    font-size: 2rem;
+    font-size: ${size};
     text-shadow: 0 0 4px rgba(0, 0, 0, 0.66);
   }
 `

@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import styled from "styled-components"
 import { v4 as uuid } from "uuid"
 
@@ -12,9 +12,18 @@ import ListenImg from "../../assets/img/listen.png"
 import { ALBUMS, SOCIALS, SONGS } from "../../utils/data"
 import Album from "../../components/albumItem"
 import SongListItem from "../../components/songListItem/songListItem"
-import { Grid } from "../../assets/styles/grid"
 
 const Home = () => {
+  const [songsArr, setSongsArr] = useState(
+    SONGS.map((item) => {
+      return {
+        ...item,
+        audio: new Audio(item.audio),
+        id: uuid(),
+      }
+    }),
+  )
+
   return (
     <>
       <RestrictContainer dimension={XXXL}>
@@ -108,14 +117,12 @@ const Home = () => {
             </MusicIcon>
           </SongReleasesTitle>
           <SongsList>
-            {SONGS.map(({ img, title, subtitle, url, audio }) => (
+            {songsArr.map((item) => (
               <SongListItem
-                key={uuid()}
-                img={img}
-                title={title}
-                subtitle={subtitle}
-                url={url}
-                audio={audio}
+                key={item.id}
+                item={item}
+                songsArr={songsArr}
+                setSongsArr={setSongsArr}
               />
             ))}
           </SongsList>

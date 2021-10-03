@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react"
 
-const useAudio = (url) => {
-  const [audio] = useState(new Audio(url))
+const useAudio = (audio) => {
   const [playing, setPlaying] = useState(false)
 
   const toggle = () => setPlaying((prevState) => !prevState)
@@ -16,16 +15,15 @@ const useAudio = (url) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [playing])
 
+  const ended = () => {
+    setPlaying(false)
+    audio.currentTime = 0
+  }
+
   useEffect(() => {
-    audio.addEventListener("ended", () => {
-      setPlaying(false)
-      audio.currentTime = 0
-    })
+    audio.addEventListener("ended", ended)
     return () => {
-      audio.removeEventListener("ended", () => {
-        setPlaying(false)
-        audio.currentTime = 0
-      })
+      audio.removeEventListener("ended", ended)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
