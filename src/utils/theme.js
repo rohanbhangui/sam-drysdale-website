@@ -1,6 +1,4 @@
-import { SM, MD, LG, XLG, XXL } from "./variables";
-
-import { primary, secondary } from "../assets/styles/typography";
+import { SM, MD, LG, XLG, XXL, XXXL } from "./variables"
 
 const Theme = {
   mediaQuery: {
@@ -11,12 +9,13 @@ const Theme = {
     large: `(min-width: ${LG + 1}px) and (min-height: ${MD}px)`,
     xlarge: `(min-width: ${XLG}px)`,
     xxlarge: `(min-width: ${XXL}px)`,
+    xxxlarge: `(min-width: ${XXXL}px)`,
   },
   colors: {
     primary: "#E30000",
     dark: "#030000",
-    text: "#ffffff"
+    text: "#ffffff",
   },
-};
+}
 
-export default Theme;
+export default Theme

@@ -1,4 +1,4 @@
-import Header, { HeaderHeight } from "./header";
+import Header, { HeaderHeight } from "./header"
 
-export { HeaderHeight };
-export default Header;
+export { HeaderHeight }
+export default Header

@@ -1,4 +1,4 @@
-import Footer, { socials } from "./footer";
+import Footer, { socials } from "./footer"
 
-export { socials };
-export default Footer;
+export { socials }
+export default Footer

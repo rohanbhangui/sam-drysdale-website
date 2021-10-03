@@ -1,5 +1,5 @@
-import { createGlobalStyle } from "styled-components";
-import {Typography, FontFace} from "./typography";
+import { createGlobalStyle } from "styled-components"
+import { Typography, FontFace } from "./typography"
 
 const GlobalStyle = createGlobalStyle`
   ${FontFace}
@@ -28,7 +28,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    background: ${({ theme }) => theme.colors.dark };
+    background: ${({ theme }) => theme.colors.dark};
   }
 
   #root {
@@ -38,11 +38,11 @@ const GlobalStyle = createGlobalStyle`
   * {
     font-size: 1rem;
     font-family: 'Lora', serif;
-    color: ${({ theme }) => theme.colors.text };
+    color: ${({ theme }) => theme.colors.text};
     font-weight: normal;
   }
 
   ${Typography}
-`;
+`
 
-export default GlobalStyle;
+export default GlobalStyle

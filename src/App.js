@@ -1,14 +1,17 @@
-import React from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import styled from "styled-components";
+import React from "react"
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+} from "react-router-dom"
 
-import GlobalStyle from "./assets/styles/globalStyles";
+import GlobalStyle from "./assets/styles/globalStyles"
 
-import Home from "./pages/home";
+import Home from "./pages/home"
 
-import Header from "./components/header";
-import Footer from "./components/footer";
-import ScrollToTop from "./components/scrollToTop";
+import Header from "./components/header"
+import Footer from "./components/footer"
+import ScrollToTop from "./components/scrollToTop"
 
 const App = () => {
   return (
@@ -19,10 +22,8 @@ const App = () => {
           <ScrollToTop />
           <Header />
           <Switch>
-            <Route path="/properties">
-            </Route>
-            <Route path="/investments">
-            </Route>
+            <Route path="/properties"></Route>
+            <Route path="/investments"></Route>
             <Route path="/" exact>
               <Home />
             </Route>
@@ -31,7 +32,7 @@ const App = () => {
         </Router>
       </main>
     </>
-  );
-};
+  )
+}
 
-export default App;
+export default App

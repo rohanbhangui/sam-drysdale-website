@@ -1,17 +1,17 @@
-import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useEffect } from "react"
+import { useLocation } from "react-router-dom"
 
 const ScrollToTop = () => {
-  const location = useLocation();
+  const location = useLocation()
 
   useEffect(() => {
     if (!location.hash) {
-      window.scrollTo(0, 0);
+      window.scrollTo(0, 0)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [location.pathname]);
+  }, [location.pathname])
 
-  return null;
-};
+  return null
+}
 
-export default ScrollToTop;
+export default ScrollToTop

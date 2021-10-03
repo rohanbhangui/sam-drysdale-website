@@ -1,34 +1,44 @@
-import { useEffect, useState } from "react";
-import { NavLink as _NavLink, useLocation, Link } from "react-router-dom";
-import styled, { css } from "styled-components";
-import { secondary } from "../../assets/styles/typography";
+import React, { useEffect, useState } from "react"
+import {
+  NavLink as _NavLink,
+  useLocation,
+  Link,
+} from "react-router-dom"
+import styled, { css } from "styled-components"
+import { secondary } from "../../assets/styles/typography"
 
 import LogoImg from "../../assets/img/logo.svg"
-import { XXL } from "../../utils/variables";
+import { XXXL } from "../../utils/variables"
 
 const Header = () => {
-  const { pathname } = useLocation();
+  const { pathname } = useLocation()
 
-  const [isMobileOpen, setIsMobileOpen] = useState("close");
+  const [isMobileOpen, setIsMobileOpen] = useState("close")
 
-  const toggleOpen = (e) => {
+  const toggleOpen = () => {
     setIsMobileOpen((prev) => {
-      if (prev === "open") return "close";
+      if (prev === "open") return "close"
 
-      return "open";
-    });
-  };
+      return "open"
+    })
+  }
 
   useEffect(() => {
-    setIsMobileOpen("close");
-  }, [pathname]);
+    setIsMobileOpen("close")
+  }, [pathname])
 
   return (
     <HeaderContainer mobileopen={isMobileOpen}>
       <nav>
-        <Link to="/" className="logo-link"><Logo src={LogoImg} alt="" /></Link>
+        <Link to="/" className="logo-link">
+          <Logo src={LogoImg} alt="" />
+        </Link>
         <ion-icon
-          name={isMobileOpen === "close" ? "menu-outline" : "close-outline"}
+          name={
+            isMobileOpen === "close"
+              ? "menu-outline"
+              : "close-outline"
+          }
           onClick={toggleOpen}
         ></ion-icon>
         <ul>
@@ -60,10 +70,10 @@ const Header = () => {
         </ul>
       </nav>
     </HeaderContainer>
-  );
-};
+  )
+}
 
-export const HeaderHeight = "4rem";
+export const HeaderHeight = "4rem"
 
 const HeaderContainer = styled.header`
   height: ${HeaderHeight};
@@ -75,7 +85,7 @@ const HeaderContainer = styled.header`
     margin: 0;
   }
 
-  ${({ mobileopen, theme }) =>
+  ${({ mobileopen }) =>
     mobileopen === "open" &&
     `
     @media ${({ theme }) => theme.mediaQuery.medium} {
@@ -90,7 +100,7 @@ const HeaderContainer = styled.header`
     display: flex;
     align-items: center;
     padding: 0 0.5rem;
-    max-width: ${XXL}px;
+    max-width: ${XXXL}px;
     width: 100%;
     margin: 0 auto;
 
@@ -181,11 +191,9 @@ const HeaderContainer = styled.header`
       }
     }
   }
-`;
-
-const Logo = styled.img`
-
 `
+
+const Logo = styled.img``
 
 const NavItem = styled.li`
   display: block;
@@ -199,7 +207,7 @@ const NavItem = styled.li`
   a {
     display: inline-block;
   }
-`;
+`
 
 const NavLinkStyles = css`
   font-size: 2.2rem;
@@ -226,10 +234,10 @@ const NavLinkStyles = css`
   &:hover {
     border-bottom: 2px solid ${({ theme }) => theme.colors.primary};
   }
-`;
+`
 
 const NavLink = styled(_NavLink)`
   ${NavLinkStyles}
-`;
+`
 
-export default Header;
+export default Header

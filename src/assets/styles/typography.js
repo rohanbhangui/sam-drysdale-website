@@ -1,4 +1,4 @@
-import { css } from "styled-components";
+import { css } from "styled-components"
 
 //across the road
 import AcrossTheRoadWoff from "../fonts/AcrosstheRoad.woff"
@@ -20,60 +20,60 @@ import VogueWoff2 from "../fonts/Vogue-Regular.woff2"
 
 const FontFace = css`
   @font-face {
-    font-family: 'Across the Road';
-    src: local('Across the Road'), local('AcrosstheRoad'),
-        url('${AcrossTheRoadWoff}') format('woff2'),
-        url('${AcrossTheRoadWoff2}') format('woff');
+    font-family: "Across the Road";
+    src: local("Across the Road"), local("AcrosstheRoad"),
+      url("${AcrossTheRoadWoff}") format("woff2"),
+      url("${AcrossTheRoadWoff2}") format("woff");
     font-weight: normal;
     font-style: normal;
     font-display: swap;
   }
 
   @font-face {
-    font-family: 'Lora';
-    src: local('Lora Bold Italic'), local('Lora-BoldItalic'),
-        url('${LoraBoldItalicsWoff2}') format('woff2'),
-        url('${LoraBoldItalicsWoff}') format('woff');
+    font-family: "Lora";
+    src: local("Lora Bold Italic"), local("Lora-BoldItalic"),
+      url("${LoraBoldItalicsWoff2}") format("woff2"),
+      url("${LoraBoldItalicsWoff}") format("woff");
     font-weight: bold;
     font-style: italic;
     font-display: swap;
   }
 
   @font-face {
-    font-family: 'Lora';
-    src: local('Lora Bold'), local('Lora-Bold'),
-        url('${LoraBoldWoff2}') format('woff2'),
-        url('${LoraBoldWoff}') format('woff');
+    font-family: "Lora";
+    src: local("Lora Bold"), local("Lora-Bold"),
+      url("${LoraBoldWoff2}") format("woff2"),
+      url("${LoraBoldWoff}") format("woff");
     font-weight: bold;
     font-style: normal;
     font-display: swap;
   }
 
   @font-face {
-    font-family: 'Lora';
-    src: local('Lora Italic'), local('Lora-Italic'),
-        url('${LoraItalicWoff2}') format('woff2'),
-        url('${LoraItalicWoff}') format('woff');
+    font-family: "Lora";
+    src: local("Lora Italic"), local("Lora-Italic"),
+      url("${LoraItalicWoff2}") format("woff2"),
+      url("${LoraItalicWoff}") format("woff");
     font-weight: normal;
     font-style: italic;
     font-display: swap;
   }
 
   @font-face {
-    font-family: 'Lora';
-    src: local('Lora'), local('Lora-Regular'),
-        url('${LoraWoff2}') format('woff2'),
-        url('${LoraWoff}') format('woff');
+    font-family: "Lora";
+    src: local("Lora"), local("Lora-Regular"),
+      url("${LoraWoff2}") format("woff2"),
+      url("${LoraWoff}") format("woff");
     font-weight: normal;
     font-style: normal;
     font-display: swap;
   }
 
   @font-face {
-    font-family: 'Vogue';
-    src: local('Vogue Regular'), local('Vogue-Regular'),
-      url('${VogueWoff2}') format('woff2'),
-      url('${VogueWoff}') format('woff');
+    font-family: "Vogue";
+    src: local("Vogue Regular"), local("Vogue-Regular"),
+      url("${VogueWoff2}") format("woff2"),
+      url("${VogueWoff}") format("woff");
     font-weight: normal;
     font-style: normal;
     font-display: swap;
@@ -87,7 +87,7 @@ const primary = css`
 `
 
 const secondary = css`
-  font-family: 'Lora', serif;
+  font-family: "Lora", serif;
   font-weight: bold;
 `
 
@@ -127,7 +127,6 @@ const Typography = css`
       line-height: 0.8;
       letter-spacing: -0.4rem;
 
-
       @media ${({ theme }) => theme.mediaQuery.small} {
         font-size: 7rem;
       }
@@ -149,34 +148,31 @@ const Typography = css`
   h2,
   .h2 {
     ${primary}
-    font-size: 1.5rem;
-    line-height: 1.2;
+    font-size: 2.5rem;
+    line-height: 1;
     letter-spacing: -0.02rem;
   }
 
   h3,
   .h3 {
-    ${primary}
+    ${secondary}
     font-weight: 500;
     margin-top: 0.75rem;
     line-height: 1.5rem;
     font-size: 1rem;
+    letter-spacing: -0.05rem;
+    font-weight: bold;
   }
 
   h4,
   .h4 {
-    ${primary}
+    ${secondary}
     font-weight: 600;
     margin-top: 0.75rem;
     line-height: 1rem;
     font-size: 0.6rem;
     letter-spacing: 0.02rem;
   }
-`;
+`
 
-export {
-  Typography,
-  FontFace,
-  primary,
-  secondary
-};
+export { Typography, FontFace, primary, secondary }

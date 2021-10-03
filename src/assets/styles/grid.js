@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "styled-components"
 
 const Grid = styled.div`
   display: grid;
@@ -49,6 +49,6 @@ const Grid = styled.div`
       grid-template-columns: repeat(${xxl}, 1fr);
     }
   `}
-`;
+`
 
-export { Grid };
+export { Grid }

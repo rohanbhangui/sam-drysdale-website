@@ -1,19 +1,22 @@
-import { useEffect } from "react";
-import styled from "styled-components";
-import { Link } from "react-router-dom";
-import { v4 as uuid } from "uuid";
+import React from "react"
+import styled from "styled-components"
+import { v4 as uuid } from "uuid"
 
-import { Grid } from "../../assets/styles/grid"
 import { XXXL, XXL, XLG } from "../../utils/variables"
 
-import IntroShotImg from "../../assets/img/intro-shot.png";
-import BiographyImg from "../../assets/img/biography.png";
-import ListenImg from "../../assets/img/listen.png";
+import IntroShotImg from "../../assets/img/intro-shot.png"
+import BiographyImg from "../../assets/img/biography.png"
+import ListenImg from "../../assets/img/listen.png"
+
+//data imports
+import { ALBUMS, SOCIALS, SONGS } from "../../utils/data"
+import Album from "../../components/albumItem"
+import SongListItem from "../../components/songListItem/songListItem"
 
 const Home = () => {
   return (
     <>
-      <RestrictContainer dimension={XXL}>
+      <RestrictContainer dimension={XXXL}>
         <Intro>
           <LowKey>Velvet Grit.</LowKey>
           <LowKey>Urban Surfer.</LowKey>
@@ -29,26 +32,103 @@ const Home = () => {
           <img src={BiographyImg} alt="" />
         </BiographyImage>
         <BiographyText>
-          <p>He's that kid we all know. The one who teaches himself Wonderwall on the guitar so he can impress his high school friends. But turns out we don't really know him at all. Because when he graduates real life shows up. He moves to LA. Wakes up. Gets inspired. Gets his heart broken. Grows up in a hurry. Discovers Hendrix, The Weeknd and the blues. Gets soaked in a barrel of bourbon and Sam Drysdale the musician is born. Velvet grit. Urban surfer. Undefinable yet true to the bone.</p>
-          <p>Sam Drysdale is Toronto bred with time in Nashville and LA colouring the mix. A world-traveling musical anomaly fusing urban blues with hip hop, R&amp;B with a modern pop sensibility; a singer-songwriter with a voice to stop you in your tracks. Sam Cooke, John Mayer, The Weeknd, Adele, Jay-Z ... you'll find flashes of them all in Sam's music.</p>
-          <p>Anomaly yes, and that is what makes Sam so unique. He is a neon-lit west ender who loves Hawaiian shirts and combat boots. Raw and honest, surprising and evocative. Ditching cliches and bringing on the truth in all its mysterious glory. Meet Sam Drysdale.</p>
+          <p>
+            He's that kid we all know. The one who teaches himself
+            Wonderwall on the guitar so he can impress his high school
+            friends. But turns out we don't really know him at all.
+            Because when he graduates real life shows up. He moves to
+            LA. Wakes up. Gets inspired. Gets his heart broken. Grows
+            up in a hurry. Discovers Hendrix, The Weeknd and the
+            blues. Gets soaked in a barrel of bourbon and Sam Drysdale
+            the musician is born. Velvet grit. Urban surfer.
+            Undefinable yet true to the bone.
+          </p>
+          <p>
+            Sam Drysdale is Toronto bred with time in Nashville and LA
+            colouring the mix. A world-traveling musical anomaly
+            fusing urban blues with hip hop, R&amp;B with a modern pop
+            sensibility; a singer-songwriter with a voice to stop you
+            in your tracks. Sam Cooke, John Mayer, The Weeknd, Adele,
+            Jay-Z ... you'll find flashes of them all in Sam's music.
+          </p>
+          <p>
+            Anomaly yes, and that is what makes Sam so unique. He is a
+            neon-lit west ender who loves Hawaiian shirts and combat
+            boots. Raw and honest, surprising and evocative. Ditching
+            cliches and bringing on the truth in all its mysterious
+            glory. Meet Sam Drysdale.
+          </p>
         </BiographyText>
       </Biography>
       <Listen>
         <RestrictContainer dimension={XLG}>
-            <div className="content-container">
-              <h2 className="h1">Listen</h2>
-              <div className="content">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
-                <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-              </div>
+          <div className="content-container">
+            <h2 className="h1">Listen</h2>
+            <div className="content">
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing
+                elit, sed do eiusmod tempor incididunt ut labore et
+                dolore magna aliqua. Ut enim ad minim veniam, quis
+                nostrud exercitation ullamco laboris nisi ut aliquip
+                ex ea commodo consequat.
+              </p>
+              <p>
+                Duis aute irure dolor in reprehenderit in voluptate
+                velit esse cillum dolore eu fugiat nulla pariatur.
+                Excepteur sint occaecat cupidatat non proident, sunt
+                in culpa qui officia deserunt mollit anim id est
+                laborum.
+              </p>
             </div>
+          </div>
         </RestrictContainer>
-        <ListenCover src={ListenImg} alt="" />
+        <ListenHeroImage src={ListenImg} alt="" />
+        <RestrictContainer dimension={XXL}>
+          <AlbumGroup>
+            {ALBUMS.map(({ img, title, subtitle, url }) => (
+              <Album
+                key={uuid()}
+                img={img}
+                title={title}
+                subtitle={subtitle}
+                url={url}
+              />
+            ))}
+          </AlbumGroup>
+        </RestrictContainer>
+        <SongReleases dimension={XXL}>
+          <SongReleasesTitle>
+            <h2>Latest Releases</h2>
+            <MusicIcon href={SOCIALS["apple music"].url}>
+              <img
+                src={SOCIALS["apple music"].icon}
+                alt={SOCIALS["apple music"].name}
+              />
+            </MusicIcon>
+            <MusicIcon href={SOCIALS["spotify"].url}>
+              <img
+                src={SOCIALS["spotify"].icon}
+                alt={SOCIALS["spotify"].name}
+              />
+            </MusicIcon>
+          </SongReleasesTitle>
+          <SongsList>
+            {SONGS.map(({ img, title, subtitle, url, audio }) => (
+              <SongListItem
+                key={uuid()}
+                img={img}
+                title={title}
+                subtitle={subtitle}
+                url={url}
+                audio={audio}
+              />
+            ))}
+          </SongsList>
+        </SongReleases>
       </Listen>
     </>
-  );
-};
+  )
+}
 
 const RestrictContainer = styled.div`
   max-width: ${({ dimension }) => dimension || XXL}px;
@@ -64,7 +144,7 @@ const LowKey = styled.h1`
   }
 
   @supports not (-webkit-text-stroke: 1px white) {
-    color: ${({ theme }) => theme.colors.text}
+    color: ${({ theme }) => theme.colors.text};
   }
 `
 
@@ -94,27 +174,37 @@ const Name = styled.h1`
 `
 
 const Biography = styled.div`
-  max-width: ${XXXL}px;
+  width: 90%;
   display: flex;
-  margin: 6rem auto;
+  margin: 6rem 0;
   flex-wrap: wrap;
 
   @media ${({ theme }) => theme.mediaQuery.medium} {
     flex-wrap: nowrap;
   }
+
+  @media ${({ theme }) => theme.mediaQuery.xlarge} {
+    margin: 12rem 0;
+  }
 `
 
-const BiographyImage =styled.div`
+const BiographyImage = styled.div`
   position: relative;
   flex: 1 1 100%;
 
-  @media ${({ theme }) => theme.mediaQuery.medium} {
-    flex: 1 1 calc(100% - 20rem);
-  }
-
   img {
     width: 100%;
-    height: auto;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+
+    @media ${({ theme }) => theme.mediaQuery.medium} {
+      object-position: right bottom;
+    }
+
+    @media ${({ theme }) => theme.mediaQuery.xxlarge} {
+      height: auto;
+    }
   }
 
   h2.h1 {
@@ -124,15 +214,25 @@ const BiographyImage =styled.div`
   }
 `
 
-const BiographyText =styled.div`
+const BiographyText = styled.div`
   width: 20rem;
   padding: 1rem;
   flex: 1 1 100%;
+  position: sticky;
+  top: 20px;
 
   @media ${({ theme }) => theme.mediaQuery.medium} {
     flex 1 0 auto;
-    margin-top: 4rem;
+    margin-top: 2rem;
     padding: 1rem 1rem 1rem 3rem;
+  }
+
+  @media ${({ theme }) => theme.mediaQuery.xlarge} {
+    margin-top: 0rem;
+  }
+
+  @media ${({ theme }) => theme.mediaQuery.xxlarge} {
+    margin-top: 2rem;
   }
 `
 
@@ -159,7 +259,6 @@ const Listen = styled.div`
     }
 
     .content {
-
       @media ${({ theme }) => theme.mediaQuery.medium} {
         width: 70%;
         column-count: 2;
@@ -173,12 +272,57 @@ const Listen = styled.div`
   }
 `
 
-const ListenCover = styled.img`
+const ListenHeroImage = styled.img`
   width: 100%;
   height: auto;
   width: 90%;
-  position: relative;
-  right: 0;
+  display: block;
+  margin-left: auto;
+  margin-right: 0;
 `
 
-export default Home;
+const AlbumGroup = styled.div`
+  display: flex;
+  margin-top: 4rem;
+`
+
+const SongReleases = styled(RestrictContainer)`
+  margin-top: 4rem;
+  padding: 0 0.5rem;
+`
+
+const SongReleasesTitle = styled.div`
+  display: flex;
+  align-items: center;
+
+  h2 {
+    margin-right: 0.5rem;
+    margin-bottom: -0.5rem;
+  }
+`
+
+const MusicIcon = styled.a`
+  height: 1.5rem;
+  width: auto;
+  margin: 0 0.4rem;
+  display: inline-block;
+
+  img {
+    opacity: 0.33;
+    transition: opacity 0.3s cubic-bezier(0.77, 0, 0.175, 1);
+  }
+
+  &:hover {
+    img {
+      opacity: 1;
+    }
+  }
+`
+
+const SongsList = styled.div`
+  overflow: auto;
+  column-count: 3;
+  column-gap: 1rem;
+`
+
+export default Home
