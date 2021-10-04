@@ -45,7 +45,11 @@ const Home = () => {
       <Biography>
         <BiographyImage>
           <h2 className="h1">Biography</h2>
-          <img src={BiographyImg} alt="" />
+          <div className="biography-img-stack">
+            <img className="smallest" src={BiographyImg} alt="" />
+            <img className="smaller" src={BiographyImg} alt="" />
+            <img className="" src={BiographyImg} alt="" />
+          </div>
         </BiographyImage>
         <BiographyText>
           <p>
@@ -264,35 +268,57 @@ const Biography = styled.div`
     align-items: stretch;
   }
 
-  @media ${({ theme }) => theme.mediaQuery.large} {
-    align-items: flex-start;
-  }
-
   @media ${({ theme }) => theme.mediaQuery.xlarge} {
     margin: 12rem 0;
+  }
+
+  @media ${({ theme }) => theme.mediaQuery.xxlarge} {
+    align-items: flex-start;
   }
 `
 
 const BiographyImage = styled.div`
   position: relative;
   flex: 1 1 100%;
+  margin-bottom: 15%;
 
-  img {
-    width: 100%;
+  @media ${({ theme }) => theme.mediaQuery.medium} {
+    margin-bottom: 4rem;
+  }
+
+  @media ${({ theme }) => theme.mediaQuery.large} {
+    margin-bottom: 4rem;
+  }
+
+  .biography-img-stack {
     height: 100%;
-    object-fit: cover;
-    object-position: center center;
+    width: 100%;
 
-    @media ${({ theme }) => theme.mediaQuery.medium} {
-      object-position: 55% 100%;
-    }
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+      border: 1px solid purple;
 
-    @media ${({ theme }) => theme.mediaQuery.large} {
-      object-position: right bottom;
-    }
+      &.smaller {
+        position: absolute;
+        top: 15%;
+        right: 15%;
+        width: 90%;
+        height: 90%;
+        // border: 1px solid green;
+      }
 
-    @media ${({ theme }) => theme.mediaQuery.xxlarge} {
-      height: auto;
+      &.smallest {
+        position: absolute;
+        z-index: 2;
+        top: 30%;
+        right: 30%;
+        width: 80%;
+        height: 80%;
+        // border: 1px solid blue;
+      }
     }
   }
 
@@ -300,6 +326,7 @@ const BiographyImage = styled.div`
     position: absolute;
     bottom: 5%;
     left: 1rem;
+    z-index: 3;
 
     @media ${({ theme }) => theme.mediaQuery.medium} {
       right: 10%;
