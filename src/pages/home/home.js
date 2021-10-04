@@ -299,7 +299,7 @@ const BiographyImage = styled.div`
       height: 100%;
       object-fit: cover;
       object-position: center center;
-      border: 1px solid purple;
+      // border: 1px solid purple;
 
       &.smaller {
         position: absolute;
