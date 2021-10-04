@@ -30,7 +30,9 @@ const Album = (props) => {
           <h3>{title}</h3>
           <p>{subtitle}</p>
         </div>
-        <ion-icon className="go" name="arrow-forward-circle" />
+        <div className="go">
+          <ion-icon name="arrow-forward-circle" />
+        </div>
       </Content>
     </Container>
   )
@@ -38,12 +40,6 @@ const Album = (props) => {
 
 const Container = styled.div`
   padding: 0 0.5rem;
-
-  &:hover {
-    ion-icon.go {
-      opacity: 1;
-    }
-  }
 `
 
 const dimension = "15rem"
@@ -99,9 +95,19 @@ const Content = styled.a`
     }
   }
 
-  ion-icon {
-    font-size: 2rem;
-    opacity: 0;
+  .go {
+    ion-icon {
+      font-size: 2rem;
+      opacity: 0;
+    }
+  }
+
+  &:hover {
+    .go {
+      ion-icon {
+        opacity: 1;
+      }
+    }
   }
 `
 

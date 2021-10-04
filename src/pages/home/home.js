@@ -122,8 +122,8 @@ const Home = () => {
               <Album
                 key={item.id}
                 item={item}
-                player={players[index]}
-                toggle={toggle(index)}
+                player={albumPlayers[index]}
+                toggle={albumToggle(index)}
               />
             ))}
           </AlbumGroup>
@@ -143,8 +143,8 @@ const Home = () => {
               <SongListItem
                 key={item.id}
                 item={item}
-                player={albumPlayers[index]}
-                toggle={albumToggle(index)}
+                player={players[index]}
+                toggle={toggle(index)}
               />
             ))}
           </SongsList>

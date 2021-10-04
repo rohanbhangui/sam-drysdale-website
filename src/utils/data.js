@@ -2,8 +2,13 @@
 import OneMoreNight from "../assets/img/music/one-more-night.jpg"
 
 // audio imports
-import Sample1 from "../assets/audio/sample-1.mp3"
-import Sample2 from "../assets/audio/sample-2.mp3"
+import WastedClip from "../assets/audio/WastedClip.mp3"
+import DreamAboutAGirlClip from "../assets/audio/DreamAboutAGirlClip.mp3"
+import ShittyFamousClip from "../assets/audio/ShittyFamousClip.mp3"
+import LikeAManClip from "../assets/audio/LikeAManClip.mp3"
+
+import Sample1 from "../assets/audio/ShittyFamousClip.mp3"
+import Sample2 from "../assets/audio/LikeAManClip.mp3"
 
 // icon imports
 import Spotify from "../assets/img/spotify.svg"
@@ -49,31 +54,31 @@ export const SOCIALS = {
 export const ALBUMS = [
   {
     img: OneMoreNight,
-    title: "One More Night",
+    title: "Shitty Famous",
     subtitle: "Lorem ipesum",
     url: "#",
-    audio: Sample1,
+    audio: ShittyFamousClip,
   },
   {
     img: OneMoreNight,
-    title: "One More Night",
+    title: "Dream About a Girl",
     subtitle: "Lorem ipesum",
     url: "#",
-    audio: Sample2,
+    audio: DreamAboutAGirlClip,
   },
   {
     img: OneMoreNight,
-    title: "One More Night",
+    title: "Wasted",
     subtitle: "Lorem ipesum",
     url: "#",
-    audio: Sample1,
+    audio: WastedClip,
   },
   {
     img: OneMoreNight,
-    title: "One More Night",
+    title: "Like a Man",
     subtitle: "Lorem ipesum",
     url: "#",
-    audio: Sample2,
+    audio: LikeAManClip,
   },
 ]
 
