@@ -11,7 +11,6 @@ import AppleMusic from "../assets/img/apple-music.svg"
 
 // video cover imports
 import LikeAMan from "../assets/img/videos/like-a-man-videocover.png"
-import Wasted from "../assets/img/videos/wasted-videocover.png"
 import DreamAboutAGirl from "../assets/img/videos/dream-about-a-girl-videocover.jpg"
 
 export const SOCIALS = {
@@ -53,24 +52,28 @@ export const ALBUMS = [
     title: "One More Night",
     subtitle: "Lorem ipesum",
     url: "#",
+    audio: Sample1,
   },
   {
     img: OneMoreNight,
     title: "One More Night",
     subtitle: "Lorem ipesum",
     url: "#",
+    audio: Sample2,
   },
   {
     img: OneMoreNight,
     title: "One More Night",
     subtitle: "Lorem ipesum",
     url: "#",
+    audio: Sample1,
   },
   {
     img: OneMoreNight,
     title: "One More Night",
     subtitle: "Lorem ipesum",
     url: "#",
+    audio: Sample2,
   },
 ]
 
@@ -151,11 +154,6 @@ export const VIDEOS = [
     name: "Dream About a Girl",
     link: "https://www.youtube.com/watch?v=L2VkIBmdU9s",
     img: DreamAboutAGirl,
-  },
-  {
-    name: "Wasted",
-    link: "https://www.youtube.com/watch?v=QdStHkV1U7s",
-    img: Wasted,
   },
   {
     name: "Like a Man",

@@ -1,16 +1,36 @@
 import React from "react"
 import styled from "styled-components"
 
-const Album = ({ img, title, subtitle, url }) => {
+const Album = (props) => {
+  const {
+    item: { img, title, subtitle, url },
+    player,
+    toggle,
+  } = props
+
   return (
     <Container>
-      <AlbumCover src={img} />
+      <AudioPlayer
+        onClick={toggle}
+        background={img}
+        className={player.playing ? "isPlaying" : ""}
+      >
+        <PlayButton>
+          <ion-icon
+            name={
+              player.playing
+                ? "pause-circle-sharp"
+                : "play-circle-sharp"
+            }
+          ></ion-icon>
+        </PlayButton>
+      </AudioPlayer>
       <Content href={url}>
         <div className="inner">
           <h3>{title}</h3>
           <p>{subtitle}</p>
         </div>
-        <ion-icon name="arrow-forward-circle"></ion-icon>
+        <ion-icon className="go" name="arrow-forward-circle" />
       </Content>
     </Container>
   )
@@ -20,16 +40,44 @@ const Container = styled.div`
   padding: 0 0.5rem;
 
   &:hover {
-    ion-icon {
+    ion-icon.go {
       opacity: 1;
     }
   }
 `
 
-const AlbumCover = styled.img`
-  width: 15rem;
-  height: 15rem;
-  object-fit: cover;
+const dimension = "15rem"
+const AudioPlayer = styled.div`
+  background: url(${({ background }) => background});
+  background-size: cover;
+  width: ${dimension};
+  height: ${dimension};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+
+  &:hover,
+  &.isPlaying {
+    button {
+      opacity: 1;
+    }
+  }
+`
+
+const size = "4rem"
+const PlayButton = styled.button`
+  cursor: pointer;
+  background: none;
+  border: none;
+  height: ${size};
+  opacity: 0;
+
+  ion-icon {
+    color: white;
+    font-size: ${size};
+    text-shadow: 0 0 4px rgba(0, 0, 0, 0.66);
+  }
 `
 
 const Content = styled.a`

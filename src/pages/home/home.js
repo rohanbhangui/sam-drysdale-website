@@ -17,8 +17,17 @@ import SongListItem from "../../components/songListItem/songListItem"
 import Button from "../../components/button"
 
 const Home = () => {
-  const [songsArr, setSongsArr] = useState(
+  const [songsArr] = useState(
     SONGS.map((item) => {
+      return {
+        ...item,
+        id: uuid(),
+      }
+    }),
+  )
+
+  const [albumsArr] = useState(
+    ALBUMS.map((item) => {
       return {
         ...item,
         id: uuid(),
@@ -28,6 +37,10 @@ const Home = () => {
 
   const [players, toggle] = useMultiAudio(
     songsArr.map((item) => item.audio),
+  )
+
+  const [albumPlayers, albumToggle] = useMultiAudio(
+    albumsArr.map((item) => item.audio),
   )
 
   return (
@@ -105,13 +118,12 @@ const Home = () => {
         <ListenHeroImage src={ListenImg} alt="" />
         <RestrictContainer dimension={XXL}>
           <AlbumGroup>
-            {ALBUMS.map(({ img, title, subtitle, url }) => (
+            {ALBUMS.map((item, index) => (
               <Album
-                key={uuid()}
-                img={img}
-                title={title}
-                subtitle={subtitle}
-                url={url}
+                key={item.id}
+                item={item}
+                player={players[index]}
+                toggle={toggle(index)}
               />
             ))}
           </AlbumGroup>
@@ -131,10 +143,8 @@ const Home = () => {
               <SongListItem
                 key={item.id}
                 item={item}
-                player={players[index]}
-                toggle={toggle(index)}
-                songsArr={songsArr}
-                setSongsArr={setSongsArr}
+                player={albumPlayers[index]}
+                toggle={albumToggle(index)}
               />
             ))}
           </SongsList>
@@ -299,7 +309,6 @@ const BiographyImage = styled.div`
       height: 100%;
       object-fit: cover;
       object-position: center center;
-      // border: 1px solid purple;
 
       &.smaller {
         position: absolute;
@@ -307,7 +316,6 @@ const BiographyImage = styled.div`
         right: 15%;
         width: 90%;
         height: 90%;
-        // border: 1px solid green;
       }
 
       &.smallest {
@@ -317,7 +325,6 @@ const BiographyImage = styled.div`
         right: 30%;
         width: 80%;
         height: 80%;
-        // border: 1px solid blue;
       }
     }
   }
@@ -413,6 +420,7 @@ const AlbumGroup = styled.div`
 const SongReleases = styled(RestrictContainer)`
   margin-top: 4rem;
   padding: 0 0.5rem;
+  display: none;
 `
 
 const SongReleasesTitle = styled.div`
