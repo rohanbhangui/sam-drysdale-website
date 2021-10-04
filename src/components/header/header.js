@@ -4,7 +4,7 @@ import {
   useLocation,
   Link,
 } from "react-router-dom"
-import { HashLink } from "react-router-hash-link"
+import { NavHashLink as _NavHasLink } from "react-router-hash-link"
 
 import styled, { css } from "styled-components"
 import { secondary } from "../../assets/styles/typography"
@@ -242,7 +242,7 @@ const NavLink = styled(_NavLink)`
   ${NavLinkStyles}
 `
 
-const NavHashLink = styled(HashLink)`
+const NavHashLink = styled(_NavHasLink)`
   ${NavLinkStyles}
 `
 
