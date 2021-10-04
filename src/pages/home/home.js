@@ -118,7 +118,7 @@ const Home = () => {
         <ListenHeroImage src={ListenImg} alt="" />
         <RestrictContainer dimension={XXL}>
           <AlbumGroup>
-            {ALBUMS.map((item, index) => (
+            {albumsArr.map((item, index) => (
               <Album
                 key={item.id}
                 item={item}
