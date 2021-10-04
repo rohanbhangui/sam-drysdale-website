@@ -261,6 +261,10 @@ const Biography = styled.div`
   @media ${({ theme }) => theme.mediaQuery.medium} {
     flex-wrap: nowrap;
     width: 90%;
+    align-items: stretch;
+  }
+
+  @media ${({ theme }) => theme.mediaQuery.large} {
     align-items: flex-start;
   }
 
@@ -280,6 +284,10 @@ const BiographyImage = styled.div`
     object-position: center center;
 
     @media ${({ theme }) => theme.mediaQuery.medium} {
+      object-position: 55% 100%;
+    }
+
+    @media ${({ theme }) => theme.mediaQuery.large} {
       object-position: right bottom;
     }
 
@@ -290,8 +298,13 @@ const BiographyImage = styled.div`
 
   h2.h1 {
     position: absolute;
-    right: 10%;
-    bottom: 10%;
+    bottom: 5%;
+    left: 1rem;
+
+    @media ${({ theme }) => theme.mediaQuery.medium} {
+      right: 10%;
+      left: auto;
+    }
   }
 `
 
