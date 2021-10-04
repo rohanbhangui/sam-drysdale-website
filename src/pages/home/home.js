@@ -31,7 +31,7 @@ const Home = () => {
   )
 
   return (
-    <>
+    <ScrollBars>
       <RestrictContainer dimension={XXXL}>
         <Intro>
           <LowKey>Velvet Grit.</LowKey>
@@ -178,9 +178,33 @@ const Home = () => {
           </div>
         </Watch>
       </RestrictContainer>
-    </>
+    </ScrollBars>
   )
 }
+
+const ScrollBars = styled.div`
+  @media (hover: hover) {
+    * {
+      scrollbar-width: thin;
+      scrollbar-color: rgba(255, 255, 255, 0.33) rgba(0, 0, 0, 0);
+    }
+
+    *::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+
+    *::-webkit-scrollbar-track {
+      background: rgba(0, 0, 0, 0);
+    }
+
+    *::-webkit-scrollbar-thumb {
+      background-color: rgba(255, 255, 255, 0.33);
+      border-radius: 10px;
+      border: 0px solid ${({ theme }) => theme.colors.dark};
+    }
+  }
+`
 
 const RestrictContainer = styled.div`
   max-width: ${({ dimension }) => dimension || XXL}px;
