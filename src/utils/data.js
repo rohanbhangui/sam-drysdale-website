@@ -12,6 +12,7 @@ import AppleMusic from "../assets/img/apple-music.svg"
 // video cover imports
 import LikeAMan from "../assets/img/videos/like-a-man-videocover.png"
 import Wasted from "../assets/img/videos/wasted-videocover.png"
+import DreamAboutAGirl from "../assets/img/videos/dream-about-a-girl-videocover.jpg"
 
 export const SOCIALS = {
   "apple music": {
@@ -147,13 +148,18 @@ export const SONGS = [
 ]
 export const VIDEOS = [
   {
-    name: "Like a Man",
-    link: "https://www.youtube.com/watch?v=wEQDLstNwDM",
-    img: LikeAMan,
+    name: "Dream About a Girl",
+    link: "https://www.youtube.com/watch?v=L2VkIBmdU9s",
+    img: DreamAboutAGirl,
   },
   {
     name: "Wasted",
     link: "https://www.youtube.com/watch?v=QdStHkV1U7s",
     img: Wasted,
+  },
+  {
+    name: "Like a Man",
+    link: "https://www.youtube.com/watch?v=wEQDLstNwDM",
+    img: LikeAMan,
   },
 ]

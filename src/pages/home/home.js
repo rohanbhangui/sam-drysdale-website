@@ -237,6 +237,7 @@ const Biography = styled.div`
   @media ${({ theme }) => theme.mediaQuery.medium} {
     flex-wrap: nowrap;
     width: 90%;
+    align-items: flex-start;
   }
 
   @media ${({ theme }) => theme.mediaQuery.xlarge} {
@@ -274,13 +275,13 @@ const BiographyText = styled.div`
   width: 20rem;
   padding: 1rem;
   flex: 1 1 100%;
-  position: sticky;
-  top: 20px;
 
   @media ${({ theme }) => theme.mediaQuery.medium} {
     flex: 1 0 auto;
     margin-top: 2rem;
     padding: 1rem 1rem 1rem 3rem;
+    position: sticky;
+    top: 2rem;
   }
 
   @media ${({ theme }) => theme.mediaQuery.xlarge} {
@@ -397,6 +398,7 @@ const Watch = styled.div`
   @media ${({ theme }) => theme.mediaQuery.medium} {
     flex-wrap: nowrap;
     margin: 8rem 0;
+    align-items: start;
   }
 
   .videos {
@@ -416,6 +418,8 @@ const Watch = styled.div`
       flex: 0 0 auto;
       padding: 1rem 1rem 1rem 3rem;
       margin-top: 4rem;
+      position: sticky;
+      top: 2rem;
     }
 
     h3.h2 {
@@ -429,7 +433,12 @@ const Watch = styled.div`
 `
 
 const Video = styled.div`
-  background: url(${({ cover }) => cover});
+  background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.25),
+      rgba(0, 0, 0, 0.25)
+    ),
+    url(${({ cover }) => cover});
   background-size: cover;
   background-position: center center;
   display: flex;
