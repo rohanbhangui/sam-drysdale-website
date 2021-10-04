@@ -12,6 +12,9 @@ import IntroShotImg from "../../assets/img/intro-shot.png"
 import BiographyImg from "../../assets/img/biography.png"
 import ListenImg from "../../assets/img/listen.png"
 
+import AppleBadge from "../../assets/img/listen-apple-music-badge.svg"
+import SpotifyBadge from "../../assets/img/spotify-badge.png"
+
 import Album from "../../components/albumItem"
 import SongListItem from "../../components/songListItem/songListItem"
 import Button from "../../components/button"
@@ -128,6 +131,14 @@ const Home = () => {
             ))}
           </AlbumGroup>
         </RestrictContainer>
+        <ListenBadges xs={1}>
+          <a href={SOCIALS["apple music"].url}>
+            <img src={AppleBadge} />
+          </a>
+          <a href={SOCIALS["spotify"].url}>
+            <img src={SpotifyBadge} />
+          </a>
+        </ListenBadges>
         <SongReleases dimension={XXL}>
           <SongReleasesTitle>
             <h2>Latest Releases</h2>
@@ -415,6 +426,24 @@ const AlbumGroup = styled.div`
   display: flex;
   margin-top: 4rem;
   overflow: auto;
+`
+
+const ListenBadges = styled(RestrictContainer)`
+  display: flex;
+  align-items: center;
+  margin: 4rem auto;
+  padding: 0 1rem;
+  justify-content: center;
+
+  a {
+    display: inline-block;
+  }
+
+  img {
+    height: 3rem;
+    width: auto;
+    margin: 0 0.5rem;
+  }
 `
 
 const SongReleases = styled(RestrictContainer)`
