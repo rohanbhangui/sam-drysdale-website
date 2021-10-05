@@ -227,6 +227,10 @@ const ScrollBars = styled.div`
       background-color: rgba(255, 255, 255, 0.33);
       border-radius: 10px;
       border: 0px solid ${({ theme }) => theme.colors.dark};
+
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.66);
+      }
     }
   }
 `
