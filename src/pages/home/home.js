@@ -444,9 +444,13 @@ const ListenBadges = styled(RestrictContainer)`
   }
 
   img {
-    height: 3rem;
+    height: 3.5rem;
     width: auto;
     margin: 0 0.5rem;
+
+    @media ${({ theme }) => theme.mediaQuery.medium} {
+      height: 3rem;
+    }
   }
 `
 
