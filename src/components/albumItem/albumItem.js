@@ -87,13 +87,17 @@ const Content = styled.a`
   padding: 0.5rem;
   text-decoration: none;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
+
+  @media ${({ theme }) => theme.mediaQuery.medium} {
+    align-items: center;
+  }
 
   .inner {
     flex: 1 1 auto;
     h3 {
       margin: 0;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.25rem;
 
       @media ${({ theme }) => theme.mediaQuery.medium} {
         margin: 0;
@@ -108,8 +112,13 @@ const Content = styled.a`
 
   .go {
     ion-icon {
-      font-size: 2rem;
-      opacity: 0;
+      font-size: 3rem;
+      opacity: 1;
+
+      @media ${({ theme }) => theme.mediaQuery.medium} {
+        opacity: 0;
+        font-size: 2rem;
+      }
     }
   }
 
