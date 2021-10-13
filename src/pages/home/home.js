@@ -11,6 +11,8 @@ import { ALBUMS, SOCIALS, SONGS, VIDEOS } from "../../utils/data"
 import IntroShotImg from "../../assets/img/intro-shot.png"
 import BiographyImg from "../../assets/img/biography.png"
 import ListenImg from "../../assets/img/listen.png"
+import CollageImg from "../../assets/img/collage.png"
+import SignatureImg from "../../assets/img/cursive-logo.svg"
 
 import AppleBadge from "../../assets/img/listen-apple-music-badge.svg"
 import SpotifyBadge from "../../assets/img/spotify-badge.png"
@@ -203,6 +205,14 @@ const Home = () => {
           </div>
         </Watch>
       </RestrictContainer>
+      <Collage>
+        <RestrictContainer>
+          <div className="grid-overlay">
+            <img className="signature" src={SignatureImg} alt="" />
+            <img className="collage" src={CollageImg} />
+          </div>
+        </RestrictContainer>
+      </Collage>
     </ScrollBars>
   )
 }
@@ -569,6 +579,34 @@ const Video = styled.div`
 
     .outline-invert-pure {
       margin-top: 0.75rem;
+    }
+  }
+`
+
+const Collage = styled.div`
+  margin: 0 5rem;
+
+  .grid-overlay {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+
+    .signature {
+      grid-column: 1 / 2;
+      grid-row: 1;
+      z-index: 10;
+      align-self: center;
+      width: 70%;
+      justify-self: center;
+    }
+
+    .collage {
+      opacity: 0.5;
+      grid-column: 1 / 2;
+      grid-row: 1;
+      width: 100%;
+      min-width: 40rem;
+      height: auto;
     }
   }
 `
