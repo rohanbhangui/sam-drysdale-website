@@ -43,15 +43,21 @@ const Container = styled.div`
 `
 
 const dimension = "15rem"
+const mobileDimensions = "18rem"
 const AudioPlayer = styled.div`
   background: url(${({ background }) => background});
   background-size: cover;
-  width: ${dimension};
-  height: ${dimension};
+  width: ${mobileDimensions};
+  height: ${mobileDimensions};
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
+
+  @media ${({ theme }) => theme.mediaQuery.medium} {
+    width: ${dimension};
+    height: ${dimension};
+  }
 
   &:hover,
   &.isPlaying {
@@ -87,6 +93,11 @@ const Content = styled.a`
     flex: 1 1 auto;
     h3 {
       margin: 0;
+      margin-bottom: 0.5rem;
+
+      @media ${({ theme }) => theme.mediaQuery.medium} {
+        margin: 0;
+      }
     }
 
     p {

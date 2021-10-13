@@ -1,5 +1,7 @@
 // album cover imports
 import OneMoreNight from "../assets/img/music/one-more-night.jpg"
+import DreamAboutAGirl from "../assets/img/music/dream-about-a-girl.jpeg"
+import ShittyFamous from "../assets/img/music/shitty-famous.jpeg"
 
 // audio imports
 import WastedClip from "../assets/audio/WastedClip.mp3"
@@ -15,8 +17,8 @@ import Spotify from "../assets/img/spotify.svg"
 import AppleMusic from "../assets/img/apple-music.svg"
 
 // video cover imports
-import LikeAMan from "../assets/img/videos/like-a-man-videocover.png"
-import DreamAboutAGirl from "../assets/img/videos/dream-about-a-girl-videocover.jpg"
+import LikeAManVideo from "../assets/img/videos/like-a-man-videocover.png"
+import DreamAboutAGirlVideo from "../assets/img/videos/dream-about-a-girl-videocover.jpg"
 
 export const SOCIALS = {
   "apple music": {
@@ -53,30 +55,30 @@ export const SOCIALS = {
 
 export const ALBUMS = [
   {
-    img: OneMoreNight,
+    img: ShittyFamous,
     title: "Shitty Famous",
-    subtitle: "Lorem ipesum",
+    subtitle: "Shitty Famous (Single)",
     url: "#",
     audio: ShittyFamousClip,
   },
   {
-    img: OneMoreNight,
+    img: DreamAboutAGirl,
     title: "Dream About a Girl",
-    subtitle: "Lorem ipesum",
+    subtitle: "Dream About a Girl (Single)",
     url: "#",
     audio: DreamAboutAGirlClip,
   },
   {
     img: OneMoreNight,
     title: "Wasted",
-    subtitle: "Lorem ipesum",
+    subtitle: "ViceLove",
     url: "#",
     audio: WastedClip,
   },
   {
     img: OneMoreNight,
     title: "Like a Man",
-    subtitle: "Lorem ipesum",
+    subtitle: "ViceLove",
     url: "#",
     audio: LikeAManClip,
   },
@@ -158,11 +160,11 @@ export const VIDEOS = [
   {
     name: "Dream About a Girl",
     link: "https://www.youtube.com/watch?v=L2VkIBmdU9s",
-    img: DreamAboutAGirl,
+    img: DreamAboutAGirlVideo,
   },
   {
     name: "Like a Man",
     link: "https://www.youtube.com/watch?v=wEQDLstNwDM",
-    img: LikeAMan,
+    img: LikeAManVideo,
   },
 ]

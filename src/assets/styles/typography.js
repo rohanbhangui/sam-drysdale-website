@@ -95,11 +95,15 @@ const Typography = css`
   p {
     font-weight: 500;
     margin-top: 0.75rem;
-    line-height: 1.2rem;
-    font-size: 1rem;
+    line-height: 1.4;
+    font-size: 1.2rem;
+
+    @media ${({ theme }) => theme.mediaQuery.small} {
+      font-size: 1.1rem;
+    }
 
     @media ${({ theme }) => theme.mediaQuery.medium} {
-      font-size: 0.8rem;
+      font-size: 0.9rem;
     }
   }
 
@@ -155,9 +159,13 @@ const Typography = css`
     font-weight: 500;
     margin-top: 0.75rem;
     line-height: 1.5rem;
-    font-size: 1rem;
+    font-size: 1.3rem;
     letter-spacing: -0.05rem;
     font-weight: bold;
+
+    @media ${({ theme }) => theme.mediaQuery.small} {
+      font-size: 1rem;
+    }
   }
 
   h4,

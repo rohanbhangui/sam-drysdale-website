@@ -473,7 +473,7 @@ const MusicIcon = styled.a`
   display: inline-block;
 
   ion-icon {
-    font-size: 1.5rem;
+    font-size: 2.4rem;
     opacity: 0.33;
     transition: opacity 0.3s cubic-bezier(0.77, 0, 0.175, 1);
   }

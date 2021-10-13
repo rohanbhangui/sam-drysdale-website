@@ -6,47 +6,6 @@ import { v4 as uuid } from "uuid"
 import { SOCIALS } from "../../utils/data"
 import { XLG } from "../../utils/variables"
 
-export const socials = [
-  {
-    label: "Twitter",
-    url: "https://twitter.com/jordanstern3?lang=en",
-    icon: "logo-twitter",
-  },
-  {
-    label: "Facebook",
-    url: "https://facebook.com/GreySpaceGroup/",
-    icon: "logo-facebook",
-  },
-  {
-    label: "Instagram",
-    url: "https://www.instagram.com/greyspacegroup/?hl=en",
-    icon: "logo-instagram",
-  },
-  {
-    label: "Youtube",
-    url: "https://youtube.com",
-    icon: "logo-youtube",
-  },
-]
-
-// const slim_contact = [
-//   {
-//     label: "business@greyspacegroup.com",
-//     url: "mailto:business@greyspacegroup.com",
-//     icon: "logo-instagram",
-//   },
-//   {
-//     label: " | ",
-//     url: "",
-//     icon: "",
-//   },
-//   {
-//     label: "Instagram",
-//     url: "https://www.instagram.com/greyspacegroup/?hl=en",
-//     icon: "logo-instagram",
-//   },
-// ];
-
 const Footer = ({ id }) => {
   const location = useLocation()
   // eslint-disable-next-line no-unused-vars
