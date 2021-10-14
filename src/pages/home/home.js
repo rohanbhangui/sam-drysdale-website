@@ -6,7 +6,6 @@ import { useInView } from "react-intersection-observer"
 
 import { XXXL, XXL, XLG } from "../../utils/variables"
 import useMultiAudio from "../../utils/hooks/useMultiAudio"
-import usePrevious from "../../utils/hooks/usePrevious"
 
 //data imports
 import { ALBUMS, SOCIALS, SONGS, VIDEOS } from "../../utils/data"
@@ -35,16 +34,9 @@ const Home = () => {
     threshold: 0.2,
   })
 
-  //prevent misfire at beginning, by making sure the previous entry is not undefined
-  const prevIntroTitlesEntry = usePrevious(introTitlesEntry)
-
   //projects come into view
   useEffect(() => {
-    if (
-      introTitlesInView &&
-      introTitlesEntry &&
-      introTitlesRef
-    ) {
+    if (introTitlesInView && introTitlesEntry && introTitlesRef) {
       introTitlesEntry.target
         .querySelectorAll(".low-key")
         .forEach((val, ind) => {
