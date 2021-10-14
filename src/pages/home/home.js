@@ -62,12 +62,12 @@ const Home = () => {
   } = useInView({
     /* Optional options */
     threshold: 1,
-    initialInView: true,
+    rootMargin: '-200px 0px',
   })
 
   //projects come into view
   useEffect(() => {
-    // console.log("DEBUG OUTER", bigTextInView, prevBigTextEntry, bigTextEntry)
+    console.log("DEBUG OUTER", bigTextInView, bigTextEntry)
     if (bigTextInView && bigTextEntry && bigTextRef) {
       bigTextEntry.target
         .querySelectorAll(".big")
