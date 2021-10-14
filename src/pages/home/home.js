@@ -62,7 +62,7 @@ const Home = () => {
   } = useInView({
     /* Optional options */
     threshold: 1,
-    rootMargin: '-200px 0px',
+    rootMargin: "-200px 0px",
   })
 
   //projects come into view
