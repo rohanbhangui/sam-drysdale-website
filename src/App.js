@@ -8,6 +8,7 @@ import {
 import GlobalStyle from "./assets/styles/globalStyles"
 
 import Home from "./pages/home"
+import Merch from "./pages/merch"
 
 import Header from "./components/header"
 import Footer from "./components/footer"
@@ -22,8 +23,9 @@ const App = () => {
           <ScrollToTop />
           <Header />
           <Switch>
-            <Route path="/properties"></Route>
-            <Route path="/investments"></Route>
+            <Route path="/merch">
+              <Merch />
+            </Route>
             <Route path="/" exact>
               <Home />
             </Route>

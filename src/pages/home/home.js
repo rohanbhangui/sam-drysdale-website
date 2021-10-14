@@ -67,7 +67,6 @@ const Home = () => {
 
   //projects come into view
   useEffect(() => {
-    console.log("DEBUG OUTER", bigTextInView, bigTextEntry)
     if (bigTextInView && bigTextEntry && bigTextRef) {
       bigTextEntry.target
         .querySelectorAll(".big")

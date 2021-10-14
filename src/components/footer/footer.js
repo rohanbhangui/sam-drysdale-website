@@ -1,58 +1,40 @@
-import React, { useEffect, useState } from "react"
+import React from "react"
 import styled, { css } from "styled-components"
-import { useLocation } from "react-router-dom"
 import { v4 as uuid } from "uuid"
 
 import { SOCIALS } from "../../utils/data"
 import { XLG } from "../../utils/variables"
 
 const Footer = ({ id }) => {
-  const location = useLocation()
-  // eslint-disable-next-line no-unused-vars
-  const [titleCopy, setTitleCopy] = useState("Get In Touch")
-  const [isHomePage, setIsHomePage] = useState(false)
-
-  useEffect(() => {
-    setIsHomePage(location.pathname === "/")
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [location.pathname])
-
   return (
-    <>
-      {isHomePage && (
-        <FooterContainer id={id}>
-          {titleCopy === "Get In Touch" && (
-            <Socials>
-              {Object.keys(SOCIALS).map((socialKey) => {
-                const { url, icon, name } = SOCIALS[socialKey]
+    <FooterContainer id={id}>
+      <Socials>
+        {Object.keys(SOCIALS).map((socialKey) => {
+          const { url, icon, name } = SOCIALS[socialKey]
 
-                return (
-                  <li key={uuid()}>
-                    {url && (
-                      <Link href={url} className="h2">
-                        {(socialKey === "apple music" ||
-                          socialKey === "spotify") && (
-                          <ion-icon src={icon}></ion-icon>
-                        )}
-                        {socialKey !== "apple music" &&
-                          socialKey !== "spotify" && (
-                            <ion-icon name={icon}></ion-icon>
-                          )}
-                      </Link>
+          return (
+            <li key={uuid()}>
+              {url && (
+                <Link href={url} className="h2">
+                  {(socialKey === "apple music" ||
+                    socialKey === "spotify") && (
+                    <ion-icon src={icon}></ion-icon>
+                  )}
+                  {socialKey !== "apple music" &&
+                    socialKey !== "spotify" && (
+                      <ion-icon name={icon}></ion-icon>
                     )}
-                    {!url && <Text className="h2">{name}</Text>}
-                  </li>
-                )
-              })}
-            </Socials>
-          )}
-          <Copyright>
-            Sam Drysdale &copy; Copyright {new Date().getFullYear()}
-          </Copyright>
-        </FooterContainer>
-      )}
-    </>
+                </Link>
+              )}
+              {!url && <Text className="h2">{name}</Text>}
+            </li>
+          )
+        })}
+      </Socials>
+      <Copyright>
+        Sam Drysdale &copy; Copyright {new Date().getFullYear()}
+      </Copyright>
+    </FooterContainer>
   )
 }
 
