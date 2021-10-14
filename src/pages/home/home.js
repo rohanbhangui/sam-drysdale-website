@@ -1,9 +1,12 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import styled from "styled-components"
 import { v4 as uuid } from "uuid"
 
+import { useInView } from "react-intersection-observer"
+
 import { XXXL, XXL, XLG } from "../../utils/variables"
 import useMultiAudio from "../../utils/hooks/useMultiAudio"
+import usePrevious from "../../utils/hooks/usePrevious"
 
 //data imports
 import { ALBUMS, SOCIALS, SONGS, VIDEOS } from "../../utils/data"
@@ -22,6 +25,69 @@ import SongListItem from "../../components/songListItem/songListItem"
 import Button from "../../components/button"
 
 const Home = () => {
+  // for intro content loading
+  const {
+    ref: introTitlesRef,
+    inView: introTitlesInView,
+    entry: introTitlesEntry,
+  } = useInView({
+    /* Optional options */
+    threshold: 0.2,
+  })
+
+  //prevent misfire at beginning, by making sure the previous entry is not undefined
+  const prevIntroTitlesEntry = usePrevious(introTitlesEntry)
+
+  //projects come into view
+  useEffect(() => {
+    if (
+      introTitlesInView &&
+      introTitlesEntry &&
+      introTitlesRef
+    ) {
+      introTitlesEntry.target
+        .querySelectorAll(".low-key")
+        .forEach((val, ind) => {
+          setTimeout(() => {
+            val.classList.add("active")
+          }, ind * 400)
+        })
+
+      setTimeout(() => {
+        introTitlesEntry.target
+          .querySelector(".high-key")
+          .classList.add("active")
+      }, 2000)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [introTitlesInView])
+
+  // for big sam drysdale text
+  const {
+    ref: bigTextRef,
+    inView: bigTextInView,
+    entry: bigTextEntry,
+  } = useInView({
+    /* Optional options */
+    threshold: 1,
+    initialInView: true,
+  })
+
+  //projects come into view
+  useEffect(() => {
+    // console.log("DEBUG OUTER", bigTextInView, prevBigTextEntry, bigTextEntry)
+    if (bigTextInView && bigTextEntry && bigTextRef) {
+      bigTextEntry.target
+        .querySelectorAll(".big")
+        .forEach((val, ind) => {
+          setTimeout(() => {
+            val.classList.add("active")
+          }, ind * 400)
+        })
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [bigTextInView])
+
   const [songsArr] = useState(
     SONGS.map((item) => {
       return {
@@ -51,14 +117,16 @@ const Home = () => {
   return (
     <ScrollBars>
       <RestrictContainer dimension={XXXL}>
-        <Intro>
-          <LowKey>Velvet Grit.</LowKey>
-          <LowKey>Urban Surfer.</LowKey>
-          <HighKey>True to the Bone.</HighKey>
+        <Intro ref={introTitlesRef}>
+          <LowKey className="low-key">Velvet Grit.</LowKey>
+          <LowKey className="low-key">Urban Surfer.</LowKey>
+          <HighKey className="high-key">True to the Bone.</HighKey>
         </Intro>
         <IntroShot src={IntroShotImg} />
-        <Name className="big">Sam</Name>
-        <Name className="big">Drysdale</Name>
+        <div className="big-text" ref={bigTextRef}>
+          <Name className="big">Sam</Name>
+          <Name className="big">Drysdale</Name>
+        </div>
       </RestrictContainer>
       <Biography>
         <BiographyImage>
@@ -99,7 +167,7 @@ const Home = () => {
         </BiographyText>
       </Biography>
       <Listen id="listen">
-        <RestrictContainer dimension={XLG}>
+        <RestrictContainer dimension={XLG} id="listen-restrict">
           <div className="content-container">
             <h2 className="h1">Listen</h2>
             <div className="content">
@@ -121,7 +189,7 @@ const Home = () => {
           </div>
         </RestrictContainer>
         <ListenHeroImage src={ListenImg} alt="" />
-        <RestrictContainer dimension={XXL}>
+        <RestrictContainer dimension={XXL} id="album-restrict">
           <AlbumGroup>
             {albumsArr.map((item, index) => (
               <Album
@@ -265,16 +333,35 @@ const LowKey = styled.h1`
   @media ${({ theme }) => theme.mediaQuery.medium} {
     -webkit-text-stroke-width: 1px;
   }
+
+  transform: translateY(5rem);
+  opacity: 0;
+  transition: opacity 1s cubic-bezier(0.77, 0, 0.175, 1),
+    transform 1s cubic-bezier(0.77, 0, 0.175, 1);
+
+  &.active {
+    opacity: 1;
+    transform: translateY(0);
+  }
 `
 
 const HighKey = styled.h1`
   color: ${({ theme }) => theme.colors.primary};
+
+  transform: translateY(5rem);
+  opacity: 0;
+  transition: opacity 1s cubic-bezier(0.77, 0, 0.175, 1),
+    transform 1s cubic-bezier(0.77, 0, 0.175, 1);
+
+  &.active {
+    opacity: 1;
+    transform: translateY(0);
+  }
 `
 
 const Intro = styled.div`
-  margin: 6rem 0;
   width: 100%;
-  padding: 0 1rem;
+  padding: 6rem 1rem;
 `
 
 const IntroShot = styled.img`
@@ -282,6 +369,8 @@ const IntroShot = styled.img`
   width: 100%;
   padding: 0 0.5rem;
   margin-bottom: -15%;
+  min-height: 20rem;
+  object-fit: cover;
 
   @media ${({ theme }) => theme.mediaQuery.small} {
     margin-bottom: -15%;
@@ -290,6 +379,16 @@ const IntroShot = styled.img`
 
 const Name = styled.h1`
   margin-left: 5%;
+
+  transform: translateY(5rem);
+  opacity: 0;
+  transition: opacity 1s cubic-bezier(0.77, 0, 0.175, 1),
+    transform 1s cubic-bezier(0.77, 0, 0.175, 1);
+
+  &.active {
+    opacity: 1;
+    transform: translateY(0);
+  }
 `
 
 const Biography = styled.div`
@@ -391,6 +490,22 @@ const BiographyText = styled.div`
 
 const Listen = styled.div`
   padding-top: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+
+  #listen-restrict {
+    order: 2;
+    margin-top: 2rem;
+
+    @media ${({ theme }) => theme.mediaQuery.medium} {
+      order: 1;
+      margin-top: 0;
+    }
+  }
+
+  #album-restrict {
+    order: 3;
+  }
 
   .content-container {
     display: flex;
@@ -434,6 +549,14 @@ const ListenHeroImage = styled.img`
   display: block;
   margin-left: auto;
   margin-right: 0;
+  min-height: 20rem;
+  object-fit: cover;
+  object-position: 30% center;
+  order: 1;
+
+  @media ${({ theme }) => theme.mediaQuery.medium} {
+    order: 2;
+  }
 `
 
 const AlbumGroup = styled.div`
@@ -448,6 +571,7 @@ const ListenBadges = styled(RestrictContainer)`
   margin: 4rem auto;
   padding: 0 1rem;
   justify-content: center;
+  order: 4;
 
   a {
     display: inline-block;
@@ -522,15 +646,20 @@ const Watch = styled.div`
 
   .videos {
     flex: 1 1 100%;
+    order: 2;
+    margin-bottom: 4rem;
 
     @media ${({ theme }) => theme.mediaQuery.medium} {
       flex: 1 1 auto;
+      order: 1;
+      margin-bottom: 0rem;
     }
   }
 
   .content {
     padding: 1rem;
     flex: 1 1 100%;
+    order: 1;
 
     @media ${({ theme }) => theme.mediaQuery.medium} {
       width: 20rem;
@@ -539,6 +668,7 @@ const Watch = styled.div`
       margin-top: 4rem;
       position: sticky;
       top: 2rem;
+      order: 2;
     }
 
     h3.h2 {
@@ -584,7 +714,15 @@ const Video = styled.div`
 `
 
 const Collage = styled.div`
-  margin: 0 5rem;
+  margin: 0 1rem;
+
+  @media ${({ theme }) => theme.mediaQuery.medium} {
+    margin: 0 3rem;
+  }
+
+  @media ${({ theme }) => theme.mediaQuery.xlarge} {
+    margin: 0 5rem;
+  }
 
   .grid-overlay {
     width: 100%;
@@ -601,12 +739,18 @@ const Collage = styled.div`
     }
 
     .collage {
-      opacity: 0.5;
+      opacity: 0.75;
       grid-column: 1 / 2;
       grid-row: 1;
       width: 100%;
-      min-width: 40rem;
       height: auto;
+      justify-self: center;
+      align-self: center;
+      object-fit: contain;
+
+      @media ${({ theme }) => theme.mediaQuery.medium} {
+        width: 80%;
+      }
     }
   }
 `
