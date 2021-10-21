@@ -10,9 +10,9 @@ import useMultiAudio from "../../utils/hooks/useMultiAudio"
 //data imports
 import { ALBUMS, SOCIALS, SONGS, VIDEOS } from "../../utils/data"
 
-import IntroShotImg from "../../assets/img/intro-shot.png"
+import IntroShotImg from "../../assets/img/cover-image.jpg"
 import BiographyImg from "../../assets/img/biography.png"
-import ListenImg from "../../assets/img/listen.png"
+import ListenImg from "../../assets/img/intro-shot.png"
 import CollageImg from "../../assets/img/collage.png"
 import SignatureImg from "../../assets/img/cursive-logo.svg"
 
@@ -109,11 +109,13 @@ const Home = () => {
     <ScrollBars>
       <RestrictContainer dimension={XXXL}>
         <Intro ref={introTitlesRef}>
-          <LowKey className="low-key">Velvet Grit.</LowKey>
-          <LowKey className="low-key">Urban Surfer.</LowKey>
-          <HighKey className="high-key">True to the Bone.</HighKey>
+          <LowKey className="low-key">A reimagination.</LowKey>
+          <LowKey className="low-key">A new musical era.</LowKey>
+          <HighKey className="high-key">Testarossa.</HighKey>
         </Intro>
-        <IntroShot src={IntroShotImg} />
+        <IntroShot>
+          <img src={IntroShotImg} alt="" />
+        </IntroShot>
         <div className="big-text" ref={bigTextRef}>
           <Name className="big">Sam</Name>
           <Name className="big">Drysdale</Name>
@@ -130,30 +132,21 @@ const Home = () => {
         </BiographyImage>
         <BiographyText>
           <p>
-            He's that kid we all know. The one who teaches himself
-            Wonderwall on the guitar so he can impress his high school
-            friends. But turns out we don't really know him at all.
-            Because when he graduates real life shows up. He moves to
-            LA. Wakes up. Gets inspired. Gets his heart broken. Grows
-            up in a hurry. Discovers Hendrix, The Weeknd and the
-            blues. Gets soaked in a barrel of bourbon and Sam Drysdale
-            the musician is born. Velvet grit. Urban surfer.
-            Undefinable yet true to the bone.
+            The rising Toronto based singer-songwriter is the 4:00AM,
+            bourbon soaked evolution of a high school kid who just
+            liked to play guitar in his bedroom. Raw lyrics and a
+            velvet grit voice accompany a hybrid sound of modern
+            low-fi pop production with hints of R&amp;B and blues
+            mixed in the haze. The darkest parts of youth, substance,
+            and relationships are his biggest fears, but also his
+            muse.
           </p>
           <p>
-            Sam Drysdale is Toronto bred with time in Nashville and LA
-            colouring the mix. A world-traveling musical anomaly
-            fusing urban blues with hip hop, R&amp;B with a modern pop
-            sensibility; a singer-songwriter with a voice to stop you
-            in your tracks. Sam Cooke, John Mayer, The Weeknd, Adele,
-            Jay-Z ... you'll find flashes of them all in Sam's music.
-          </p>
-          <p>
-            Anomaly yes, and that is what makes Sam so unique. He is a
-            neon-lit west ender who loves Hawaiian shirts and combat
-            boots. Raw and honest, surprising and evocative. Ditching
-            cliches and bringing on the truth in all its mysterious
-            glory. Meet Sam Drysdale.
+            Following 2019’s VICELOVE, Sam is currently in the process
+            of rolling out his sophomore EP “Testarossa,” due January
+            2021. Led by the addictive singles “Dream About A Girl,”
+            and “Shitty Famous,” Sam promises his next musical era to
+            not disappoint.
           </p>
         </BiographyText>
       </Biography>
@@ -241,17 +234,9 @@ const Home = () => {
           <div className="content">
             <h2 className="h1">Watch</h2>
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-              sed do eiusmod tempor incididunt ut labore et dolore
-              magna aliqua. Ut enim ad minim veniam, quis nostrud
-              exercitation ullamco laboris nisi ut aliquip ex ea
-              commodo consequat.
-            </p>
-            <p>
-              Duis aute irure dolor in reprehenderit in voluptate
-              velit esse cillum dolore eu fugiat nulla pariatur.
-              Excepteur sint occaecat cupidatat non proident, sunt in
-              culpa qui officia deserunt mollit anim id est laborum.
+              Testarossa strives to be more than just a sonic
+              experience. It strives to be a fully realized and
+              calculated artistic offering across all platforms.
             </p>
 
             <h3 className="h2">See More</h3>
@@ -329,6 +314,15 @@ const LowKey = styled.h1`
   opacity: 0;
   transition: opacity 1s cubic-bezier(0.77, 0, 0.175, 1),
     transform 1s cubic-bezier(0.77, 0, 0.175, 1);
+  font-size: 3.2rem;
+
+  @media ${({ theme }) => theme.mediaQuery.large} {
+    font-size: 4rem;
+  }
+
+  @media ${({ theme }) => theme.mediaQuery.xlarge} {
+    font-size: 5rem;
+  }
 
   &.active {
     opacity: 1;
@@ -343,6 +337,15 @@ const HighKey = styled.h1`
   opacity: 0;
   transition: opacity 1s cubic-bezier(0.77, 0, 0.175, 1),
     transform 1s cubic-bezier(0.77, 0, 0.175, 1);
+  font-size: 3.2rem;
+
+  @media ${({ theme }) => theme.mediaQuery.large} {
+    font-size: 4rem;
+  }
+
+  @media ${({ theme }) => theme.mediaQuery.xlarge} {
+    font-size: 5rem;
+  }
 
   &.active {
     opacity: 1;
@@ -355,16 +358,23 @@ const Intro = styled.div`
   padding: 6rem 1rem;
 `
 
-const IntroShot = styled.img`
+const IntroShot = styled.div`
   display: block;
   width: 100%;
-  padding: 0 0.5rem;
+  padding-top: 75%;
   margin-bottom: -15%;
-  min-height: 20rem;
-  object-fit: cover;
+  position: relative;
 
-  @media ${({ theme }) => theme.mediaQuery.small} {
-    margin-bottom: -15%;
+  @media ${({ theme }) => theme.mediaQuery.medium} {
+    padding-top: 50%;
+  }
+
+  img {
+    position: absolute;
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+    top: 0;
   }
 `
 
