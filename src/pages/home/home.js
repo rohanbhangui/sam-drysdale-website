@@ -62,7 +62,7 @@ const Home = () => {
   } = useInView({
     /* Optional options */
     threshold: 1,
-    rootMargin: "-200px 0px",
+    rootMargin: "75px 0px",
   })
 
   //projects come into view
@@ -162,7 +162,7 @@ const Home = () => {
                 whilst maintaining focus on lyrical depth and growth.
               </p>
               <p>
-              A more explorative production endeavor with styles
+                A more explorative production endeavor with styles
                 ranging in influence from bubblegum to blues.
               </p>
             </div>
