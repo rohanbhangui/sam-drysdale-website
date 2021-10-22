@@ -685,8 +685,8 @@ const Watch = styled.div`
 const Video = styled.div`
   background: linear-gradient(
       to bottom,
-      rgba(0, 0, 0, 0.40),
-      rgba(0, 0, 0, 0.40)
+      rgba(0, 0, 0, 0.4),
+      rgba(0, 0, 0, 0.4)
     ),
     url(${({ cover }) => cover});
   background-size: cover;
