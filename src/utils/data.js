@@ -19,6 +19,7 @@ import AppleMusic from "../assets/img/apple-music.svg"
 // video cover imports
 import LikeAManVideo from "../assets/img/videos/like-a-man-videocover.png"
 import DreamAboutAGirlVideo from "../assets/img/videos/dream-about-a-girl-videocover.jpg"
+import ShittyFamousVideo from "../assets/img/videos/shitty-famous-videocover.png"
 
 export const SOCIALS = {
   "apple music": {
@@ -58,28 +59,28 @@ export const ALBUMS = [
     img: ShittyFamous,
     title: "Shitty Famous",
     subtitle: "Shitty Famous (Single)",
-    url: "#",
+    url: "https://slaight.lnk.to/SFamous",
     audio: ShittyFamousClip,
   },
   {
     img: DreamAboutAGirl,
     title: "Dream About a Girl",
     subtitle: "Dream About a Girl (Single)",
-    url: "#",
+    url: "https://slaight.lnk.to/DAAG",
     audio: DreamAboutAGirlClip,
   },
   {
     img: OneMoreNight,
     title: "Wasted",
     subtitle: "ViceLove",
-    url: "#",
+    url: "https://open.spotify.com/album/6MpHnhQ1E1wXo0u0XNS38S",
     audio: WastedClip,
   },
   {
     img: OneMoreNight,
     title: "Like a Man",
     subtitle: "ViceLove",
-    url: "#",
+    url: "https://open.spotify.com/album/6MpHnhQ1E1wXo0u0XNS38S",
     audio: LikeAManClip,
   },
 ]
@@ -157,6 +158,11 @@ export const SONGS = [
   },
 ]
 export const VIDEOS = [
+  {
+    name: "Shitty Famous",
+    link: "https://www.youtube.com/watch?v=A3WksdjsRWQ",
+    img: ShittyFamousVideo,
+  },
   {
     name: "Dream About a Girl",
     link: "https://www.youtube.com/watch?v=L2VkIBmdU9s",

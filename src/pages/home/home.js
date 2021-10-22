@@ -230,9 +230,13 @@ const Home = () => {
           <div className="content">
             <h2 className="h1">Watch</h2>
             <p>
-              Testarossa strives to be more than just a sonic
-              experience. It strives to be a fully realized and
-              calculated artistic offering across all platforms.
+              Testarossa seeks to be more than just a sonic
+              experience. A complete aesthetic overall, it strives to
+              be a fully realized and calculated artistic offering
+              across all platforms. An inviting new landscape to
+              accompany the music. All visual elements are co-produced
+              and designed by Sam in tandem with his creative partner
+              Helder Matias (SunflowerPrince Creative).
             </p>
 
             <h3 className="h2">See More</h3>
@@ -681,8 +685,8 @@ const Watch = styled.div`
 const Video = styled.div`
   background: linear-gradient(
       to bottom,
-      rgba(0, 0, 0, 0.25),
-      rgba(0, 0, 0, 0.25)
+      rgba(0, 0, 0, 0.40),
+      rgba(0, 0, 0, 0.40)
     ),
     url(${({ cover }) => cover});
   background-size: cover;
