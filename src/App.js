@@ -16,24 +16,22 @@ import ScrollToTop from "./components/scrollToTop"
 
 const App = () => {
   return (
-    <>
-      <main>
-        <GlobalStyle />
-        <Router>
-          <ScrollToTop />
-          <Header />
-          <Switch>
-            <Route path="/merch">
-              <Merch />
-            </Route>
-            <Route path="/" exact>
-              <Home />
-            </Route>
-          </Switch>
-          <Footer id="contact" />
-        </Router>
-      </main>
-    </>
+    <main>
+      <GlobalStyle />
+      <Router>
+        <ScrollToTop />
+        <Header />
+        <Switch>
+          <Route path="/merch">
+            <Merch />
+          </Route>
+          <Route path="/" exact>
+            <Home />
+          </Route>
+        </Switch>
+        <Footer id="contact" />
+      </Router>
+    </main>
   )
 }
 
