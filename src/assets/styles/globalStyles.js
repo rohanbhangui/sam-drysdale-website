@@ -43,6 +43,10 @@ const GlobalStyle = createGlobalStyle`
     font-weight: normal;
   }
 
+  a {
+    margin: auto;
+  }
+
   ${Typography}
 `
 
