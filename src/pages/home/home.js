@@ -17,7 +17,7 @@ import CollageImg from "../../assets/img/collage.webp"
 import SignatureImg from "../../assets/img/cursive-logo.svg"
 
 import AppleBadge from "../../assets/img/listen-apple-music-badge.svg"
-import SpotifyBadge from "../../assets/img/spotify-badge.webp"
+import SpotifyBadge from "../../assets/img/spotify-badge.png"
 
 import Album from "../../components/albumItem"
 import SongListItem from "../../components/songListItem/songListItem"
