@@ -10,14 +10,14 @@ import useMultiAudio from "../../utils/hooks/useMultiAudio"
 //data imports
 import { ALBUMS, SOCIALS, SONGS, VIDEOS } from "../../utils/data"
 
-import IntroShotImg from "../../assets/img/cover-image.jpg"
-import BiographyImg from "../../assets/img/biography.png"
-import ListenImg from "../../assets/img/listen-2.png"
-import CollageImg from "../../assets/img/collage.png"
+import IntroShotImg from "../../assets/img/cover-image.webp"
+import BiographyImg from "../../assets/img/biography.webp"
+import ListenImg from "../../assets/img/listen-2.webp"
+import CollageImg from "../../assets/img/collage.webp"
 import SignatureImg from "../../assets/img/cursive-logo.svg"
 
 import AppleBadge from "../../assets/img/listen-apple-music-badge.svg"
-import SpotifyBadge from "../../assets/img/spotify-badge.png"
+import SpotifyBadge from "../../assets/img/spotify-badge.webp"
 
 import Album from "../../components/albumItem"
 import SongListItem from "../../components/songListItem/songListItem"
