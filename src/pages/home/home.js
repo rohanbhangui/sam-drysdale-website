@@ -114,7 +114,7 @@ const Home = () => {
           <HighKey className="high-key">Testarossa.</HighKey>
         </Intro>
         <IntroShot>
-          <img src={IntroShotImg} alt="" />
+          <img src={IntroShotImg} alt="" width="320" height="320" />
         </IntroShot>
         <div className="big-text" ref={bigTextRef}>
           <Name className="big">Sam</Name>
