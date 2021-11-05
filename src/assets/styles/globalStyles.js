@@ -43,8 +43,9 @@ const GlobalStyle = createGlobalStyle`
     font-weight: normal;
   }
 
+  /* reset the index.css */
   a {
-    margin: auto;
+    margin: 0;
   }
 
   ${Typography}
