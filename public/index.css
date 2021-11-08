@@ -23,3 +23,12 @@ code {
 a {
   margin: 1rem;
 }
+
+li {
+  margin: 1rem 0;
+}
+
+img {
+  width: 100%;
+  height: auto;
+}
