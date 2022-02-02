@@ -12,7 +12,7 @@ import { ALBUMS, SOCIALS, SONGS, VIDEOS } from "../../utils/data"
 
 import IntroShotImg from "../../assets/img/cover-image.webp"
 import BiographyImg from "../../assets/img/biography.webp"
-import ListenImg from "../../assets/img/listen-2.webp"
+import ListenImg from "../../assets/img/listen-3.webp"
 import CollageImg from "../../assets/img/collage.webp"
 import SignatureImg from "../../assets/img/cursive-logo.svg"
 
