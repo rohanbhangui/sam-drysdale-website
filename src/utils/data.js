@@ -17,7 +17,7 @@ import Spotify from "../assets/img/spotify.svg"
 import AppleMusic from "../assets/img/apple-music.svg"
 
 // video cover imports
-import LikeAManVideo from "../assets/img/videos/like-a-man-videocover.png"
+import NothingOnYouVideo from "../assets/img/videos/nothing-on-you-videocover.jpg"
 import DreamAboutAGirlVideo from "../assets/img/videos/dream-about-a-girl-videocover.jpg"
 import ShittyFamousVideo from "../assets/img/videos/shitty-famous-videocover.png"
 
@@ -159,6 +159,11 @@ export const SONGS = [
 ]
 export const VIDEOS = [
   {
+    name: "Nothing On You",
+    link: "https://www.youtube.com/watch?v=qar8Yhh_6pI",
+    img: NothingOnYouVideo,
+  },
+  {
     name: "Shitty Famous",
     link: "https://www.youtube.com/watch?v=A3WksdjsRWQ",
     img: ShittyFamousVideo,
@@ -167,10 +172,5 @@ export const VIDEOS = [
     name: "Dream About a Girl",
     link: "https://www.youtube.com/watch?v=L2VkIBmdU9s",
     img: DreamAboutAGirlVideo,
-  },
-  {
-    name: "Like a Man",
-    link: "https://www.youtube.com/watch?v=wEQDLstNwDM",
-    img: LikeAManVideo,
   },
 ]
