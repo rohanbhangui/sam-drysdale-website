@@ -264,7 +264,7 @@ const Home = () => {
           <h2 className="h1">Shows</h2>
           <div className="flex-container">
             <div className="flex-content">
-              <h3 className="h2">Live @ The El Mocambo</h3>
+              <h3 className="h2">Live At The El Mocambo</h3>
               <p>
                 Sam Drysdale and The El Mocambo present the official
                 release show and afterparty for Sam's new album
