@@ -4,7 +4,7 @@ import { v4 as uuid } from "uuid"
 
 import { useInView } from "react-intersection-observer"
 
-import { XXXL, XXL, XLG } from "../../utils/variables"
+import { XXXL, XXL, XLG, MD, LG } from "../../utils/variables"
 import useMultiAudio from "../../utils/hooks/useMultiAudio"
 
 //data imports
@@ -15,6 +15,7 @@ import BiographyImg from "../../assets/img/biography.webp"
 import ListenImg from "../../assets/img/listen-2.webp"
 import CollageImg from "../../assets/img/collage.webp"
 import SignatureImg from "../../assets/img/cursive-logo.svg"
+import ConcertImg from "../../assets/img/concert-poster.webp"
 
 import AppleBadge from "../../assets/img/listen-apple-music-badge.svg"
 import SpotifyBadge from "../../assets/img/spotify-badge.png"
@@ -257,6 +258,30 @@ const Home = () => {
           </div>
         </RestrictContainer>
       </Collage>
+      <Concert id="shows">
+        <RestrictContainer dimension={LG}>
+          <h2 className="h1">Shows</h2>
+          <div className="flex-container">
+            <div className="flex-content">
+              <h3 className="h2">Live @ The El Mocambo</h3>
+              <p>
+                Sam Drysdale goes live at The El Mocambo to share his
+                new album: Testarossa. With a fresh approach, and new
+                style rhythmics, reserve tickets today to be a part of
+                the release.
+              </p>
+              <Button
+                linkto={"#"}
+                label="BOOK NOW"
+                type="outline-invert-pure"
+              />
+            </div>
+            <div className="flex-img">
+              <img src={ConcertImg} alt="" />
+            </div>
+          </div>
+        </RestrictContainer>
+      </Concert>
     </ScrollBars>
   )
 }
@@ -751,6 +776,51 @@ const Collage = styled.div`
 
       @media ${({ theme }) => theme.mediaQuery.medium} {
         width: 80%;
+      }
+    }
+  }
+`
+
+const Concert = styled.div`
+  margin: 4rem 0;
+
+  @media ${({ theme }) => theme.mediaQuery.medium} {
+    margin: 8rem 0;
+  }
+
+  .h1 {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .flex-container {
+    flex-wrap: wrap;
+    display: flex;
+    align-items: center;
+
+    @media ${({ theme }) => theme.mediaQuery.medium} {
+      flex-wrap: nowrap;
+    }
+
+    .flex-content {
+      flex: 0 0 100%;
+      padding: 2rem;
+      order: 2;
+
+      @media ${({ theme }) => theme.mediaQuery.medium} {
+        flex: 0 0 40%;
+        order: 1;
+      }
+    }
+
+    .flex-img {
+      flex: 0 0 100%;
+      order: 1;
+      padding: 1rem;
+
+      @media ${({ theme }) => theme.mediaQuery.medium} {
+        flex: 0 0 60%;
+        order: 2;
       }
     }
   }
