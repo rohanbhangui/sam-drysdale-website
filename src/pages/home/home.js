@@ -265,10 +265,13 @@ const Home = () => {
             <div className="flex-content">
               <h3 className="h2">Live @ The El Mocambo</h3>
               <p>
-                Sam Drysdale goes live at The El Mocambo to share his
-                new album: Testarossa. With a fresh approach, and new
-                style rhythmics, reserve tickets today to be a part of
-                the release.
+                Sam Drysdale and The El Mocambo present the official
+                release show and afterparty for Sam's new album
+                “Testarossa: Fully Loaded.” In his first official show
+                since the beginning of the pandemic, Sam will be
+                joined by Toronto's own Eric Punzo for what is sure to
+                be an explosive celebration and opening to his
+                Testarossa era. We hope you like champagne
               </p>
               <Button
                 linkto={"#"}
