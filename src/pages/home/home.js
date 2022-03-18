@@ -4,7 +4,7 @@ import { v4 as uuid } from "uuid"
 
 import { useInView } from "react-intersection-observer"
 
-import { XXXL, XXL, XLG, MD, LG } from "../../utils/variables"
+import { XXXL, XXL, XLG, LG } from "../../utils/variables"
 import useMultiAudio from "../../utils/hooks/useMultiAudio"
 
 //data imports
