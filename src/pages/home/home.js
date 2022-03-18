@@ -838,7 +838,8 @@ const Concert = styled.div`
         padding: 1rem;
 
         &#vip-img {
-          width: 25rem;
+          width: 80%;
+          min-width: 25rem;
           // border: 1px solid red;
           position: relative;
           top: -7rem;
