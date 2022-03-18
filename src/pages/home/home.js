@@ -274,7 +274,9 @@ const Home = () => {
                 Testarossa era. We hope you like champagne
               </p>
               <Button
-                linkto={"#"}
+                linkto={
+                  "https://www.ticketweb.ca/event/sam-drysdale-the-testarossa-fully-under-the-neon-palms-at-tickets/11928605?pl=elmocambo"
+                }
                 label="BOOK NOW"
                 type="outline-invert-pure"
               />
