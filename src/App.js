@@ -29,7 +29,7 @@ const App = () => {
             <Home />
           </Route>
         </Switch>
-        <Footer id="contact" />
+        <Footer id="social" />
       </Router>
     </main>
   )

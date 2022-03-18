@@ -65,8 +65,8 @@ const Header = () => {
             </NavHashLink>
           </NavItem>
           <NavItem>
-            <NavHashLink to="/#contact" activeClassName="selected">
-              Contact
+            <NavHashLink to="/#social" activeClassName="selected">
+              Social
             </NavHashLink>
           </NavItem>
         </ul>
