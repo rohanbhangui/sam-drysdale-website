@@ -16,6 +16,7 @@ import ListenImg from "../../assets/img/listen-3.webp"
 import CollageImg from "../../assets/img/collage.webp"
 import SignatureImg from "../../assets/img/cursive-logo.svg"
 import ConcertImg from "../../assets/img/concert-poster.webp"
+import ConcertImg2 from "../../assets/img/concert-poster-vip.webp"
 
 import AppleBadge from "../../assets/img/listen-apple-music-badge.svg"
 import SpotifyBadge from "../../assets/img/spotify-badge.png"
@@ -143,7 +144,7 @@ const Home = () => {
             muse.
           </p>
           <p>
-            Following 2019’s VICELOVE, Sam is currently in the process
+            Following 2019's VICELOVE, Sam is currently in the process
             of rolling out his sophomore EP “Testarossa,” due January
             2021. Led by the addictive singles “Dream About A Girl,”
             and “Shitty Famous,” Sam promises his next musical era to
@@ -283,6 +284,7 @@ const Home = () => {
             </div>
             <div className="flex-img">
               <img src={ConcertImg} alt="" />
+              <img id="vip-img" src={ConcertImg2} alt="" />
             </div>
           </div>
         </RestrictContainer>
@@ -787,7 +789,7 @@ const Collage = styled.div`
 `
 
 const Concert = styled.div`
-  margin: 4rem 0;
+  margin: 8rem 0 4rem;
 
   @media ${({ theme }) => theme.mediaQuery.medium} {
     margin: 8rem 0;
@@ -801,31 +803,55 @@ const Concert = styled.div`
   .flex-container {
     flex-wrap: wrap;
     display: flex;
-    align-items: center;
 
     @media ${({ theme }) => theme.mediaQuery.medium} {
       flex-wrap: nowrap;
+      align-items: flex-start;
     }
 
     .flex-content {
       flex: 0 0 100%;
       padding: 2rem;
       order: 2;
+      position: relative;
+      top: 0;
 
       @media ${({ theme }) => theme.mediaQuery.medium} {
         flex: 0 0 40%;
         order: 1;
+        position: sticky;
+        top: 0;
       }
     }
 
     .flex-img {
       flex: 0 0 100%;
       order: 1;
-      padding: 1rem;
+      // padding: 1rem;
 
       @media ${({ theme }) => theme.mediaQuery.medium} {
         flex: 0 0 60%;
         order: 2;
+      }
+
+      img {
+        padding: 1rem;
+
+        &#vip-img {
+          width: 25rem;
+          // border: 1px solid red;
+          position: relative;
+          top: -7rem;
+          padding: 0;
+          margin: 0 auto -7rem;
+          display: block;
+
+          @media ${({ theme }) => theme.mediaQuery.medium} {
+            width: 100%;
+            padding: 1rem;
+            margin: 0;
+          }
+        }
       }
     }
   }
