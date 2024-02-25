@@ -94,7 +94,7 @@ const Home = () => {
         <Intro ref={introTitlesRef}>
           <LowKey className="low-key">A reimagination.</LowKey>
           <LowKey className="low-key">A new musical era.</LowKey>
-          <HighKey className="high-key">Testarossa.</HighKey>
+          <HighKey className="high-key">Sam Drysdale.</HighKey>
         </Intro>
         <IntroShot>
           <img src={IntroShotImg} alt="" width="320" height="320" />
