@@ -4,25 +4,13 @@ import styled from "styled-components"
 const Album = (props) => {
   const {
     item: { img, title, subtitle, url },
-    player,
-    toggle,
   } = props
 
   return (
     <Container>
-      <AudioPlayer
-        onClick={toggle}
-        background={img}
-        className={player.playing ? "isPlaying" : ""}
-      >
+      <AudioPlayer href={url} background={img}>
         <PlayButton>
-          <ion-icon
-            name={
-              player.playing
-                ? "pause-circle-sharp"
-                : "play-circle-sharp"
-            }
-          ></ion-icon>
+          <ion-icon name="play-circle-sharp"></ion-icon>
         </PlayButton>
       </AudioPlayer>
       <Content href={url}>
@@ -44,7 +32,7 @@ const Container = styled.div`
 
 const dimension = "15rem"
 const mobileDimensions = "18rem"
-const AudioPlayer = styled.div`
+const AudioPlayer = styled.a`
   background: url(${({ background }) => background});
   background-size: cover;
   width: ${mobileDimensions};
@@ -105,7 +93,8 @@ const Content = styled.a`
     }
 
     p {
-      color: rgba(255, 255, 255, 0.33);
+      font-size: 0.8rem;
+      color: rgba(0, 0, 0, 0.33);
       margin-top: 0;
     }
   }

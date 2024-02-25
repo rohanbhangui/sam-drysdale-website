@@ -12,9 +12,11 @@ const Theme = {
     xxxlarge: `(min-width: ${XXXL}px)`,
   },
   colors: {
-    primary: "#E30000",
+    primary: "#4B6450",
+    secondary: "#CCAD80",
     dark: "#030000",
-    text: "#ffffff",
+    light: "#ffffff",
+    text: "#000000",
   },
 }
 

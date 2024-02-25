@@ -4,25 +4,23 @@ import { v4 as uuid } from "uuid"
 
 import { useInView } from "react-intersection-observer"
 
-import { XXXL, XXL, XLG, LG } from "../../utils/variables"
-import useMultiAudio from "../../utils/hooks/useMultiAudio"
+import { XXXL, XXL, XLG } from "../../utils/variables"
 
 //data imports
-import { ALBUMS, SOCIALS, SONGS, VIDEOS } from "../../utils/data"
+import { ALBUMS, SOCIALS, VIDEOS } from "../../utils/data"
 
-import IntroShotImg from "../../assets/img/cover-image.webp"
-import BiographyImg from "../../assets/img/biography.webp"
-import ListenImg from "../../assets/img/listen-3.webp"
+import IntroShotImg from "../../assets/img/cover-image-3.webp"
+import BiographyImg from "../../assets/img/biography-2.webp"
+import ListenImg from "../../assets/img/listen-4.webp"
 import CollageImg from "../../assets/img/collage.webp"
 import SignatureImg from "../../assets/img/cursive-logo.svg"
-import ConcertImg from "../../assets/img/concert-poster.webp"
-import ConcertImg2 from "../../assets/img/concert-poster-vip.webp"
+// import ConcertImg from "../../assets/img/concert-poster.webp"
+// import ConcertImg2 from "../../assets/img/concert-poster-vip.webp"
 
 import AppleBadge from "../../assets/img/listen-apple-music-badge.svg"
 import SpotifyBadge from "../../assets/img/spotify-badge.png"
 
 import Album from "../../components/albumItem"
-import SongListItem from "../../components/songListItem/songListItem"
 import Button from "../../components/button"
 
 const Home = () => {
@@ -81,15 +79,6 @@ const Home = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [bigTextInView])
 
-  const [songsArr] = useState(
-    SONGS.map((item) => {
-      return {
-        ...item,
-        id: uuid(),
-      }
-    }),
-  )
-
   const [albumsArr] = useState(
     ALBUMS.map((item) => {
       return {
@@ -97,14 +86,6 @@ const Home = () => {
         id: uuid(),
       }
     }),
-  )
-
-  const [players, toggle] = useMultiAudio(
-    songsArr.map((item) => item.audio),
-  )
-
-  const [albumPlayers, albumToggle] = useMultiAudio(
-    albumsArr.map((item) => item.audio),
   )
 
   return (
@@ -123,7 +104,7 @@ const Home = () => {
           <Name className="big">Drysdale</Name>
         </div>
       </RestrictContainer>
-      <Biography>
+      <Biography id="about">
         <BiographyImage>
           <h2 className="h1">Biography</h2>
           <div className="biography-img-stack">
@@ -134,21 +115,23 @@ const Home = () => {
         </BiographyImage>
         <BiographyText>
           <p>
-            The rising Toronto based singer-songwriter is the 4:00AM,
-            bourbon soaked evolution of a high school kid who just
-            liked to play guitar in his bedroom. Raw lyrics and a
-            velvet grit voice accompany a hybrid sound of modern
-            low-fi pop production with hints of R&amp;B and blues
-            mixed in the haze. The darkest parts of youth, substance,
-            and relationships are his biggest fears, but also his
-            muse.
+            The rising singer-songwriter is the 4:00am bourbon soaked
+            evolution of the highschool kid that just liked to play
+            guitar in his bedroom. Raised in a home filled with music,
+            Sam started writing and playing guitar at a young age.
+            Over the past few years, he has released multiple projects
+            that trace the evolution of his distinctive voice and
+            lyrical storytelling.
           </p>
           <p>
-            Following 2019's VICELOVE, Sam is currently in the process
-            of rolling out his sophomore EP “Testarossa,” due January
-            2021. Led by the addictive singles “Dream About A Girl,”
-            and “Shitty Famous,” Sam promises his next musical era to
-            not disappoint.
+            Sam is currently wrapping up his latest project titled
+            “Bonnie&apos;s Sad Songs,” as he strives to strip things
+            back to the core of his songwriting, channeling the raw
+            emotionality he discovered early on through the artists he
+            grew up admiring. Paring things back to their essence and
+            focusing on potent lyrics and intimate melodies, Sam uses
+            his talent for crafting compelling narratives and connects
+            with the passion that first inspired his musical journey.
           </p>
         </BiographyText>
       </Biography>
@@ -173,13 +156,8 @@ const Home = () => {
         <ListenHeroImage src={ListenImg} alt="" />
         <RestrictContainer dimension={XXL} id="album-restrict">
           <AlbumGroup>
-            {albumsArr.map((item, index) => (
-              <Album
-                key={item.id}
-                item={item}
-                player={albumPlayers[index]}
-                toggle={albumToggle(index)}
-              />
+            {albumsArr.map((item) => (
+              <Album key={item.id} item={item} />
             ))}
           </AlbumGroup>
         </RestrictContainer>
@@ -191,27 +169,6 @@ const Home = () => {
             <img src={SpotifyBadge} />
           </a>
         </ListenBadges>
-        <SongReleases dimension={XXL}>
-          <SongReleasesTitle>
-            <h2>Latest Releases</h2>
-            <MusicIcon href={SOCIALS["apple music"].url}>
-              <ion-icon src={SOCIALS["apple music"].icon} />
-            </MusicIcon>
-            <MusicIcon href={SOCIALS["spotify"].url}>
-              <ion-icon src={SOCIALS["spotify"].icon} />
-            </MusicIcon>
-          </SongReleasesTitle>
-          <SongsList>
-            {songsArr.map((item, index) => (
-              <SongListItem
-                key={item.id}
-                item={item}
-                player={players[index]}
-                toggle={toggle(index)}
-              />
-            ))}
-          </SongsList>
-        </SongReleases>
       </Listen>
       <RestrictContainer dimension={XXL} id="watch">
         <Watch>
@@ -259,7 +216,7 @@ const Home = () => {
           </div>
         </RestrictContainer>
       </Collage>
-      <Concert id="shows">
+      {/* <Concert id="shows">
         <RestrictContainer dimension={LG}>
           <h2 className="h1">Shows</h2>
           <div className="flex-container">
@@ -288,7 +245,7 @@ const Home = () => {
             </div>
           </div>
         </RestrictContainer>
-      </Concert>
+      </Concert> */}
     </ScrollBars>
   )
 }
@@ -328,19 +285,7 @@ const RestrictContainer = styled.div`
 `
 
 const LowKey = styled.h1`
-  @supports (-webkit-text-stroke: 1px white) {
-    -webkit-text-stroke-color: ${({ theme }) => theme.colors.text};
-    -webkit-text-stroke-width: 0.5px;
-    -webkit-text-fill-color: rgba(0, 0, 0, 0);
-  }
-
-  @supports not (-webkit-text-stroke: 1px white) {
-    color: ${({ theme }) => theme.colors.text};
-  }
-
-  @media ${({ theme }) => theme.mediaQuery.medium} {
-    -webkit-text-stroke-width: 1px;
-  }
+  color: ${({ theme }) => theme.colors.text};
 
   transform: translateY(5rem);
   opacity: 0;
@@ -357,7 +302,7 @@ const LowKey = styled.h1`
   }
 
   &.active {
-    opacity: 1;
+    opacity: 0.33;
     transform: translateY(0);
   }
 `
@@ -412,6 +357,7 @@ const IntroShot = styled.div`
 
 const Name = styled.h1`
   margin-left: 5%;
+  color: ${({ theme }) => theme.colors.secondary};
 
   transform: translateY(5rem);
   opacity: 0;
@@ -460,6 +406,7 @@ const BiographyImage = styled.div`
   .biography-img-stack {
     height: 100%;
     width: 100%;
+    aspect-ratio: 2732/2096;
 
     img {
       width: 100%;
@@ -491,6 +438,7 @@ const BiographyImage = styled.div`
     bottom: 5%;
     left: 1rem;
     z-index: 3;
+    color: white;
 
     @media ${({ theme }) => theme.mediaQuery.medium} {
       right: 10%;
@@ -584,8 +532,9 @@ const ListenHeroImage = styled.img`
   margin-right: 0;
   min-height: 20rem;
   object-fit: cover;
-  object-position: 30% center;
+  object-position: center 70%;
   order: 1;
+  aspect-ratio: 2460/1080;
 
   @media ${({ theme }) => theme.mediaQuery.medium} {
     order: 2;
@@ -621,22 +570,6 @@ const ListenBadges = styled(RestrictContainer)`
   }
 `
 
-const SongReleases = styled(RestrictContainer)`
-  margin-top: 4rem;
-  padding: 0 0.5rem;
-  display: none;
-`
-
-const SongReleasesTitle = styled.div`
-  display: flex;
-  align-items: center;
-
-  h2 {
-    margin-right: 0.5rem;
-    margin-bottom: -0.5rem;
-  }
-`
-
 const MusicIcon = styled.a`
   height: 1.5rem;
   width: auto;
@@ -656,20 +589,11 @@ const MusicIcon = styled.a`
   }
 `
 
-const SongsList = styled.div`
-  overflow: auto;
-  display: grid;
-  grid-gap: 1rem;
-  grid-template-rows: repeat(3, 1fr);
-  grid-template-rows: repeat(4, 1fr);
-  grid-auto-flow: column;
-  margin-top: 3rem;
-`
-
 const Watch = styled.div`
   display: flex;
   flex-wrap: wrap;
   margin: 4rem 0;
+  gap: 0 2rem;
 
   @media ${({ theme }) => theme.mediaQuery.medium} {
     flex-wrap: nowrap;
@@ -697,7 +621,7 @@ const Watch = styled.div`
     @media ${({ theme }) => theme.mediaQuery.medium} {
       width: 20rem;
       flex: 0 0 auto;
-      padding: 1rem 1rem 1rem 3rem;
+      padding: 1rem 1rem 1rem 1rem;
       margin-top: 4rem;
       position: sticky;
       top: 2rem;
@@ -739,6 +663,10 @@ const Video = styled.div`
 
   .video-content {
     text-align: center;
+
+    h3.h2 {
+      color: white;
+    }
 
     .outline-invert-pure {
       margin-top: 0.75rem;
@@ -788,74 +716,74 @@ const Collage = styled.div`
   }
 `
 
-const Concert = styled.div`
-  margin: 8rem 0 4rem;
+// const Concert = styled.div`
+//   margin: 8rem 0 4rem;
 
-  @media ${({ theme }) => theme.mediaQuery.medium} {
-    margin: 8rem 0;
-  }
+//   @media ${({ theme }) => theme.mediaQuery.medium} {
+//     margin: 8rem 0;
+//   }
 
-  .h1 {
-    text-align: center;
-    margin-bottom: 2rem;
-  }
+//   .h1 {
+//     text-align: center;
+//     margin-bottom: 2rem;
+//   }
 
-  .flex-container {
-    flex-wrap: wrap;
-    display: flex;
+//   .flex-container {
+//     flex-wrap: wrap;
+//     display: flex;
 
-    @media ${({ theme }) => theme.mediaQuery.medium} {
-      flex-wrap: nowrap;
-      align-items: flex-start;
-    }
+//     @media ${({ theme }) => theme.mediaQuery.medium} {
+//       flex-wrap: nowrap;
+//       align-items: flex-start;
+//     }
 
-    .flex-content {
-      flex: 0 0 100%;
-      padding: 2rem;
-      order: 2;
-      position: relative;
-      top: 0;
+//     .flex-content {
+//       flex: 0 0 100%;
+//       padding: 2rem;
+//       order: 2;
+//       position: relative;
+//       top: 0;
 
-      @media ${({ theme }) => theme.mediaQuery.medium} {
-        flex: 0 0 40%;
-        order: 1;
-        position: sticky;
-        top: 0;
-      }
-    }
+//       @media ${({ theme }) => theme.mediaQuery.medium} {
+//         flex: 0 0 40%;
+//         order: 1;
+//         position: sticky;
+//         top: 0;
+//       }
+//     }
 
-    .flex-img {
-      flex: 0 0 100%;
-      order: 1;
-      // padding: 1rem;
+//     .flex-img {
+//       flex: 0 0 100%;
+//       order: 1;
+//       // padding: 1rem;
 
-      @media ${({ theme }) => theme.mediaQuery.medium} {
-        flex: 0 0 60%;
-        order: 2;
-      }
+//       @media ${({ theme }) => theme.mediaQuery.medium} {
+//         flex: 0 0 60%;
+//         order: 2;
+//       }
 
-      img {
-        padding: 1rem;
+//       img {
+//         padding: 1rem;
 
-        &#vip-img {
-          width: 80%;
-          min-width: 25rem;
-          // border: 1px solid red;
-          position: relative;
-          top: -7rem;
-          padding: 0;
-          margin: 0 auto -7rem;
-          display: block;
+//         &#vip-img {
+//           width: 80%;
+//           min-width: 25rem;
+//           // border: 1px solid red;
+//           position: relative;
+//           top: -7rem;
+//           padding: 0;
+//           margin: 0 auto -7rem;
+//           display: block;
 
-          @media ${({ theme }) => theme.mediaQuery.medium} {
-            width: 100%;
-            padding: 1rem;
-            margin: 0;
-          }
-        }
-      }
-    }
-  }
-`
+//           @media ${({ theme }) => theme.mediaQuery.medium} {
+//             width: 100%;
+//             padding: 1rem;
+//             margin: 0;
+//           }
+//         }
+//       }
+//     }
+//   }
+// `
 
 export default Home

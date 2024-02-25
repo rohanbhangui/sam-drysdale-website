@@ -5,14 +5,13 @@ const SongListItem = (props) => {
   const {
     item: { img, title, subtitle, url },
     player,
-    toggle,
   } = props
 
   return (
     <Container>
       <div className="flex-container">
         <AudioPlayer
-          onClick={toggle}
+          href={url}
           background={img}
           className={player.playing ? "isPlaying" : ""}
         >
@@ -26,13 +25,15 @@ const SongListItem = (props) => {
             ></ion-icon>
           </PlayButton>
         </AudioPlayer>
-        <AudioText href={url}>
-          <h3>{title}</h3>
-          <p>{subtitle}</p>
-        </AudioText>
-        <a className="goToSong" href={url}>
-          <ion-icon name="chevron-forward-sharp"></ion-icon>
-        </a>
+        <TitleText>
+          <AudioText href={url}>
+            <h3>{title}</h3>
+            <p>{subtitle}</p>
+          </AudioText>
+          <a className="goToSong" href={url}>
+            <ion-icon name="chevron-forward-sharp"></ion-icon>
+          </a>
+        </TitleText>
       </div>
     </Container>
   )
@@ -69,7 +70,7 @@ const Container = styled.div`
 `
 
 const dimension = "3.5rem"
-const AudioPlayer = styled.div`
+const AudioPlayer = styled.a`
   background: url(${({ background }) => background});
   background-size: cover;
   width: ${dimension};
@@ -88,7 +89,7 @@ const AudioPlayer = styled.div`
 `
 
 const size = "2rem"
-const PlayButton = styled.button`
+const PlayButton = styled.a`
   cursor: pointer;
   background: none;
   border: none;
@@ -113,9 +114,14 @@ const AudioText = styled.a`
   }
 
   p {
-    color: rgba(255, 255, 255, 0.33);
+    color: rgba(0, 0, 0, 0.33);
     margin-top: 0;
   }
+`
+
+const TitleText = styled.div`
+  display: flex;
+  align-items: center;
 `
 
 export default SongListItem

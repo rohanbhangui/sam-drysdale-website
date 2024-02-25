@@ -14,6 +14,11 @@ import LoraWoff2 from "../fonts/Lora-Regular.woff2"
 import LoraItalicWoff from "../fonts/Lora-Italic.woff"
 import LoraItalicWoff2 from "../fonts/Lora-Italic.woff2"
 
+import GeneralSansVariableWoff from "../fonts/GeneralSans-Variable.woff"
+import GeneralSansVariableWoff2 from "../fonts/GeneralSans-Variable.woff2"
+import GeneralSansVariableItalicWoff from "../fonts/GeneralSans-VariableItalic.woff"
+import GeneralSansVariableItalicWoff2 from "../fonts/GeneralSans-VariableItalic.woff2"
+
 // vogue
 import VogueWoff from "../fonts/Vogue-Regular.woff"
 import VogueWoff2 from "../fonts/Vogue-Regular.woff2"
@@ -78,17 +83,47 @@ const FontFace = css`
     font-style: normal;
     font-display: swap;
   }
+
+  @font-face {
+    font-family: "GeneralSans-Variable";
+    src: local("General Sans"), local("General-Sans"),
+      url("${GeneralSansVariableWoff2}") format("woff2"),
+      url("${GeneralSansVariableWoff}") format("woff");
+    font-weight: 200 700;
+    font-display: swap;
+    font-style: normal;
+  }
+
+  /**
+    * This is a variable font
+    * You can controll variable axes as shown below:
+    * font-variation-settings: 'wght' 700.0;
+    *
+    * available axes:
+
+    * 'wght' (range from 200.0 to 700.0)
+  */
+
+  @font-face {
+    font-family: "GeneralSans-VariableItalic";
+    src: local("General Sans Italic"), local("General-Sans-Italic"),
+      url("${GeneralSansVariableItalicWoff2}") format("woff2"),
+      url("${GeneralSansVariableItalicWoff}") format("woff");
+    font-weight: 200 700;
+    font-display: swap;
+    font-style: italic;
+  }
 `
 
 const primary = css`
-  font-family: "Vogue", serif;
+  font-family: "GeneralSans-Variable", serif;
   text-transform: uppercase;
-  font-weight: normal;
+  font-weight: 550;
 `
 
 const secondary = css`
-  font-family: "Lora", serif;
-  font-weight: bold;
+  font-family: "GeneralSans-Variable", serif;
+  font-weight: 500;
 `
 
 const Typography = css`
@@ -119,7 +154,7 @@ const Typography = css`
     }
 
     @media ${({ theme }) => theme.mediaQuery.xlarge} {
-      font-size: 5rem;
+      font-size: 4.75rem;
     }
 
     &.big {
@@ -156,12 +191,11 @@ const Typography = css`
   h3,
   .h3 {
     ${secondary}
-    font-weight: 500;
+    font-weight: 550;
     margin-top: 0.75rem;
     line-height: 1.5rem;
     font-size: 1.3rem;
     letter-spacing: -0.05rem;
-    font-weight: bold;
 
     @media ${({ theme }) => theme.mediaQuery.small} {
       font-size: 1rem;

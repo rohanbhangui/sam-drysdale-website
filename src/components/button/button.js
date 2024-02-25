@@ -52,11 +52,11 @@ const Button = ({
 const sharedStyle = css`
   padding: 0.4rem 1.5rem;
   display: inline-flex;
-  font-weight: bold;
+  font-weight: 550;
   font-size: 1rem;
   margin-top: 1.5rem;
   text-decoration: none;
-  letter-spacing: -0.03rem;
+  letter-spacing: -0.01rem;
 
   ${({ hasicon }) =>
     hasicon !== "" &&
