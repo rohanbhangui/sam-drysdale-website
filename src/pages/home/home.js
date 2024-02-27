@@ -12,10 +12,6 @@ import { ALBUMS, SOCIALS, VIDEOS } from "../../utils/data"
 import IntroShotImg from "../../assets/img/cover-image-3.webp"
 import BiographyImg from "../../assets/img/biography-2.webp"
 import ListenImg from "../../assets/img/listen-4.webp"
-import CollageImg from "../../assets/img/collage.webp"
-import SignatureImg from "../../assets/img/cursive-logo.svg"
-// import ConcertImg from "../../assets/img/concert-poster.webp"
-// import ConcertImg2 from "../../assets/img/concert-poster-vip.webp"
 
 import AppleBadge from "../../assets/img/listen-apple-music-badge.svg"
 import SpotifyBadge from "../../assets/img/spotify-badge.png"
@@ -24,36 +20,6 @@ import Album from "../../components/albumItem"
 import Button from "../../components/button"
 
 const Home = () => {
-  // for intro content loading
-  const {
-    ref: introTitlesRef,
-    inView: introTitlesInView,
-    entry: introTitlesEntry,
-  } = useInView({
-    /* Optional options */
-    threshold: 0.2,
-  })
-
-  //projects come into view
-  useEffect(() => {
-    if (introTitlesInView && introTitlesEntry && introTitlesRef) {
-      introTitlesEntry.target
-        .querySelectorAll(".low-key")
-        .forEach((val, ind) => {
-          setTimeout(() => {
-            val.classList.add("active")
-          }, ind * 400)
-        })
-
-      setTimeout(() => {
-        introTitlesEntry.target
-          .querySelector(".high-key")
-          .classList.add("active")
-      }, 2000)
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [introTitlesInView])
-
   // for big sam drysdale text
   const {
     ref: bigTextRef,
@@ -91,11 +57,6 @@ const Home = () => {
   return (
     <ScrollBars>
       <RestrictContainer dimension={XXXL}>
-        <Intro ref={introTitlesRef}>
-          <LowKey className="low-key">A reimagination.</LowKey>
-          <LowKey className="low-key">A new musical era.</LowKey>
-          <HighKey className="high-key">Sam Drysdale.</HighKey>
-        </Intro>
         <IntroShot>
           <img src={IntroShotImg} alt="" width="320" height="320" />
         </IntroShot>
@@ -208,44 +169,6 @@ const Home = () => {
           </div>
         </Watch>
       </RestrictContainer>
-      <Collage>
-        <RestrictContainer>
-          <div className="grid-overlay">
-            <img className="signature" src={SignatureImg} alt="" />
-            <img className="collage" src={CollageImg} />
-          </div>
-        </RestrictContainer>
-      </Collage>
-      {/* <Concert id="shows">
-        <RestrictContainer dimension={LG}>
-          <h2 className="h1">Shows</h2>
-          <div className="flex-container">
-            <div className="flex-content">
-              <h3 className="h2">Live At The El Mocambo</h3>
-              <p>
-                Sam Drysdale and The El Mocambo present the official
-                release show and afterparty for Sam's new album
-                “Testarossa: Fully Loaded.” In his first official show
-                since the beginning of the pandemic, Sam will be
-                joined by Toronto's own Eric Punzo for what is sure to
-                be an explosive celebration and opening to his
-                Testarossa era. We hope you like champagne
-              </p>
-              <Button
-                linkto={
-                  "https://www.ticketweb.ca/event/sam-drysdale-the-testarossa-fully-under-the-neon-palms-at-tickets/11928605?pl=elmocambo"
-                }
-                label="BUY TICKETS"
-                type="outline-invert-pure"
-              />
-            </div>
-            <div className="flex-img">
-              <img src={ConcertImg} alt="" />
-              <img id="vip-img" src={ConcertImg2} alt="" />
-            </div>
-          </div>
-        </RestrictContainer>
-      </Concert> */}
     </ScrollBars>
   )
 }
@@ -284,66 +207,17 @@ const RestrictContainer = styled.div`
   margin: 0 auto;
 `
 
-const LowKey = styled.h1`
-  color: ${({ theme }) => theme.colors.text};
-
-  transform: translateY(5rem);
-  opacity: 0;
-  transition: opacity 1s cubic-bezier(0.77, 0, 0.175, 1),
-    transform 1s cubic-bezier(0.77, 0, 0.175, 1);
-  font-size: 3.2rem;
-
-  @media ${({ theme }) => theme.mediaQuery.large} {
-    font-size: 4rem;
-  }
-
-  @media ${({ theme }) => theme.mediaQuery.xlarge} {
-    font-size: 5rem;
-  }
-
-  &.active {
-    opacity: 0.33;
-    transform: translateY(0);
-  }
-`
-
-const HighKey = styled.h1`
-  color: ${({ theme }) => theme.colors.primary};
-
-  transform: translateY(5rem);
-  opacity: 0;
-  transition: opacity 1s cubic-bezier(0.77, 0, 0.175, 1),
-    transform 1s cubic-bezier(0.77, 0, 0.175, 1);
-  font-size: 3.2rem;
-
-  @media ${({ theme }) => theme.mediaQuery.large} {
-    font-size: 4rem;
-  }
-
-  @media ${({ theme }) => theme.mediaQuery.xlarge} {
-    font-size: 5rem;
-  }
-
-  &.active {
-    opacity: 1;
-    transform: translateY(0);
-  }
-`
-
-const Intro = styled.div`
-  width: 100%;
-  padding: 6rem 1rem;
-`
-
 const IntroShot = styled.div`
   display: block;
   width: 100%;
   padding-top: 75%;
   margin-bottom: -15%;
   position: relative;
+  margin-top: 3rem;
 
   @media ${({ theme }) => theme.mediaQuery.medium} {
     padding-top: 50%;
+    margin-top: 6rem;
   }
 
   img {
@@ -673,117 +547,5 @@ const Video = styled.div`
     }
   }
 `
-
-const Collage = styled.div`
-  margin: 0 1rem;
-
-  @media ${({ theme }) => theme.mediaQuery.medium} {
-    margin: 0 3rem;
-  }
-
-  @media ${({ theme }) => theme.mediaQuery.xlarge} {
-    margin: 0 5rem;
-  }
-
-  .grid-overlay {
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(1, 1fr);
-
-    .signature {
-      grid-column: 1 / 2;
-      grid-row: 1;
-      z-index: 10;
-      align-self: center;
-      width: 70%;
-      justify-self: center;
-    }
-
-    .collage {
-      opacity: 0.75;
-      grid-column: 1 / 2;
-      grid-row: 1;
-      width: 100%;
-      height: auto;
-      justify-self: center;
-      align-self: center;
-      object-fit: contain;
-
-      @media ${({ theme }) => theme.mediaQuery.medium} {
-        width: 80%;
-      }
-    }
-  }
-`
-
-// const Concert = styled.div`
-//   margin: 8rem 0 4rem;
-
-//   @media ${({ theme }) => theme.mediaQuery.medium} {
-//     margin: 8rem 0;
-//   }
-
-//   .h1 {
-//     text-align: center;
-//     margin-bottom: 2rem;
-//   }
-
-//   .flex-container {
-//     flex-wrap: wrap;
-//     display: flex;
-
-//     @media ${({ theme }) => theme.mediaQuery.medium} {
-//       flex-wrap: nowrap;
-//       align-items: flex-start;
-//     }
-
-//     .flex-content {
-//       flex: 0 0 100%;
-//       padding: 2rem;
-//       order: 2;
-//       position: relative;
-//       top: 0;
-
-//       @media ${({ theme }) => theme.mediaQuery.medium} {
-//         flex: 0 0 40%;
-//         order: 1;
-//         position: sticky;
-//         top: 0;
-//       }
-//     }
-
-//     .flex-img {
-//       flex: 0 0 100%;
-//       order: 1;
-//       // padding: 1rem;
-
-//       @media ${({ theme }) => theme.mediaQuery.medium} {
-//         flex: 0 0 60%;
-//         order: 2;
-//       }
-
-//       img {
-//         padding: 1rem;
-
-//         &#vip-img {
-//           width: 80%;
-//           min-width: 25rem;
-//           // border: 1px solid red;
-//           position: relative;
-//           top: -7rem;
-//           padding: 0;
-//           margin: 0 auto -7rem;
-//           display: block;
-
-//           @media ${({ theme }) => theme.mediaQuery.medium} {
-//             width: 100%;
-//             padding: 1rem;
-//             margin: 0;
-//           }
-//         }
-//       }
-//     }
-//   }
-// `
 
 export default Home
