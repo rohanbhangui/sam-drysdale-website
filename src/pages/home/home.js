@@ -19,11 +19,6 @@ import BiographyImg from "../../assets/img/biography-2.webp"
 import ListenImg from "../../assets/img/listen-5.webp"
 import CollageImg from "../../assets/img/collage-2.webp"
 import SignatureImg from "../../assets/img/cursive-logo.svg"
-import ConcertImg from "../../assets/img/concert-poster.webp"
-import ConcertImg2 from "../../assets/img/concert-poster-vip.webp"
-
-import AppleBadge from "../../assets/img/listen-apple-music-badge.svg"
-import SpotifyBadge from "../../assets/img/spotify-badge.png"
 
 import Album from "../../components/albumItem"
 import Button from "../../components/button"
@@ -571,28 +566,28 @@ const AlbumGroup = styled.div`
   overflow: auto;
 `
 
-const ListenBadges = styled(RestrictContainer)`
-  display: flex;
-  align-items: center;
-  margin: 4rem auto;
-  padding: 0 1rem;
-  justify-content: center;
-  order: 4;
+// const ListenBadges = styled(RestrictContainer)`
+//   display: flex;
+//   align-items: center;
+//   margin: 4rem auto;
+//   padding: 0 1rem;
+//   justify-content: center;
+//   order: 4;
 
-  a {
-    display: inline-block;
-  }
+//   a {
+//     display: inline-block;
+//   }
 
-  img {
-    height: 3.5rem;
-    width: auto;
-    margin: 0 0.5rem;
+//   img {
+//     height: 3.5rem;
+//     width: auto;
+//     margin: 0 0.5rem;
 
-    @media ${({ theme }) => theme.mediaQuery.medium} {
-      height: 3rem;
-    }
-  }
-`
+//     @media ${({ theme }) => theme.mediaQuery.medium} {
+//       height: 3rem;
+//     }
+//   }
+// `
 
 const MusicIcon = styled.a`
   height: 1.5rem;

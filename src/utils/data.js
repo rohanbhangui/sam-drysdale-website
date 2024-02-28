@@ -1,7 +1,5 @@
 // album cover imports
 import OneMoreNight from "../assets/img/music/one-more-night.jpg"
-import DreamAboutAGirl from "../assets/img/music/dream-about-a-girl.jpeg"
-import ShittyFamous from "../assets/img/music/shitty-famous.jpeg"
 import Bonnie from "../assets/img/music/Bonnie-Single-Cover.webp"
 import LoveViolence from "../assets/img/music/love-violence-single-cover.webp"
 import Testarossa from "../assets/img/music/Testarossa-Album-Artwork.webp"
@@ -10,7 +8,6 @@ import Testarossa from "../assets/img/music/Testarossa-Album-Artwork.webp"
 import WastedClip from "../assets/audio/WastedClip.mp3"
 import DreamAboutAGirlClip from "../assets/audio/DreamAboutAGirlClip.mp3"
 import ShittyFamousClip from "../assets/audio/ShittyFamousClip.mp3"
-import LikeAManClip from "../assets/audio/LikeAManClip.mp3"
 
 import Sample1 from "../assets/audio/ShittyFamousClip.mp3"
 import Sample2 from "../assets/audio/LikeAManClip.mp3"
@@ -21,8 +18,6 @@ import AppleMusic from "../assets/img/apple-music.svg"
 
 // video cover imports
 import NothingOnYouVideo from "../assets/img/videos/nothing-on-you-videocover.jpg"
-import DreamAboutAGirlVideo from "../assets/img/videos/dream-about-a-girl-videocover.jpg"
-import ShittyFamousVideo from "../assets/img/videos/shitty-famous-videocover.png"
 import BonnieVideo from "../assets/img/videos/bonnie-videocover.webp"
 import LoveViolenceVideo from "../assets/img/videos/love-violence-videocover.webp"
 
