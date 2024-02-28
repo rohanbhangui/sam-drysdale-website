@@ -55,6 +55,11 @@ const Header = () => {
             </NavHashLink>
           </NavItem>
           <NavItem>
+            <NavHashLink to="/#shows" activeClassName="selected">
+              Shows
+            </NavHashLink>
+          </NavItem>
+          <NavItem>
             <NavHashLink to="/#about" activeClassName="selected">
               About
             </NavHashLink>

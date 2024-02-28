@@ -9,27 +9,31 @@ const Footer = ({ id }) => {
   return (
     <FooterContainer id={id}>
       <Socials>
-        {Object.keys(SOCIALS).map((socialKey) => {
-          const { url, icon, name } = SOCIALS[socialKey]
-
-          return (
-            <li key={uuid()}>
-              {url && (
-                <Link href={url} className="h2">
-                  {(socialKey === "apple music" ||
-                    socialKey === "spotify") && (
-                    <ion-icon src={icon}></ion-icon>
-                  )}
-                  {socialKey !== "apple music" &&
-                    socialKey !== "spotify" && (
-                      <ion-icon name={icon}></ion-icon>
-                    )}
-                </Link>
-              )}
-              {!url && <Text className="h2">{name}</Text>}
-            </li>
+        {Object.keys(SOCIALS)
+          .filter(
+            (item) => !["apple music", "spotify"].includes(item),
           )
-        })}
+          .map((socialKey) => {
+            const { url, icon, name } = SOCIALS[socialKey]
+
+            return (
+              <li key={uuid()}>
+                {url && (
+                  <Link href={url} className="h2">
+                    {(socialKey === "apple music" ||
+                      socialKey === "spotify") && (
+                      <ion-icon src={icon}></ion-icon>
+                    )}
+                    {socialKey !== "apple music" &&
+                      socialKey !== "spotify" && (
+                        <ion-icon name={icon}></ion-icon>
+                      )}
+                  </Link>
+                )}
+                {!url && <Text className="h2">{name}</Text>}
+              </li>
+            )
+          })}
       </Socials>
       <Copyright>
         Sam Drysdale &copy; Copyright {new Date().getFullYear()}
