@@ -178,16 +178,6 @@ export const VIDEOS = [
     link: "https://www.youtube.com/watch?v=qar8Yhh_6pI",
     img: NothingOnYouVideo,
   },
-  // {
-  //   name: "Shitty Famous",
-  //   link: "https://www.youtube.com/watch?v=A3WksdjsRWQ",
-  //   img: ShittyFamousVideo,
-  // },
-  // {
-  //   name: "Dream About a Girl",
-  //   link: "https://www.youtube.com/watch?v=L2VkIBmdU9s",
-  //   img: DreamAboutAGirlVideo,
-  // },
 ]
 
 export const CONCERT_LIST = [
