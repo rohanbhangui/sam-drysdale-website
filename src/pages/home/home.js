@@ -139,8 +139,8 @@ const Home = () => {
         <RestrictContainer dimension={XLG} id="listen-restrict">
           <div className="content-container">
             <h2 className="h1">Listen</h2>
-            {/* <div className="content">
-              <p>
+            <div className="content">
+              {/* <p>
                 A reintroduction to the world of Sam Drysdale
                 following his 2019 debut "Vicelove". A new sonic
                 environment richer in major-driven pop sentiments
@@ -149,8 +149,8 @@ const Home = () => {
               <p>
                 A more explorative production endeavor with styles
                 ranging in influence from bubblegum to blues.
-              </p>
-            </div> */}
+              </p> */}
+            </div>
           </div>
         </RestrictContainer>
         <ListenHeroImage src={ListenImg} alt="" />
