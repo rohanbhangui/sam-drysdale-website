@@ -139,7 +139,7 @@ const Home = () => {
         <RestrictContainer dimension={XLG} id="listen-restrict">
           <div className="content-container">
             <h2 className="h1">Listen</h2>
-            <div className="content">
+            {/* <div className="content">
               <p>
                 A reintroduction to the world of Sam Drysdale
                 following his 2019 debut "Vicelove". A new sonic
@@ -150,7 +150,7 @@ const Home = () => {
                 A more explorative production endeavor with styles
                 ranging in influence from bubblegum to blues.
               </p>
-            </div>
+            </div> */}
           </div>
         </RestrictContainer>
         <ListenHeroImage src={ListenImg} alt="" />
@@ -188,7 +188,7 @@ const Home = () => {
           </div>
           <div className="content">
             <h2 className="h1">Watch</h2>
-            <p>
+            {/* <p>
               Testarossa seeks to be more than just a sonic
               experience. A complete aesthetic overall, it strives to
               be a fully realized and calculated artistic offering
@@ -196,9 +196,9 @@ const Home = () => {
               accompany the music. All visual elements are co-produced
               and designed by Sam in tandem with his creative partner
               Helder Matias (SunflowerPrince Creative).
-            </p>
+            </p> */}
 
-            <h3 className="h2">See More</h3>
+            {/* <h3 className="h2">See More</h3> */}
             <MusicIcon
               className="watch-link"
               href={SOCIALS["youtube"].url}
