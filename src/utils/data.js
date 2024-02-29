@@ -1,13 +1,13 @@
 // album cover imports
 import OneMoreNight from "../assets/img/music/one-more-night.jpg"
-import DreamAboutAGirl from "../assets/img/music/dream-about-a-girl.jpeg"
-import ShittyFamous from "../assets/img/music/shitty-famous.jpeg"
+import Bonnie from "../assets/img/music/Bonnie-Single-Cover.webp"
+import LoveViolence from "../assets/img/music/love-violence-single-cover.webp"
+import Testarossa from "../assets/img/music/Testarossa-Album-Artwork.webp"
 
 // audio imports
 import WastedClip from "../assets/audio/WastedClip.mp3"
 import DreamAboutAGirlClip from "../assets/audio/DreamAboutAGirlClip.mp3"
 import ShittyFamousClip from "../assets/audio/ShittyFamousClip.mp3"
-import LikeAManClip from "../assets/audio/LikeAManClip.mp3"
 
 import Sample1 from "../assets/audio/ShittyFamousClip.mp3"
 import Sample2 from "../assets/audio/LikeAManClip.mp3"
@@ -18,8 +18,8 @@ import AppleMusic from "../assets/img/apple-music.svg"
 
 // video cover imports
 import NothingOnYouVideo from "../assets/img/videos/nothing-on-you-videocover.jpg"
-import DreamAboutAGirlVideo from "../assets/img/videos/dream-about-a-girl-videocover.jpg"
-import ShittyFamousVideo from "../assets/img/videos/shitty-famous-videocover.png"
+import BonnieVideo from "../assets/img/videos/bonnie-videocover.webp"
+import LoveViolenceVideo from "../assets/img/videos/love-violence-videocover.webp"
 
 export const SOCIALS = {
   "apple music": {
@@ -36,6 +36,11 @@ export const SOCIALS = {
     url: "https://www.youtube.com/channel/UCnoTxG--1KoEY-zfd5JaqgA",
     icon: "logo-youtube",
     name: "Youtube",
+  },
+  tiktok: {
+    url: "https://www.tiktok.com/@sam.drysdale",
+    icon: "logo-tiktok",
+    name: "Tiktok",
   },
   instagram: {
     url: "https://www.instagram.com/samdrysdalemusic/?hl=en",
@@ -56,32 +61,32 @@ export const SOCIALS = {
 
 export const ALBUMS = [
   {
-    img: ShittyFamous,
-    title: "Shitty Famous",
-    subtitle: "Shitty Famous (Single)",
-    url: "https://slaight.lnk.to/SFamous",
+    img: Bonnie,
+    title: "Bonnie",
+    subtitle: "Single",
+    url: "https://linktr.ee/samdrysdale",
+    audio: undefined,
+  },
+  {
+    img: LoveViolence,
+    title: "Love & Violence",
+    subtitle: "Single",
+    url: "https://linktr.ee/samdrysdale",
     audio: ShittyFamousClip,
   },
   {
-    img: DreamAboutAGirl,
-    title: "Dream About a Girl",
-    subtitle: "Dream About a Girl (Single)",
-    url: "https://slaight.lnk.to/DAAG",
+    img: Testarossa,
+    title: "Testarossa: Fully Loaded",
+    subtitle: "Album",
+    url: "https://linktr.ee/samdrysdale",
     audio: DreamAboutAGirlClip,
   },
   {
     img: OneMoreNight,
-    title: "Wasted",
-    subtitle: "ViceLove",
-    url: "https://open.spotify.com/album/6MpHnhQ1E1wXo0u0XNS38S",
+    title: "ViceLove",
+    subtitle: "Album",
+    url: "https://linktr.ee/samdrysdale",
     audio: WastedClip,
-  },
-  {
-    img: OneMoreNight,
-    title: "Like a Man",
-    subtitle: "ViceLove",
-    url: "https://open.spotify.com/album/6MpHnhQ1E1wXo0u0XNS38S",
-    audio: LikeAManClip,
   },
 ]
 
@@ -159,18 +164,28 @@ export const SONGS = [
 ]
 export const VIDEOS = [
   {
+    name: "Bonnie",
+    link: "https://www.youtube.com/watch?v=VB3vwUU_v7E",
+    img: BonnieVideo,
+  },
+  {
+    name: "Love and Violence",
+    link: "https://www.youtube.com/watch?v=n7RTYXpMvWc",
+    img: LoveViolenceVideo,
+  },
+  {
     name: "Nothing On You",
     link: "https://www.youtube.com/watch?v=qar8Yhh_6pI",
     img: NothingOnYouVideo,
   },
+]
+
+export const CONCERT_LIST = [
   {
-    name: "Shitty Famous",
-    link: "https://www.youtube.com/watch?v=A3WksdjsRWQ",
-    img: ShittyFamousVideo,
-  },
-  {
-    name: "Dream About a Girl",
-    link: "https://www.youtube.com/watch?v=L2VkIBmdU9s",
-    img: DreamAboutAGirlVideo,
+    name: "SoFar Sounds",
+    date: "Mar 22, 2024",
+    location: "Toronto, CA",
+    link: "https://www.sofarsounds.com/events/55091",
+    linkText: "Buy now",
   },
 ]

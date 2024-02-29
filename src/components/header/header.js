@@ -55,19 +55,24 @@ const Header = () => {
             </NavHashLink>
           </NavItem>
           <NavItem>
-            <NavLink to="/merch" activeClassName="selected">
-              Merch
-            </NavLink>
-          </NavItem>
-          <NavItem>
             <NavHashLink to="/#shows" activeClassName="selected">
               Shows
+            </NavHashLink>
+          </NavItem>
+          <NavItem>
+            <NavHashLink to="/#about" activeClassName="selected">
+              About
             </NavHashLink>
           </NavItem>
           <NavItem>
             <NavHashLink to="/#social" activeClassName="selected">
               Social
             </NavHashLink>
+          </NavItem>
+          <NavItem>
+            <NavLink to="/merch" activeClassName="selected">
+              Store
+            </NavLink>
           </NavItem>
         </ul>
       </nav>
@@ -115,7 +120,7 @@ const HeaderContainer = styled.header`
         mobileopen === "open" &&
         `
         position: fixed;
-        top: 0.7rem;
+        // top: 0.7rem;
       `}
     }
 
@@ -195,7 +200,9 @@ const HeaderContainer = styled.header`
   }
 `
 
-const Logo = styled.img``
+const Logo = styled.img`
+  width: 4rem;
+`
 
 const NavItem = styled.li`
   display: block;
@@ -216,25 +223,27 @@ const NavLinkStyles = css`
   ${secondary}
   text-transform: uppercase;
   text-decoration: none;
-  letter-spacing: -0.03rem;
-  border-bottom: 2px solid rgba(0, 0, 0, 0);
+  opacity: 0.33;
+  color: white;
+  font-weight: 550;
+  transition: all 0.15s cubic-bezier(0.77, 0, 0.175, 1);
 
   @media ${({ theme }) => theme.mediaQuery.medium} {
-    color: white;
-    font-size: 0.9rem;
+    font-size: 0.75rem;
+    color: black;
   }
 
   &:visited,
   &:active {
-    color: white;
+    opacity: 1;
 
     @media ${({ theme }) => theme.mediaQuery.medium} {
-      color: white;
+      opacity: 1;
     }
   }
 
   &:hover {
-    border-bottom: 2px solid ${({ theme }) => theme.colors.primary};
+    opacity: 1;
   }
 `
 

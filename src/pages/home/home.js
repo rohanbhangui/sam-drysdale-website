@@ -5,24 +5,22 @@ import { v4 as uuid } from "uuid"
 import { useInView } from "react-intersection-observer"
 
 import { XXXL, XXL, XLG, LG } from "../../utils/variables"
-import useMultiAudio from "../../utils/hooks/useMultiAudio"
 
 //data imports
-import { ALBUMS, SOCIALS, SONGS, VIDEOS } from "../../utils/data"
+import {
+  ALBUMS,
+  CONCERT_LIST,
+  SOCIALS,
+  VIDEOS,
+} from "../../utils/data"
 
-import IntroShotImg from "../../assets/img/cover-image.webp"
-import BiographyImg from "../../assets/img/biography.webp"
-import ListenImg from "../../assets/img/listen-3.webp"
-import CollageImg from "../../assets/img/collage.webp"
+import IntroShotImg from "../../assets/img/cover-image-3.webp"
+import BiographyImg from "../../assets/img/biography-2.webp"
+import ListenImg from "../../assets/img/listen-5.webp"
+import CollageImg from "../../assets/img/collage-2.webp"
 import SignatureImg from "../../assets/img/cursive-logo.svg"
-import ConcertImg from "../../assets/img/concert-poster.webp"
-import ConcertImg2 from "../../assets/img/concert-poster-vip.webp"
-
-import AppleBadge from "../../assets/img/listen-apple-music-badge.svg"
-import SpotifyBadge from "../../assets/img/spotify-badge.png"
 
 import Album from "../../components/albumItem"
-import SongListItem from "../../components/songListItem/songListItem"
 import Button from "../../components/button"
 
 const Home = () => {
@@ -81,15 +79,6 @@ const Home = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [bigTextInView])
 
-  const [songsArr] = useState(
-    SONGS.map((item) => {
-      return {
-        ...item,
-        id: uuid(),
-      }
-    }),
-  )
-
   const [albumsArr] = useState(
     ALBUMS.map((item) => {
       return {
@@ -99,22 +88,14 @@ const Home = () => {
     }),
   )
 
-  const [players, toggle] = useMultiAudio(
-    songsArr.map((item) => item.audio),
-  )
-
-  const [albumPlayers, albumToggle] = useMultiAudio(
-    albumsArr.map((item) => item.audio),
-  )
-
   return (
     <ScrollBars>
       <RestrictContainer dimension={XXXL}>
-        <Intro ref={introTitlesRef}>
+        {/* <Intro ref={introTitlesRef}>
           <LowKey className="low-key">A reimagination.</LowKey>
           <LowKey className="low-key">A new musical era.</LowKey>
-          <HighKey className="high-key">Testarossa.</HighKey>
-        </Intro>
+          <HighKey className="high-key">Sam Drysdale.</HighKey>
+        </Intro> */}
         <IntroShot>
           <img src={IntroShotImg} alt="" width="320" height="320" />
         </IntroShot>
@@ -123,7 +104,7 @@ const Home = () => {
           <Name className="big">Drysdale</Name>
         </div>
       </RestrictContainer>
-      <Biography>
+      <Biography id="about">
         <BiographyImage>
           <h2 className="h1">Biography</h2>
           <div className="biography-img-stack">
@@ -134,21 +115,23 @@ const Home = () => {
         </BiographyImage>
         <BiographyText>
           <p>
-            The rising Toronto based singer-songwriter is the 4:00AM,
-            bourbon soaked evolution of a high school kid who just
-            liked to play guitar in his bedroom. Raw lyrics and a
-            velvet grit voice accompany a hybrid sound of modern
-            low-fi pop production with hints of R&amp;B and blues
-            mixed in the haze. The darkest parts of youth, substance,
-            and relationships are his biggest fears, but also his
-            muse.
+            The rising singer-songwriter is the 4:00am bourbon soaked
+            evolution of the highschool kid that just liked to play
+            guitar in his bedroom. Raised in a home filled with music,
+            Sam started writing and playing guitar at a young age.
+            Over the past few years, he has released multiple projects
+            that trace the evolution of his distinctive voice and
+            lyrical storytelling.
           </p>
           <p>
-            Following 2019's VICELOVE, Sam is currently in the process
-            of rolling out his sophomore EP “Testarossa,” due January
-            2021. Led by the addictive singles “Dream About A Girl,”
-            and “Shitty Famous,” Sam promises his next musical era to
-            not disappoint.
+            Sam is currently wrapping up his latest project titled
+            “Bonnie&apos;s Sad Songs,” as he strives to strip things
+            back to the core of his songwriting, channeling the raw
+            emotionality he discovered early on through the artists he
+            grew up admiring. Paring things back to their essence and
+            focusing on potent lyrics and intimate melodies, Sam uses
+            his talent for crafting compelling narratives and connects
+            with the passion that first inspired his musical journey.
           </p>
         </BiographyText>
       </Biography>
@@ -157,7 +140,7 @@ const Home = () => {
           <div className="content-container">
             <h2 className="h1">Listen</h2>
             <div className="content">
-              <p>
+              {/* <p>
                 A reintroduction to the world of Sam Drysdale
                 following his 2019 debut "Vicelove". A new sonic
                 environment richer in major-driven pop sentiments
@@ -166,52 +149,26 @@ const Home = () => {
               <p>
                 A more explorative production endeavor with styles
                 ranging in influence from bubblegum to blues.
-              </p>
+              </p> */}
             </div>
           </div>
         </RestrictContainer>
         <ListenHeroImage src={ListenImg} alt="" />
         <RestrictContainer dimension={XXL} id="album-restrict">
           <AlbumGroup>
-            {albumsArr.map((item, index) => (
-              <Album
-                key={item.id}
-                item={item}
-                player={albumPlayers[index]}
-                toggle={albumToggle(index)}
-              />
+            {albumsArr.map((item) => (
+              <Album key={item.id} item={item} />
             ))}
           </AlbumGroup>
         </RestrictContainer>
-        <ListenBadges xs={1}>
+        {/* <ListenBadges xs={1}>
           <a href={SOCIALS["apple music"].url}>
             <img src={AppleBadge} />
           </a>
           <a href={SOCIALS["spotify"].url}>
             <img src={SpotifyBadge} />
           </a>
-        </ListenBadges>
-        <SongReleases dimension={XXL}>
-          <SongReleasesTitle>
-            <h2>Latest Releases</h2>
-            <MusicIcon href={SOCIALS["apple music"].url}>
-              <ion-icon src={SOCIALS["apple music"].icon} />
-            </MusicIcon>
-            <MusicIcon href={SOCIALS["spotify"].url}>
-              <ion-icon src={SOCIALS["spotify"].icon} />
-            </MusicIcon>
-          </SongReleasesTitle>
-          <SongsList>
-            {songsArr.map((item, index) => (
-              <SongListItem
-                key={item.id}
-                item={item}
-                player={players[index]}
-                toggle={toggle(index)}
-              />
-            ))}
-          </SongsList>
-        </SongReleases>
+        </ListenBadges> */}
       </Listen>
       <RestrictContainer dimension={XXL} id="watch">
         <Watch>
@@ -231,7 +188,7 @@ const Home = () => {
           </div>
           <div className="content">
             <h2 className="h1">Watch</h2>
-            <p>
+            {/* <p>
               Testarossa seeks to be more than just a sonic
               experience. A complete aesthetic overall, it strives to
               be a fully realized and calculated artistic offering
@@ -239,9 +196,9 @@ const Home = () => {
               accompany the music. All visual elements are co-produced
               and designed by Sam in tandem with his creative partner
               Helder Matias (SunflowerPrince Creative).
-            </p>
+            </p> */}
 
-            <h3 className="h2">See More</h3>
+            {/* <h3 className="h2">See More</h3> */}
             <MusicIcon
               className="watch-link"
               href={SOCIALS["youtube"].url}
@@ -251,18 +208,27 @@ const Home = () => {
           </div>
         </Watch>
       </RestrictContainer>
-      <Collage>
-        <RestrictContainer>
-          <div className="grid-overlay">
-            <img className="signature" src={SignatureImg} alt="" />
-            <img className="collage" src={CollageImg} />
-          </div>
-        </RestrictContainer>
-      </Collage>
       <Concert id="shows">
         <RestrictContainer dimension={LG}>
           <h2 className="h1">Shows</h2>
-          <div className="flex-container">
+          <div className="concert-list">
+            {CONCERT_LIST.map(
+              ({ name, date, location, link, linkText }) => (
+                <div className="list-item" key="name">
+                  <div className="date">{date}</div>
+                  <div className="name">{name}</div>
+                  <div className="location">{location}</div>
+                  <div className="link">
+                    <Button
+                      linkto={link}
+                      label={linkText ?? "Coming Soon"}
+                    />
+                  </div>
+                </div>
+              ),
+            )}
+          </div>
+          {/* <div className="flex-container">
             <div className="flex-content">
               <h3 className="h2">Live At The El Mocambo</h3>
               <p>
@@ -286,9 +252,17 @@ const Home = () => {
               <img src={ConcertImg} alt="" />
               <img id="vip-img" src={ConcertImg2} alt="" />
             </div>
-          </div>
+          </div> */}
         </RestrictContainer>
       </Concert>
+      <Collage>
+        <RestrictContainer>
+          <div className="grid-overlay">
+            <img className="signature" src={SignatureImg} alt="" />
+            <img className="collage" src={CollageImg} />
+          </div>
+        </RestrictContainer>
+      </Collage>
     </ScrollBars>
   )
 }
@@ -327,68 +301,56 @@ const RestrictContainer = styled.div`
   margin: 0 auto;
 `
 
-const LowKey = styled.h1`
-  @supports (-webkit-text-stroke: 1px white) {
-    -webkit-text-stroke-color: ${({ theme }) => theme.colors.text};
-    -webkit-text-stroke-width: 0.5px;
-    -webkit-text-fill-color: rgba(0, 0, 0, 0);
-  }
+// const LowKey = styled.h1`
+//   color: ${({ theme }) => theme.colors.text};
 
-  @supports not (-webkit-text-stroke: 1px white) {
-    color: ${({ theme }) => theme.colors.text};
-  }
+//   transform: translateY(5rem);
+//   opacity: 0;
+//   transition: opacity 1s cubic-bezier(0.77, 0, 0.175, 1),
+//     transform 1s cubic-bezier(0.77, 0, 0.175, 1);
+//   font-size: 3.2rem;
 
-  @media ${({ theme }) => theme.mediaQuery.medium} {
-    -webkit-text-stroke-width: 1px;
-  }
+//   @media ${({ theme }) => theme.mediaQuery.large} {
+//     font-size: 4rem;
+//   }
 
-  transform: translateY(5rem);
-  opacity: 0;
-  transition: opacity 1s cubic-bezier(0.77, 0, 0.175, 1),
-    transform 1s cubic-bezier(0.77, 0, 0.175, 1);
-  font-size: 3.2rem;
+//   @media ${({ theme }) => theme.mediaQuery.xlarge} {
+//     font-size: 5rem;
+//   }
 
-  @media ${({ theme }) => theme.mediaQuery.large} {
-    font-size: 4rem;
-  }
+//   &.active {
+//     opacity: 0.33;
+//     transform: translateY(0);
+//   }
+// `
 
-  @media ${({ theme }) => theme.mediaQuery.xlarge} {
-    font-size: 5rem;
-  }
+// const HighKey = styled.h1`
+//   color: ${({ theme }) => theme.colors.primary};
 
-  &.active {
-    opacity: 1;
-    transform: translateY(0);
-  }
-`
+//   transform: translateY(5rem);
+//   opacity: 0;
+//   transition: opacity 1s cubic-bezier(0.77, 0, 0.175, 1),
+//     transform 1s cubic-bezier(0.77, 0, 0.175, 1);
+//   font-size: 3.2rem;
 
-const HighKey = styled.h1`
-  color: ${({ theme }) => theme.colors.primary};
+//   @media ${({ theme }) => theme.mediaQuery.large} {
+//     font-size: 4rem;
+//   }
 
-  transform: translateY(5rem);
-  opacity: 0;
-  transition: opacity 1s cubic-bezier(0.77, 0, 0.175, 1),
-    transform 1s cubic-bezier(0.77, 0, 0.175, 1);
-  font-size: 3.2rem;
+//   @media ${({ theme }) => theme.mediaQuery.xlarge} {
+//     font-size: 5rem;
+//   }
 
-  @media ${({ theme }) => theme.mediaQuery.large} {
-    font-size: 4rem;
-  }
+//   &.active {
+//     opacity: 1;
+//     transform: translateY(0);
+//   }
+// `
 
-  @media ${({ theme }) => theme.mediaQuery.xlarge} {
-    font-size: 5rem;
-  }
-
-  &.active {
-    opacity: 1;
-    transform: translateY(0);
-  }
-`
-
-const Intro = styled.div`
-  width: 100%;
-  padding: 6rem 1rem;
-`
+// const Intro = styled.div`
+//   width: 100%;
+//   padding: 6rem 1rem;
+// `
 
 const IntroShot = styled.div`
   display: block;
@@ -396,9 +358,11 @@ const IntroShot = styled.div`
   padding-top: 75%;
   margin-bottom: -15%;
   position: relative;
+  margin-top: 3rem;
 
   @media ${({ theme }) => theme.mediaQuery.medium} {
     padding-top: 50%;
+    margin-top: 6rem;
   }
 
   img {
@@ -412,6 +376,7 @@ const IntroShot = styled.div`
 
 const Name = styled.h1`
   margin-left: 5%;
+  color: ${({ theme }) => theme.colors.secondary};
 
   transform: translateY(5rem);
   opacity: 0;
@@ -460,6 +425,7 @@ const BiographyImage = styled.div`
   .biography-img-stack {
     height: 100%;
     width: 100%;
+    aspect-ratio: 2732/2096;
 
     img {
       width: 100%;
@@ -491,6 +457,7 @@ const BiographyImage = styled.div`
     bottom: 5%;
     left: 1rem;
     z-index: 3;
+    color: white;
 
     @media ${({ theme }) => theme.mediaQuery.medium} {
       right: 10%;
@@ -584,8 +551,9 @@ const ListenHeroImage = styled.img`
   margin-right: 0;
   min-height: 20rem;
   object-fit: cover;
-  object-position: 30% center;
+  object-position: center 70%;
   order: 1;
+  aspect-ratio: 2460/1080;
 
   @media ${({ theme }) => theme.mediaQuery.medium} {
     order: 2;
@@ -598,44 +566,28 @@ const AlbumGroup = styled.div`
   overflow: auto;
 `
 
-const ListenBadges = styled(RestrictContainer)`
-  display: flex;
-  align-items: center;
-  margin: 4rem auto;
-  padding: 0 1rem;
-  justify-content: center;
-  order: 4;
+// const ListenBadges = styled(RestrictContainer)`
+//   display: flex;
+//   align-items: center;
+//   margin: 4rem auto;
+//   padding: 0 1rem;
+//   justify-content: center;
+//   order: 4;
 
-  a {
-    display: inline-block;
-  }
+//   a {
+//     display: inline-block;
+//   }
 
-  img {
-    height: 3.5rem;
-    width: auto;
-    margin: 0 0.5rem;
+//   img {
+//     height: 3.5rem;
+//     width: auto;
+//     margin: 0 0.5rem;
 
-    @media ${({ theme }) => theme.mediaQuery.medium} {
-      height: 3rem;
-    }
-  }
-`
-
-const SongReleases = styled(RestrictContainer)`
-  margin-top: 4rem;
-  padding: 0 0.5rem;
-  display: none;
-`
-
-const SongReleasesTitle = styled.div`
-  display: flex;
-  align-items: center;
-
-  h2 {
-    margin-right: 0.5rem;
-    margin-bottom: -0.5rem;
-  }
-`
+//     @media ${({ theme }) => theme.mediaQuery.medium} {
+//       height: 3rem;
+//     }
+//   }
+// `
 
 const MusicIcon = styled.a`
   height: 1.5rem;
@@ -656,20 +608,11 @@ const MusicIcon = styled.a`
   }
 `
 
-const SongsList = styled.div`
-  overflow: auto;
-  display: grid;
-  grid-gap: 1rem;
-  grid-template-rows: repeat(3, 1fr);
-  grid-template-rows: repeat(4, 1fr);
-  grid-auto-flow: column;
-  margin-top: 3rem;
-`
-
 const Watch = styled.div`
   display: flex;
   flex-wrap: wrap;
   margin: 4rem 0;
+  gap: 0 2rem;
 
   @media ${({ theme }) => theme.mediaQuery.medium} {
     flex-wrap: nowrap;
@@ -697,7 +640,7 @@ const Watch = styled.div`
     @media ${({ theme }) => theme.mediaQuery.medium} {
       width: 20rem;
       flex: 0 0 auto;
-      padding: 1rem 1rem 1rem 3rem;
+      padding: 1rem 1rem 1rem 1rem;
       margin-top: 4rem;
       position: sticky;
       top: 2rem;
@@ -740,6 +683,10 @@ const Video = styled.div`
   .video-content {
     text-align: center;
 
+    h3.h2 {
+      color: white;
+    }
+
     .outline-invert-pure {
       margin-top: 0.75rem;
     }
@@ -772,7 +719,6 @@ const Collage = styled.div`
     }
 
     .collage {
-      opacity: 0.75;
       grid-column: 1 / 2;
       grid-row: 1;
       width: 100%;
@@ -852,6 +798,71 @@ const Concert = styled.div`
             padding: 1rem;
             margin: 0;
           }
+        }
+      }
+    }
+  }
+
+  .concert-list {
+    .list-item {
+      text-align: center;
+      display: grid;
+      display: grid;
+      grid-template-columns: 1fr;
+      align-items: start; /* Align items to the start of the grid area */
+      gap: 0.25rem 0.5rem; /* Space between grid items */
+
+      @media ${({ theme }) => theme.mediaQuery.medium} {
+        grid-template-columns: auto auto auto; /* Three columns for date/name, location, and link */
+        grid-template-rows: auto auto; /* Two rows to accommodate date and name stacking */
+        gap: 0rem 0.5rem;
+      }
+    }
+
+    .date {
+      grid-column: 1;
+      font-weight: 600;
+      @media ${({ theme }) => theme.mediaQuery.medium} {
+        grid-column: 1;
+        grid-row: 1;
+      }
+    }
+
+    .name {
+      grid-column: 1;
+      font-weight: 500;
+
+      @media ${({ theme }) => theme.mediaQuery.medium} {
+        grid-column: 1;
+        grid-row: 2;
+      }
+    }
+
+    .location {
+      grid-column: 1;
+      font-weight: 500;
+
+      @media ${({ theme }) => theme.mediaQuery.medium} {
+        grid-column: 2;
+        grid-row: 2; /* Align location with the name vertically */
+        align-self: center; /* Vertically center location within its grid area */
+      }
+    }
+
+    .link {
+      grid-column: 1;
+
+      @media ${({ theme }) => theme.mediaQuery.medium} {
+        grid-column: 3;
+        grid-row: 1 / span 2; /* Span across both rows */
+        align-self: center; /* Vertically center link within its grid area */
+        justify-self: flex-end;
+      }
+
+      a {
+        margin-top: 1rem;
+        @media ${({ theme }) => theme.mediaQuery.medium} {
+          margin-top: 0;
         }
       }
     }

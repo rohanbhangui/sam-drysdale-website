@@ -29,7 +29,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    background: ${({ theme }) => theme.colors.dark};
+    background: ${({ theme }) => theme.colors.light};
   }
 
   #root {
@@ -38,9 +38,9 @@ const GlobalStyle = createGlobalStyle`
 
   * {
     font-size: 1rem;
-    font-family: 'Lora', serif;
+    font-family: 'GeneralSans-Variable', serif;
     color: ${({ theme }) => theme.colors.text};
-    font-weight: normal;
+    font-weight: 550;
   }
 
   /* reset the index.css */
