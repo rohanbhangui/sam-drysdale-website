@@ -213,7 +213,14 @@ const Home = () => {
           <h2 className="h1">Shows</h2>
           <div className="concert-list">
             {CONCERT_LIST.map(
-              ({ name, date, location, link, linkText }) => (
+              ({
+                name,
+                date,
+                location,
+                link,
+                linkText,
+                linkDisabled,
+              }) => (
                 <div className="list-item" key="name">
                   <div className="date">{date}</div>
                   <div className="name">{name}</div>
@@ -222,6 +229,7 @@ const Home = () => {
                     <Button
                       linkto={link}
                       label={linkText ?? "Coming Soon"}
+                      className={linkDisabled ? "disabled" : ""}
                     />
                   </div>
                 </div>
@@ -856,7 +864,7 @@ const Concert = styled.div`
         grid-column: 3;
         grid-row: 1 / span 2; /* Span across both rows */
         align-self: center; /* Vertically center link within its grid area */
-        justify-self: flex-end;
+        justify-self: center;
       }
 
       a {

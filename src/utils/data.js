@@ -186,6 +186,7 @@ export const CONCERT_LIST = [
     date: "Mar 22, 2024",
     location: "Toronto, CA",
     link: "https://www.sofarsounds.com/events/55091",
-    linkText: "Buy now",
+    linkText: "Sold out",
+    linkDisabled: true,
   },
 ]
