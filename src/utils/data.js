@@ -183,9 +183,9 @@ export const VIDEOS = [
 export const CONCERT_LIST = [
   {
     name: "SoFar Sounds",
-    date: "Mar 22, 2024",
+    date: "Apr 29, 2024",
     location: "Toronto, CA",
-    link: "https://www.sofarsounds.com/events/55091",
+    link: "https://www.sofarsounds.com/events/55301",
     linkText: "Buy now",
   },
 ]
