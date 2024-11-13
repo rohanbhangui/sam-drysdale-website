@@ -70,7 +70,10 @@ const Header = () => {
             </NavHashLink>
           </NavItem>
           <NavItem>
-            <NavLink to="https://shop.samdrysdalemusic.com" activeClassName="selected">
+            <NavLink
+              to="https://shop.samdrysdalemusic.com"
+              activeClassName="selected"
+            >
               Store
             </NavLink>
           </NavItem>
