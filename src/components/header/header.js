@@ -66,10 +66,7 @@ const Header = () => {
             </NavHashLink>
           </NavItem>
           <NavItem>
-            <StoreLink
-              to="https://shop.samdrysdalemusic.com"
-              activeClassName="selected"
-            >
+            <StoreLink href="https://shop.samdrysdalemusic.com">
               Store
             </StoreLink>
           </NavItem>
@@ -250,7 +247,7 @@ const NavLinkStyles = css`
 //   ${NavLinkStyles}
 // `
 
-const StoreLink = styled(Link)`
+const StoreLink = styled.a`
   ${NavLinkStyles}
 `
 
