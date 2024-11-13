@@ -1,9 +1,5 @@
 import React, { useEffect, useState } from "react"
-import {
-  NavLink as _NavLink,
-  useLocation,
-  Link,
-} from "react-router-dom"
+import { useLocation, Link } from "react-router-dom"
 import { NavHashLink as _NavHasLink } from "react-router-hash-link"
 
 import styled, { css } from "styled-components"
