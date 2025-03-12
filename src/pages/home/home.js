@@ -226,8 +226,11 @@ const Home = () => {
                         <div className="location">{location}</div>
                         <div className="link">
                           <Button
+                            className={
+                              linkText == "" ? "disabled" : ""
+                            }
                             linkto={link}
-                            label={linkText ?? "Coming Soon"}
+                            label={linkText || "Coming Soon"}
                           />
                         </div>
                       </div>
@@ -825,7 +828,13 @@ const Concert = styled.div`
       .details {
         display: flex;
         flex-direction: column;
-        gap: 0.5rem;
+        gap: 2rem;
+        max-width: ${LG}px;
+        margin: 0 auto;
+
+        @media ${({ theme }) => theme.mediaQuery.medium} {
+          gap: 0.5rem;
+        }
       }
 
       .list-item {
@@ -836,7 +845,7 @@ const Concert = styled.div`
         gap: 0.25rem 0.5rem; /* Space between grid items */
 
         @media ${({ theme }) => theme.mediaQuery.medium} {
-          grid-template-columns: auto auto auto; /* Three columns for date/name, location, and link */
+          grid-template-columns: 1fr 1fr 1fr; /* Three columns for date/name, location, and link */
           grid-template-rows: auto; /* Two rows to accommodate date and name stacking */
           gap: 0rem 0.5rem;
         }
@@ -849,6 +858,7 @@ const Concert = styled.div`
       @media ${({ theme }) => theme.mediaQuery.medium} {
         grid-row: 1;
         align-self: center;
+        justify-self: center;
       }
     }
 
@@ -884,7 +894,7 @@ const Concert = styled.div`
       }
 
       a {
-        margin-top: 1rem;
+        margin-top: 0.5rem;
         @media ${({ theme }) => theme.mediaQuery.medium} {
           margin-top: 0;
         }

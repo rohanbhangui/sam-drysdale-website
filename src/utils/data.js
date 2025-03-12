@@ -189,19 +189,31 @@ export const CONCERT_LIST = [
     img: BonnieSadSongsTourPoster,
     details: [
       {
-        date: "Apr 29, 2024",
-        location: "Toronto, CA",
-        link: "https://www.sofarsounds.com/events/55301",
+        date: "Apr 8, 2025",
+        location: "Montreal, QC",
+        link: "https://www.venuepilot.co/events/sam-drysdale-and-friends-2025-04-08-casa-del-popolo-montreal-6ad193/orders/new",
         linkText: "Buy now",
       },
       {
-        date: "Apr 30, 2024",
-        location: "Toronto, CA",
-        link: "https://www.sofarsounds.com/events/55301",
+        date: "Apr 9, 2025",
+        location: "Ottawa, ON",
+        link: "https://lepointdevente.com/billets/mti250409001/",
         linkText: "Buy now",
       },
-    ]
-  }
+      {
+        date: "Apr 24, 2025",
+        location: "Guelph, ON",
+        link: "https://www.tixr.com/groups/sonicunyon/events/sam-drysdale-134667",
+        linkText: "Buy now",
+      },
+      {
+        date: "May 8, 2025",
+        location: "Toronto, ON",
+        link: "#",
+        linkText: "",
+      },
+    ],
+  },
   // {
   //   name: "SoFar Sounds",
   //   date: "Apr 29, 2024",
@@ -209,5 +221,4 @@ export const CONCERT_LIST = [
   //   link: "https://www.sofarsounds.com/events/55301",
   //   linkText: "Buy now",
   // },
-  
 ]
