@@ -22,7 +22,7 @@ import BonnieVideo from "../assets/img/videos/bonnie-videocover.webp"
 import LoveViolenceVideo from "../assets/img/videos/love-violence-videocover.webp"
 
 // tour posters
-import BonnieSadSongsTourPoster from "../assets/img/tours/bonnie-sad-songs-tour-poster.jpeg"
+import BonnieSadSongsTourPoster from "../assets/img/tours/bonnie-sad-songs-tour-poster.png"
 
 export const SOCIALS = {
   "apple music": {
