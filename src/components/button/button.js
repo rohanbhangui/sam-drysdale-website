@@ -10,6 +10,7 @@ const Button = ({
   className,
   label,
   hasicon = "",
+  disabled = false,
 }) => {
   if (linkto) {
     if (/(http(s?)):\/\//i.test(linkto)) {
@@ -18,6 +19,7 @@ const Button = ({
           hasicon={hasicon}
           className={`${className} ${type}`}
           href={linkto}
+          disabled={disabled}
         >
           {label}
           {hasicon !== "" && <ion-icon name={hasicon} />}
@@ -28,8 +30,9 @@ const Button = ({
     return (
       <Link
         hasicon={hasicon}
-        className={`${className} ${type}`}
+        className={`${className ?? ""} ${type ?? ""}`}
         to={linkto}
+        disabled={disabled}
       >
         {label}
         {hasicon !== "" && <ion-icon name={hasicon} />}
@@ -42,6 +45,7 @@ const Button = ({
       hasicon={hasicon}
       className={`${className} ${type}`}
       onClick={onClick}
+      disabled={disabled}
     >
       {label}
       {hasicon !== "" && <ion-icon name={hasicon} />}
@@ -110,6 +114,13 @@ const sharedStyle = css`
   &.outline-invert-pure {
     color: white;
     border: 2px solid white;
+  }
+
+  &.disabled,
+  &:disabled {
+    filter: saturate(0);
+    opacity: 0.5;
+    pointer-events: none;
   }
 `
 

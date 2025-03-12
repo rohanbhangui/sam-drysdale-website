@@ -21,6 +21,9 @@ import NothingOnYouVideo from "../assets/img/videos/nothing-on-you-videocover.jp
 import BonnieVideo from "../assets/img/videos/bonnie-videocover.webp"
 import LoveViolenceVideo from "../assets/img/videos/love-violence-videocover.webp"
 
+// tour posters
+import BonnieSadSongsTourPoster from "../assets/img/tours/bonnie-sad-songs-tour-poster.jpeg"
+
 export const SOCIALS = {
   "apple music": {
     url: "https://music.apple.com/ca/artist/sam-drysdale/589211182",
@@ -182,10 +185,40 @@ export const VIDEOS = [
 
 export const CONCERT_LIST = [
   {
-    name: "SoFar Sounds",
-    date: "Apr 29, 2024",
-    location: "Toronto, CA",
-    link: "https://www.sofarsounds.com/events/55301",
-    linkText: "Buy now",
+    title: "Bonnie's Sand Songs",
+    img: BonnieSadSongsTourPoster,
+    details: [
+      {
+        date: "Apr 8, 2025",
+        location: "Montreal, QC",
+        link: "https://www.venuepilot.co/events/sam-drysdale-and-friends-2025-04-08-casa-del-popolo-montreal-6ad193/orders/new",
+        linkText: "Buy now",
+      },
+      {
+        date: "Apr 9, 2025",
+        location: "Ottawa, ON",
+        link: "https://lepointdevente.com/billets/mti250409001/",
+        linkText: "Buy now",
+      },
+      {
+        date: "Apr 24, 2025",
+        location: "Guelph, ON",
+        link: "https://www.tixr.com/groups/sonicunyon/events/sam-drysdale-134667",
+        linkText: "Buy now",
+      },
+      {
+        date: "May 8, 2025",
+        location: "Toronto, ON",
+        link: "#",
+        linkText: "",
+      },
+    ],
   },
+  // {
+  //   name: "SoFar Sounds",
+  //   date: "Apr 29, 2024",
+  //   location: "Toronto, CA",
+  //   link: "https://www.sofarsounds.com/events/55301",
+  //   linkText: "Buy now",
+  // },
 ]
