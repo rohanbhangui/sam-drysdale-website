@@ -21,6 +21,9 @@ import NothingOnYouVideo from "../assets/img/videos/nothing-on-you-videocover.jp
 import BonnieVideo from "../assets/img/videos/bonnie-videocover.webp"
 import LoveViolenceVideo from "../assets/img/videos/love-violence-videocover.webp"
 
+// tour posters
+import BonnieSadSongsTourPoster from "../assets/img/tours/bonnie-sad-songs-tour-poster.jpeg"
+
 export const SOCIALS = {
   "apple music": {
     url: "https://music.apple.com/ca/artist/sam-drysdale/589211182",
@@ -182,10 +185,29 @@ export const VIDEOS = [
 
 export const CONCERT_LIST = [
   {
-    name: "SoFar Sounds",
-    date: "Apr 29, 2024",
-    location: "Toronto, CA",
-    link: "https://www.sofarsounds.com/events/55301",
-    linkText: "Buy now",
-  },
+    title: "Bonnie's Sand Songs",
+    img: BonnieSadSongsTourPoster,
+    details: [
+      {
+        date: "Apr 29, 2024",
+        location: "Toronto, CA",
+        link: "https://www.sofarsounds.com/events/55301",
+        linkText: "Buy now",
+      },
+      {
+        date: "Apr 30, 2024",
+        location: "Toronto, CA",
+        link: "https://www.sofarsounds.com/events/55301",
+        linkText: "Buy now",
+      },
+    ]
+  }
+  // {
+  //   name: "SoFar Sounds",
+  //   date: "Apr 29, 2024",
+  //   location: "Toronto, CA",
+  //   link: "https://www.sofarsounds.com/events/55301",
+  //   linkText: "Buy now",
+  // },
+  
 ]

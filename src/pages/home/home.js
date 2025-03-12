@@ -212,21 +212,30 @@ const Home = () => {
         <RestrictContainer dimension={LG}>
           <h2 className="h1">Shows</h2>
           <div className="concert-list">
-            {CONCERT_LIST.map(
-              ({ name, date, location, link, linkText }) => (
-                <div className="list-item" key="name">
-                  <div className="date">{date}</div>
-                  <div className="name">{name}</div>
-                  <div className="location">{location}</div>
-                  <div className="link">
-                    <Button
-                      linkto={link}
-                      label={linkText ?? "Coming Soon"}
-                    />
-                  </div>
+            {CONCERT_LIST.map(({ title, details, img }) => (
+              <div className="tour-block" key={title}>
+                {/* <div className="name">{title}</div> */}
+                {img ? (
+                  <img className="tour-img" src={img} alt="" />
+                ) : null}
+                <div className="details">
+                  {details.map(
+                    ({ date, location, link, linkText }) => (
+                      <div className="list-item" key={date}>
+                        <div className="date">{date}</div>
+                        <div className="location">{location}</div>
+                        <div className="link">
+                          <Button
+                            linkto={link}
+                            label={linkText ?? "Coming Soon"}
+                          />
+                        </div>
+                      </div>
+                    ),
+                  )}
                 </div>
-              ),
-            )}
+              </div>
+            ))}
           </div>
           {/* <div className="flex-container">
             <div className="flex-content">
@@ -804,18 +813,33 @@ const Concert = styled.div`
   }
 
   .concert-list {
-    .list-item {
-      text-align: center;
-      display: grid;
-      display: grid;
-      grid-template-columns: 1fr;
-      align-items: start; /* Align items to the start of the grid area */
-      gap: 0.25rem 0.5rem; /* Space between grid items */
+    .tour-block {
+      .tour-img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        object-position: center center;
+        margin-bottom: 1rem;
+      }
 
-      @media ${({ theme }) => theme.mediaQuery.medium} {
-        grid-template-columns: auto auto auto; /* Three columns for date/name, location, and link */
-        grid-template-rows: auto auto; /* Two rows to accommodate date and name stacking */
-        gap: 0rem 0.5rem;
+      .details {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      .list-item {
+        text-align: center;
+        display: grid;
+        grid-template-columns: 1fr;
+        align-items: start; /* Align items to the start of the grid area */
+        gap: 0.25rem 0.5rem; /* Space between grid items */
+
+        @media ${({ theme }) => theme.mediaQuery.medium} {
+          grid-template-columns: auto auto auto; /* Three columns for date/name, location, and link */
+          grid-template-rows: auto; /* Two rows to accommodate date and name stacking */
+          gap: 0rem 0.5rem;
+        }
       }
     }
 
@@ -823,8 +847,8 @@ const Concert = styled.div`
       grid-column: 1;
       font-weight: 600;
       @media ${({ theme }) => theme.mediaQuery.medium} {
-        grid-column: 1;
         grid-row: 1;
+        align-self: center;
       }
     }
 
@@ -834,7 +858,7 @@ const Concert = styled.div`
 
       @media ${({ theme }) => theme.mediaQuery.medium} {
         grid-column: 1;
-        grid-row: 2;
+        grid-row: 1;
       }
     }
 
@@ -844,7 +868,7 @@ const Concert = styled.div`
 
       @media ${({ theme }) => theme.mediaQuery.medium} {
         grid-column: 2;
-        grid-row: 2; /* Align location with the name vertically */
+        grid-row: 1; /* Align location with the name vertically */
         align-self: center; /* Vertically center location within its grid area */
       }
     }
@@ -854,9 +878,9 @@ const Concert = styled.div`
 
       @media ${({ theme }) => theme.mediaQuery.medium} {
         grid-column: 3;
-        grid-row: 1 / span 2; /* Span across both rows */
+        grid-row: 1; /* Span across both rows */
         align-self: center; /* Vertically center link within its grid area */
-        justify-self: flex-end;
+        justify-self: center;
       }
 
       a {
