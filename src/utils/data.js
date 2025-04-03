@@ -209,8 +209,8 @@ export const CONCERT_LIST = [
       {
         date: "May 8, 2025",
         location: "Toronto, ON",
-        link: "#",
-        linkText: "",
+        link: "https://www.departureto.com/en/sam-drysdale",
+        linkText: "Buy Now",
       },
     ],
   },
