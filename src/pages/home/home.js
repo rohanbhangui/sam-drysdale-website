@@ -115,23 +115,37 @@ const Home = () => {
         </BiographyImage>
         <BiographyText>
           <p>
-            The rising singer-songwriter is the 4:00am bourbon soaked
-            evolution of the highschool kid that just liked to play
-            guitar in his bedroom. Raised in a home filled with music,
-            Sam started writing and playing guitar at a young age.
-            Over the past few years, he has released multiple projects
-            that trace the evolution of his distinctive voice and
-            lyrical storytelling.
+            Sam Drysdale is a singer-songwriter from Toronto, Ontario,
+            known for his emotionally rich storytelling and a sound
+            that blends folk, Americana, and acoustic-driven pop.
+            After spending several years crafting alternative-pop
+            music, Sam returned to his roots with the release of his
+            third EP, Bonnie's Sad Songs, at the end of 2024. The
+            project marked a significant artistic shift, showcasing a
+            more organic and introspective sonic direction influenced
+            by artists like John Mayer, Neil Young, Hozier, Dallas
+            Green, and Bruce Springsteen.
           </p>
           <p>
-            Sam is currently wrapping up his latest project titled
-            “Bonnie&apos;s Sad Songs,” as he strives to strip things
-            back to the core of his songwriting, channeling the raw
-            emotionality he discovered early on through the artists he
-            grew up admiring. Paring things back to their essence and
-            focusing on potent lyrics and intimate melodies, Sam uses
-            his talent for crafting compelling narratives and connects
-            with the passion that first inspired his musical journey.
+            Following the EP's release, Sam began rolling out a series
+            of singles that continue to explore themes of love,
+            heartbreak, and resilience. One standout track from
+            Bonnie's Sad Songs, titled "Only The Strong Survive,"
+            resonated deeply with audiences. It has earned over
+            3,000,000 streams on Spotify and generated more than
+            15,000,000 views on TikTok. The viral success of the song
+            introduced Sam to a wider global audience and helped
+            establish him as one of Canada's most promising emerging
+            voices in the folk and Americana space.
+          </p>
+          <p>
+            Looking ahead, Sam plans to release more music throughout
+            2025 as he works toward his first full-length album,
+            expected in 2026. With each new release, he continues to
+            carve out a distinct space in the modern singer-songwriter
+            landscape. His music honors the warmth and soul of
+            traditional folk while pushing lyrical boundaries and
+            emotional depth.
           </p>
         </BiographyText>
       </Biography>

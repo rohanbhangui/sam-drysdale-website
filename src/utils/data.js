@@ -3,9 +3,11 @@ import OneMoreNight from "../assets/img/music/one-more-night.jpg"
 import Bonnie from "../assets/img/music/Bonnie-Single-Cover.webp"
 import LoveViolence from "../assets/img/music/love-violence-single-cover.webp"
 import Testarossa from "../assets/img/music/Testarossa-Album-Artwork.webp"
+import BonnieSadSongs from "../assets/img/music/bonnie-sad-songs.jpeg"
+import TheAstronaut from "../assets/img/music/the-astronaut.jpeg"
+import FoodFromTheInternet from "../assets/img/music/food-from-the-internet.jpeg"
 
 // audio imports
-import WastedClip from "../assets/audio/WastedClip.mp3"
 import DreamAboutAGirlClip from "../assets/audio/DreamAboutAGirlClip.mp3"
 import ShittyFamousClip from "../assets/audio/ShittyFamousClip.mp3"
 
@@ -20,9 +22,11 @@ import AppleMusic from "../assets/img/apple-music.svg"
 import NothingOnYouVideo from "../assets/img/videos/nothing-on-you-videocover.jpg"
 import BonnieVideo from "../assets/img/videos/bonnie-videocover.webp"
 import LoveViolenceVideo from "../assets/img/videos/love-violence-videocover.webp"
+import OnlyTheStrongSurviveVideo from "../assets/img/videos/only-the-strong-survive-videocover.png"
+import AnyOtherSeasonVideo from "../assets/img/videos/any-other-season-videocover.png"
 
 // tour posters
-import BonnieSadSongsTourPoster from "../assets/img/tours/bonnie-sad-songs-tour-poster.png"
+import SamTheElmoOct3TourPoster from "../assets/img/tours/sam-the-elmo-oct-3-poster.png"
 
 export const SOCIALS = {
   "apple music": {
@@ -64,6 +68,27 @@ export const SOCIALS = {
 
 export const ALBUMS = [
   {
+    img: BonnieSadSongs,
+    title: "Bonnie's Sad Songs",
+    subtitle: "EP",
+    url: "https://linktr.ee/samdrysdale",
+    audio: undefined,
+  },
+  {
+    img: TheAstronaut,
+    title: "The Astronaut",
+    subtitle: "EP",
+    url: "https://linktr.ee/samdrysdale",
+    audio: undefined,
+  },
+  {
+    img: FoodFromTheInternet,
+    title: "Food From The Internet",
+    subtitle: "EP",
+    url: "https://linktr.ee/samdrysdale",
+    audio: undefined,
+  },
+  {
     img: Bonnie,
     title: "Bonnie",
     subtitle: "Single",
@@ -83,13 +108,6 @@ export const ALBUMS = [
     subtitle: "Album",
     url: "https://linktr.ee/samdrysdale",
     audio: DreamAboutAGirlClip,
-  },
-  {
-    img: OneMoreNight,
-    title: "ViceLove",
-    subtitle: "Album",
-    url: "https://linktr.ee/samdrysdale",
-    audio: WastedClip,
   },
 ]
 
@@ -167,6 +185,16 @@ export const SONGS = [
 ]
 export const VIDEOS = [
   {
+    name: "Only The Strong Survive",
+    link: "https://www.youtube.com/watch?v=ibRWnnSzeJ0",
+    img: OnlyTheStrongSurviveVideo,
+  },
+  {
+    name: "Any Other Season",
+    link: "https://www.youtube.com/watch?v=hWDYuoupUik",
+    img: AnyOtherSeasonVideo,
+  },
+  {
     name: "Bonnie",
     link: "https://www.youtube.com/watch?v=VB3vwUU_v7E",
     img: BonnieVideo,
@@ -186,31 +214,13 @@ export const VIDEOS = [
 export const CONCERT_LIST = [
   {
     title: "Bonnie's Sand Songs",
-    img: BonnieSadSongsTourPoster,
+    img: SamTheElmoOct3TourPoster,
     details: [
       {
-        date: "Apr 8, 2025",
-        location: "Montreal, QC",
-        link: "https://www.venuepilot.co/events/sam-drysdale-and-friends-2025-04-08-casa-del-popolo-montreal-6ad193/orders/new",
-        linkText: "Buy now",
-      },
-      {
-        date: "Apr 9, 2025",
-        location: "Ottawa, ON",
-        link: "https://lepointdevente.com/billets/mti250409001/",
-        linkText: "Buy now",
-      },
-      {
-        date: "Apr 24, 2025",
-        location: "Guelph, ON",
-        link: "https://www.tixr.com/groups/sonicunyon/events/sam-drysdale-134667",
-        linkText: "Buy now",
-      },
-      {
-        date: "May 8, 2025",
+        date: "Oct 3, 2025",
         location: "Toronto, ON",
-        link: "https://www.departureto.com/en/sam-drysdale",
-        linkText: "Buy Now",
+        link: "https://www.venuepilot.co/events/sam-drysdale-and-friends-2025-04-08-casa-del-popolo-montreal-6ad193/orders/new",
+        linkText: "",
       },
     ],
   },
