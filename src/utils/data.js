@@ -219,8 +219,8 @@ export const CONCERT_LIST = [
       {
         date: "Oct 3, 2025",
         location: "Toronto, ON",
-        link: "https://www.venuepilot.co/events/sam-drysdale-and-friends-2025-04-08-casa-del-popolo-montreal-6ad193/orders/new",
-        linkText: "",
+        link: "https://www.eventbrite.com/e/sam-drysdale-live-in-toronto-at-the-el-mocambo-tickets-1496229846749?aff=oddtdtcreator",
+        linkText: "Buy Now",
       },
     ],
   },
