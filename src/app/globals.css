@@ -1,0 +1,239 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #4b6450;
+  --color-secondary: #ccad80;
+  --color-dark: #030000;
+  --color-light: #ffffff;
+  --color-text: #000000;
+
+  --breakpoint-small: 576px;
+  --breakpoint-medium: 768px;
+  --breakpoint-xlarge: 1200px;
+  --breakpoint-xxlarge: 1440px;
+  --breakpoint-xxxlarge: 1600px;
+
+  --font-sans: var(--font-general-sans), serif;
+  --font-general-sans-italic: var(--font-general-sans-italic), serif;
+  --font-lora: var(--font-lora), serif;
+  --font-vogue: var(--font-vogue), serif;
+  --font-across-the-road: var(--font-across-the-road), serif;
+}
+
+/*
+  "large" isn't a simple min-width breakpoint like the rest — the source
+  app also gates it on min-height so an iPad mini/iPad sharing the 1024
+  viewport width don't both match it.
+*/
+@custom-variant large {
+  @media (min-width: 1025px) and (min-height: 768px) {
+    @slot;
+  }
+}
+
+/*
+  These sit in Tailwind's own `base` layer so utility classes (layered
+  into `utilities`) still win the cascade over these defaults — an
+  unlayered rule here would beat every Tailwind utility regardless of
+  specificity, since unlayered CSS always outranks layered CSS.
+*/
+@layer base {
+  /*
+    GeneralSans-Variable.woff2 is a true variable font (wght 200-700) but
+    its default named instance is pinned to Bold (700), and browsers
+    don't reliably auto-map the CSS `font-weight` value onto a variable
+    font's axis. Driving `font-variation-settings` directly off
+    Tailwind's own `--tw-font-weight` (set by every font-weight utility)
+    guarantees the requested weight actually renders instead of falling
+    back to the font's baked-in Bold default.
+  */
+  * {
+    font-size: 1rem;
+    font-family: var(--font-sans);
+    color: var(--color-text);
+    font-weight: 550;
+    font-variation-settings: "wght" var(--tw-font-weight, 550);
+  }
+
+  html {
+    font-size: calc(60% + 0.8vmin);
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background: var(--color-light);
+  }
+
+  a {
+    margin: 0;
+  }
+
+  @media (hover: hover) {
+    .scrollbars * {
+      scrollbar-width: thin;
+      scrollbar-color: rgba(255, 255, 255, 0.33) rgba(0, 0, 0, 0);
+    }
+
+    .scrollbars *::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+
+    .scrollbars *::-webkit-scrollbar-track {
+      background: rgba(0, 0, 0, 0);
+    }
+
+    .scrollbars *::-webkit-scrollbar-thumb {
+      background-color: rgba(255, 255, 255, 0.33);
+      border-radius: 10px;
+      border: 0px solid var(--color-dark);
+    }
+
+    .scrollbars *::-webkit-scrollbar-thumb:hover {
+      background-color: rgba(255, 255, 255, 0.66);
+    }
+  }
+
+  p {
+    font-weight: 500;
+    font-variation-settings: "wght" 500;
+    margin-top: 0.75rem;
+    line-height: 1.4;
+    font-size: 1.2rem;
+  }
+
+  @media (min-width: 576px) {
+    p {
+      font-size: 1.1rem;
+    }
+  }
+
+  @media (min-width: 768px) {
+    p {
+      font-size: 0.9rem;
+    }
+  }
+
+  h1,
+  .h1,
+  h2,
+  .h2 {
+    font-family: var(--font-sans);
+    text-transform: uppercase;
+    font-weight: 550;
+    font-variation-settings: "wght" 550;
+  }
+
+  h3,
+  .h3,
+  h4,
+  .h4 {
+    font-family: var(--font-sans);
+    font-weight: 500;
+    font-variation-settings: "wght" 500;
+  }
+
+  h1,
+  .h1 {
+    font-size: 3.5rem;
+    line-height: 0.9;
+    letter-spacing: -0.1rem;
+  }
+
+  @media (min-width: 1025px) and (min-height: 768px) {
+    h1,
+    .h1 {
+      font-size: 4rem;
+    }
+  }
+
+  @media (min-width: 1200px) {
+    h1,
+    .h1 {
+      font-size: 4.75rem;
+    }
+  }
+
+  h1.big,
+  .h1.big {
+    font-size: 5.5rem;
+    line-height: 0.8;
+    letter-spacing: -0.4rem;
+  }
+
+  @media (min-width: 576px) {
+    h1.big,
+    .h1.big {
+      font-size: 7rem;
+    }
+  }
+
+  @media (min-width: 768px) {
+    h1.big,
+    .h1.big {
+      font-size: 8rem;
+    }
+  }
+
+  @media (min-width: 1025px) and (min-height: 768px) {
+    h1.big,
+    .h1.big {
+      font-size: 9.5rem;
+    }
+  }
+
+  @media (min-width: 1200px) {
+    h1.big,
+    .h1.big {
+      font-size: 12rem;
+    }
+  }
+
+  h2,
+  .h2 {
+    font-size: 2.5rem;
+    line-height: 1;
+    letter-spacing: -0.02rem;
+  }
+
+  h3,
+  .h3 {
+    font-weight: 550;
+    font-variation-settings: "wght" 550;
+    margin-top: 0.75rem;
+    line-height: 1.5rem;
+    font-size: 1.3rem;
+    letter-spacing: -0.05rem;
+  }
+
+  @media (min-width: 576px) {
+    h3,
+    .h3 {
+      font-size: 1rem;
+    }
+  }
+
+  h4,
+  .h4 {
+    font-weight: 600;
+    font-variation-settings: "wght" 600;
+    margin-top: 0.75rem;
+    line-height: 1rem;
+    font-size: 0.6rem;
+    letter-spacing: 0.02rem;
+  }
+
+  /* Toggled imperatively (not via React state) when scrolled into view */
+  .reveal {
+    transform: translateY(5rem);
+    opacity: 0;
+    transition:
+      opacity 1s cubic-bezier(0.77, 0, 0.175, 1),
+      transform 1s cubic-bezier(0.77, 0, 0.175, 1);
+  }
+
+  .reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

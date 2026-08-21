@@ -1,42 +1,12 @@
-// album cover imports
-import OneMoreNight from "../assets/img/music/one-more-night.jpg"
-import Bonnie from "../assets/img/music/Bonnie-Single-Cover.webp"
-import LoveViolence from "../assets/img/music/love-violence-single-cover.webp"
-import Testarossa from "../assets/img/music/Testarossa-Album-Artwork.webp"
-import BonnieSadSongs from "../assets/img/music/bonnie-sad-songs.jpeg"
-import TheAstronaut from "../assets/img/music/the-astronaut.jpeg"
-import FoodFromTheInternet from "../assets/img/music/food-from-the-internet.jpeg"
-
-// audio imports
-import DreamAboutAGirlClip from "../assets/audio/DreamAboutAGirlClip.mp3"
-import ShittyFamousClip from "../assets/audio/ShittyFamousClip.mp3"
-
-import Sample1 from "../assets/audio/ShittyFamousClip.mp3"
-import Sample2 from "../assets/audio/LikeAManClip.mp3"
-
-// icon imports
-import Spotify from "../assets/img/spotify.svg"
-import AppleMusic from "../assets/img/apple-music.svg"
-
-// video cover imports
-import NothingOnYouVideo from "../assets/img/videos/nothing-on-you-videocover.jpg"
-import BonnieVideo from "../assets/img/videos/bonnie-videocover.webp"
-import LoveViolenceVideo from "../assets/img/videos/love-violence-videocover.webp"
-import OnlyTheStrongSurviveVideo from "../assets/img/videos/only-the-strong-survive-videocover.png"
-import AnyOtherSeasonVideo from "../assets/img/videos/any-other-season-videocover.png"
-
-// tour posters
-import SamTheElmoOct3TourPoster from "../assets/img/tours/sam-the-elmo-oct-3-poster.png"
-
 export const SOCIALS = {
   "apple music": {
     url: "https://music.apple.com/ca/artist/sam-drysdale/589211182",
-    icon: AppleMusic,
+    icon: "/img/apple-music.svg",
     name: "Apple Music",
   },
   spotify: {
     url: "https://open.spotify.com/artist/6zWCrZExrSgGtBjCO1jkjY?si=uo0MJu_ARC2Sag8OFnsRuQ&dl_branch=1",
-    icon: Spotify,
+    icon: "/img/spotify.svg",
     name: "Spotify",
   },
   youtube: {
@@ -68,153 +38,81 @@ export const SOCIALS = {
 
 export const ALBUMS = [
   {
-    img: BonnieSadSongs,
+    img: "/img/music/bonnie-sad-songs.jpeg",
     title: "Bonnie's Sad Songs",
     subtitle: "EP",
     url: "https://linktr.ee/samdrysdale",
     audio: undefined,
   },
   {
-    img: TheAstronaut,
+    img: "/img/music/the-astronaut.jpeg",
     title: "The Astronaut",
     subtitle: "EP",
     url: "https://linktr.ee/samdrysdale",
     audio: undefined,
   },
   {
-    img: FoodFromTheInternet,
+    img: "/img/music/food-from-the-internet.jpeg",
     title: "Food From The Internet",
     subtitle: "EP",
     url: "https://linktr.ee/samdrysdale",
     audio: undefined,
   },
   {
-    img: Bonnie,
+    img: "/img/music/Bonnie-Single-Cover.webp",
     title: "Bonnie",
     subtitle: "Single",
     url: "https://linktr.ee/samdrysdale",
     audio: undefined,
   },
   {
-    img: LoveViolence,
+    img: "/img/music/love-violence-single-cover.webp",
     title: "Love & Violence",
     subtitle: "Single",
     url: "https://linktr.ee/samdrysdale",
-    audio: ShittyFamousClip,
+    audio: "/audio/ShittyFamousClip.mp3",
   },
   {
-    img: Testarossa,
+    img: "/img/music/Testarossa-Album-Artwork.webp",
     title: "Testarossa: Fully Loaded",
     subtitle: "Album",
     url: "https://linktr.ee/samdrysdale",
-    audio: DreamAboutAGirlClip,
+    audio: "/audio/DreamAboutAGirlClip.mp3",
   },
 ]
 
-export const SONGS = [
-  {
-    img: OneMoreNight,
-    title: "One More Night 0",
-    subtitle: "Lorem ipesum",
-    url: "#",
-    audio: Sample1,
-  },
-  {
-    img: OneMoreNight,
-    title: "One More Night 1",
-    subtitle: "Lorem ipesum",
-    url: "#",
-    audio: Sample2,
-  },
-  {
-    img: OneMoreNight,
-    title: "One More Night 2",
-    subtitle: "Lorem ipesum",
-    url: "#",
-    audio: Sample1,
-  },
-  {
-    img: OneMoreNight,
-    title: "One More Night 3",
-    subtitle: "Lorem ipesum",
-    url: "#",
-    audio: Sample2,
-  },
-  {
-    img: OneMoreNight,
-    title: "One More Night 4",
-    subtitle: "Lorem ipesum",
-    url: "#",
-    audio: Sample1,
-  },
-  {
-    img: OneMoreNight,
-    title: "One More Night 5",
-    subtitle: "Lorem ipesum",
-    url: "#",
-    audio: Sample2,
-  },
-  {
-    img: OneMoreNight,
-    title: "One More Night 6",
-    subtitle: "Lorem ipesum",
-    url: "#",
-    audio: Sample1,
-  },
-  {
-    img: OneMoreNight,
-    title: "One More Night 7",
-    subtitle: "Lorem ipesum",
-    url: "#",
-    audio: Sample2,
-  },
-  {
-    img: OneMoreNight,
-    title: "One More Night 8",
-    subtitle: "Lorem ipesum",
-    url: "#",
-    audio: Sample1,
-  },
-  {
-    img: OneMoreNight,
-    title: "One More Night 9",
-    subtitle: "Lorem ipesum",
-    url: "#",
-    audio: Sample2,
-  },
-]
 export const VIDEOS = [
   {
     name: "Only The Strong Survive",
     link: "https://www.youtube.com/watch?v=ibRWnnSzeJ0",
-    img: OnlyTheStrongSurviveVideo,
+    img: "/img/videos/only-the-strong-survive-videocover.png",
   },
   {
     name: "Any Other Season",
     link: "https://www.youtube.com/watch?v=hWDYuoupUik",
-    img: AnyOtherSeasonVideo,
+    img: "/img/videos/any-other-season-videocover.png",
   },
   {
     name: "Bonnie",
     link: "https://www.youtube.com/watch?v=VB3vwUU_v7E",
-    img: BonnieVideo,
+    img: "/img/videos/bonnie-videocover.webp",
   },
   {
     name: "Love and Violence",
     link: "https://www.youtube.com/watch?v=n7RTYXpMvWc",
-    img: LoveViolenceVideo,
+    img: "/img/videos/love-violence-videocover.webp",
   },
   {
     name: "Nothing On You",
     link: "https://www.youtube.com/watch?v=qar8Yhh_6pI",
-    img: NothingOnYouVideo,
+    img: "/img/videos/nothing-on-you-videocover.jpg",
   },
 ]
 
 export const CONCERT_LIST = [
   {
     title: "Bonnie's Sand Songs",
-    img: SamTheElmoOct3TourPoster,
+    img: "/img/tours/sam-the-elmo-oct-3-poster.png",
     details: [
       {
         date: "Oct 3, 2025",
@@ -224,11 +122,4 @@ export const CONCERT_LIST = [
       },
     ],
   },
-  // {
-  //   name: "SoFar Sounds",
-  //   date: "Apr 29, 2024",
-  //   location: "Toronto, CA",
-  //   link: "https://www.sofarsounds.com/events/55301",
-  //   linkText: "Buy now",
-  // },
 ]
