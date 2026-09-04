@@ -398,9 +398,12 @@ img {
   background: var(--color-sand);
   color: var(--color-ink);
   border-radius: 999px;
-  /* Left padding carries the wide tracking; the right is set to the vertical
-     so the circle sits in a square well rather than crowding the edge. */
-  padding: 10px 10px 10px 24px;
+  /* The ends are fully round, so each cap curves away from its neighbour and
+     eats into the apparent padding — the label and the circle both read
+     compressed if the horizontal padding only matches the vertical. The 11px
+     vertical (and so the 46px height) and the 14px gap above are deliberate;
+     only the outer edges are opened up. */
+  padding: 11px 18px 11px 38px;
   font-size: 11px;
   font-weight: 500;
   letter-spacing: 0.22em;
