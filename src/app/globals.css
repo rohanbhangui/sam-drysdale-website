@@ -394,11 +394,13 @@ img {
 .nav-cta {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 14px;
   background: var(--color-sand);
   color: var(--color-ink);
   border-radius: 999px;
-  padding: 9px 9px 9px 18px;
+  /* Left padding carries the wide tracking; the right is set to the vertical
+     so the circle sits in a square well rather than crowding the edge. */
+  padding: 10px 10px 10px 24px;
   font-size: 11px;
   font-weight: 500;
   letter-spacing: 0.22em;
