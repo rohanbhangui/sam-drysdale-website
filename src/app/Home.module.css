@@ -1,0 +1,59 @@
+.bleed {
+  position: relative;
+  overflow: hidden;
+  background: var(--color-ink-black);
+  min-height: 100dvh;
+  padding: clamp(96px, 14vh, 180px) var(--gutter);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: clamp(18px, 3vh, 30px);
+}
+
+.background {
+  position: absolute;
+  inset: 0;
+}
+
+.background img {
+  object-fit: cover;
+  object-position: 62% 62%;
+}
+
+.scrim {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(8, 7, 5, 0.22) 0%,
+      rgba(8, 7, 5, 0) 28%,
+      rgba(8, 7, 5, 0) 72%,
+      rgba(8, 7, 5, 0.26) 100%
+    ),
+    rgba(8, 7, 5, 0.52);
+}
+
+.bleed > *:not(.background):not(.scrim) {
+  position: relative;
+}
+
+.icon {
+  width: clamp(110px, 17vw, 190px);
+  height: auto;
+  opacity: 0.92;
+  animation: rise 0.9s var(--ease-cove) both;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 26px, 0);
+  }
+  to {
+    opacity: 0.92;
+    transform: none;
+  }
+}
