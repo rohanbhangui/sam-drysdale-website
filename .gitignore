@@ -34,3 +34,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Font subsets are generated for the OG cards; kept in-tree so builds are
+# reproducible without the source .ttf/.otf.
