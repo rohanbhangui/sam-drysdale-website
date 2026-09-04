@@ -10,50 +10,48 @@ import { album, contacts, nav, socials } from "@/lib/site"
   approximated brand marks. Flagged for the client to revisit.
 */
 const Footer = () => (
-  <footer className="site-footer">
-    <div className="footer-inner wrap-wide">
+  <footer className="bg-ink px-(--gutter) pt-[clamp(48px,7vh,80px)] pb-7 text-[rgba(239,232,217,0.78)]">
+    <div className="mx-auto flex max-w-[1500px] flex-col gap-[clamp(32px,5vh,56px)]">
       <div className="grid grid-footer">
-        <div className="footer-col footer-brand">
+        <div className="flex flex-col gap-4">
           {/* Pre-inverted copy of the mark, so no CSS filter here. */}
           <Image
+            className="block h-[34px] w-auto max-w-full self-start object-contain opacity-[0.92]"
             src="/assets/mark-01-white.png"
             alt=""
             width={613}
             height={533}
           />
-          <span>{album.title}</span>
+          <span className="text-[10px] font-medium tracking-[0.24em] text-[rgba(239,232,217,0.5)] uppercase">
+            {album.title}
+          </span>
         </div>
 
-        <div className="footer-col">
-          <span className="footer-heading">Follow</span>
-          <div className="footer-links">
+        <div className="flex flex-col gap-3">
+          <span className="text-[10px] font-medium tracking-[0.24em] text-[rgba(239,232,217,0.45)] uppercase">
+            Follow
+          </span>
+          <div className="flex flex-col gap-[9px] [&_a]:text-xs [&_a]:font-light [&_a]:tracking-[0.1em]">
             {socials.map(({ label, href }) => (
-              <ExternalLink
-                key={label}
-                href={href}
-              >
+              <ExternalLink key={label} href={href}>
                 {label}
               </ExternalLink>
             ))}
           </div>
         </div>
 
-        <div className="footer-col">
-          <span className="footer-heading">Site</span>
-          <div className="footer-links">
+        <div className="flex flex-col gap-3">
+          <span className="text-[10px] font-medium tracking-[0.24em] text-[rgba(239,232,217,0.45)] uppercase">
+            Site
+          </span>
+          <div className="flex flex-col gap-[9px] [&_a]:text-xs [&_a]:font-light [&_a]:tracking-[0.1em]">
             {nav.map(({ label, href, external }) =>
               external ? (
-                <ExternalLink
-                  key={href}
-                  href={href}
-                >
+                <ExternalLink key={href} href={href}>
                   {label}
                 </ExternalLink>
               ) : (
-                <Link
-                  key={href}
-                  href={href}
-                >
+                <Link key={href} href={href}>
                   {label}
                 </Link>
               ),
@@ -61,9 +59,11 @@ const Footer = () => (
           </div>
         </div>
 
-        <div className="footer-col">
-          <span className="footer-heading">Industry</span>
-          <div className="footer-contacts">
+        <div className="flex flex-col gap-3">
+          <span className="text-[10px] font-medium tracking-[0.24em] text-[rgba(239,232,217,0.45)] uppercase">
+            Industry
+          </span>
+          <div className="flex flex-col gap-[11px] text-[11px] leading-[1.5] font-light text-[rgba(239,232,217,0.62)]">
             {contacts.map(({ role, name, email }) => (
               <span key={email}>
                 {role}: {name}
@@ -75,15 +75,17 @@ const Footer = () => (
         </div>
       </div>
 
-      <div className="footer-bottom">
-        <div className="footer-utility">
+      <div className="flex flex-wrap items-center justify-between gap-x-[26px] gap-y-3.5 border-t border-[rgba(239,232,217,0.14)] pt-[22px]">
+        <div className="flex flex-wrap gap-5 text-[10px] font-medium tracking-[0.22em] text-[rgba(239,232,217,0.5)] uppercase">
           <Link href="/about">Press / EPK</Link>
           <a href="mailto:guillaume@frndsandfmly.co">Contact</a>
           <a href="mailto:guillaume@frndsandfmly.co">Management</a>
           {/* TODO: needs a real privacy page. */}
           <Link href="/">Privacy</Link>
         </div>
-        <span className="footer-copy">&copy; 2026 Sam Drysdale</span>
+        <span className="text-[10px] font-normal tracking-[0.2em] text-[rgba(239,232,217,0.38)] uppercase">
+          &copy; 2026 Sam Drysdale
+        </span>
       </div>
     </div>
   </footer>

@@ -5,7 +5,7 @@
  */
 const Arrow = () => (
   <span
-    className="arrow"
+    className="-ml-[0.2em] flex size-[30px] shrink-0 items-center justify-center rounded-full text-xs leading-none"
     aria-hidden="true"
   >
     &#8599;

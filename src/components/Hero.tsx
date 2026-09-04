@@ -7,6 +7,8 @@ import Arrow from "@/components/Arrow"
 import ExternalLink from "@/components/ExternalLink"
 import { Display, Text } from "@/components/Type"
 import { album, links } from "@/lib/site"
+import { buttonStyles } from "@/components/buttonStyles"
+import styles from "./Hero.module.css"
 
 type HeroProps = {
   /** Displacement scale of the headline roughness, 0–8. */
@@ -27,7 +29,8 @@ const Hero = ({ roughness = 2.6 }: HeroProps) => {
   const dispRef = useRef<SVGFEDisplacementMapElement>(null)
 
   useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches)
+      return
 
     const target = { x: 0, y: 0 }
     const current = { x: 0, y: 0 }
@@ -55,7 +58,9 @@ const Hero = ({ roughness = 2.6 }: HeroProps) => {
       // Cursor speed drives the distortion, eased so it settles when you stop.
       const speed = Math.min(
         1,
-        (Math.abs(current.x - previousX) + Math.abs(current.y - previousY)) * 26,
+        (Math.abs(current.x - previousX) +
+          Math.abs(current.y - previousY)) *
+          26,
       )
       wobble += (speed - wobble) * 0.09
 
@@ -65,8 +70,14 @@ const Hero = ({ roughness = 2.6 }: HeroProps) => {
         const t = frame * 0.0022
         const fx = 0.0125 + Math.sin(t) * 0.0035
         const fy = 0.03 + Math.cos(t * 0.78) * 0.008
-        noiseRef.current.setAttribute("baseFrequency", `${fx.toFixed(5)} ${fy.toFixed(5)}`)
-        dispRef.current.setAttribute("scale", (roughness + wobble * roughness * 1.9).toFixed(2))
+        noiseRef.current.setAttribute(
+          "baseFrequency",
+          `${fx.toFixed(5)} ${fy.toFixed(5)}`,
+        )
+        dispRef.current.setAttribute(
+          "scale",
+          (roughness + wobble * roughness * 1.9).toFixed(2),
+        )
       }
 
       // Opposite signs: the photo drifts against the cursor, the type with it.
@@ -85,8 +96,12 @@ const Hero = ({ roughness = 2.6 }: HeroProps) => {
       raf = requestAnimationFrame(tick)
     }
 
-    window.addEventListener("pointermove", onPointerMove, { passive: true })
-    window.addEventListener("pointerleave", onPointerLeave, { passive: true })
+    window.addEventListener("pointermove", onPointerMove, {
+      passive: true,
+    })
+    window.addEventListener("pointerleave", onPointerLeave, {
+      passive: true,
+    })
     raf = requestAnimationFrame(tick)
 
     return () => {
@@ -105,7 +120,12 @@ const Hero = ({ roughness = 2.6 }: HeroProps) => {
         height="0"
         aria-hidden="true"
         focusable="false"
-        style={{ position: "absolute", width: 0, height: 0, overflow: "hidden" }}
+        style={{
+          position: "absolute",
+          width: 0,
+          height: 0,
+          overflow: "hidden",
+        }}
       >
         <filter
           id="sd-rough"
@@ -134,14 +154,8 @@ const Hero = ({ roughness = 2.6 }: HeroProps) => {
         </filter>
       </svg>
 
-      <section
-        className="hero on-dark"
-        data-screen-label="01 Hero"
-      >
-        <div
-          className="hero-img"
-          ref={imgRef}
-        >
+      <section className={styles.hero} data-screen-label="01 Hero">
+        <div className={styles.image} ref={imgRef}>
           <Image
             src="/assets/cove-brighter-3.jpg"
             alt="Purgatory Cove"
@@ -150,38 +164,34 @@ const Hero = ({ roughness = 2.6 }: HeroProps) => {
             priority
           />
         </div>
-        <div className="hero-scrim" />
+        <div className={styles.scrim} />
 
-        <div
-          className="hero-copy"
-          ref={copyRef}
-        >
+        <div className={styles.copy} ref={copyRef}>
           <Text
             as="span"
             step="eyebrow"
+            className="text-[rgba(247,243,233,0.72)]"
           >
             The debut album
           </Text>
-          <Display
-            as="h1"
-            step="hero"
-            className="hero-title"
-          >
+          <Display as="h1" step="hero" className={styles.title}>
             Purgatory
             <br />
             Cove
           </Display>
-          <p className="hero-date">{album.releaseDate}</p>
-          <div className="btn-row">
+          <p className="m-0 text-row font-light tracking-[0.12em] text-[rgba(239,232,217,0.86)] uppercase">
+            {album.releaseDate}
+          </p>
+          <div className="flex flex-wrap gap-3">
             <ExternalLink
-              className="btn btn-primary-light"
+              className={buttonStyles.primaryLight}
               href={links.album}
             >
               Pre-order
               <Arrow />
             </ExternalLink>
             <ExternalLink
-              className="btn btn-outline-light"
+              className={buttonStyles.outlineLight}
               href={links.album}
             >
               Pre-save

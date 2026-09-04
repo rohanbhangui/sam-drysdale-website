@@ -23,8 +23,7 @@ const Header = () => {
 
   /*
     The reference build never locked body scroll behind the overlay; the spec
-    calls for adding it. The attribute (rather than an inline style) keeps the
-    rule in globals.css with the rest of the menu.
+    calls for adding it. The attribute keeps the scroll lock declarative.
   */
   useEffect(() => {
     if (!menuOpen) return
@@ -50,14 +49,15 @@ const Header = () => {
 
   return (
     <>
-      <header className="site-header">
+      <header className="fixed inset-x-0 top-0 z-80 flex h-(--header-h) items-center justify-between border-b border-[rgba(239,232,217,0.12)] bg-[rgba(15,14,10,0.72)] px-[clamp(16px,4vw,40px)] text-sand backdrop-blur-[22px] backdrop-saturate-[140%]">
         <Link
-          className="brand"
+          className="flex shrink-0 items-center gap-3 [&>span]:text-[11px] [&>span]:font-medium [&>span]:tracking-[0.24em] [&>span]:uppercase"
           href="/"
         >
           {/* Source art is dark-on-transparent, so it is inverted in CSS for
               the dark header. Native ratio 613x533 — height is set, width auto. */}
           <Image
+            className="block h-[22px] w-auto invert"
             src="/assets/mark-01.png"
             alt="Sam Drysdale"
             width={613}
@@ -68,15 +68,12 @@ const Header = () => {
         </Link>
 
         <nav
-          className="nav"
+          className="flex items-center gap-[clamp(18px,2.6vw,34px)] max-[900px]:hidden [&_a]:py-1.5 [&_a]:text-[11px] [&_a]:font-medium [&_a]:tracking-[0.22em] [&_a]:uppercase [&_a]:transition-opacity [&_a]:duration-500 [&_a]:ease-cove [&_a[aria-current=page]]:opacity-55"
           aria-label="Primary"
         >
           {nav.map(({ label, href, external }) =>
             external ? (
-              <ExternalLink
-                key={href}
-                href={href}
-              >
+              <ExternalLink key={href} href={href}>
                 {label}
               </ExternalLink>
             ) : (
@@ -90,7 +87,7 @@ const Header = () => {
             ),
           )}
           <ExternalLink
-            className="nav-cta"
+            className="ml-1 inline-flex items-center gap-3.5 rounded-full bg-sand py-[11px] pr-[18px] pl-[38px] text-ink transition-transform duration-500 ease-cove hover:-translate-y-px hover:text-ink active:scale-[0.98] [&>span]:-ml-[0.22em] [&>span]:size-6 [&>span]:bg-[rgba(20,18,13,0.1)] [&>span]:text-[11px]"
             href={links.newsletter}
           >
             Sign up
@@ -99,7 +96,7 @@ const Header = () => {
         </nav>
 
         <button
-          className="menu-toggle"
+          className="hidden h-[38px] cursor-pointer rounded-full border border-[rgba(239,232,217,0.34)] bg-transparent px-4 text-[10px] font-medium tracking-[0.22em] text-sand uppercase max-[900px]:block"
           type="button"
           aria-label="Open menu"
           aria-expanded={menuOpen}
@@ -110,16 +107,17 @@ const Header = () => {
       </header>
 
       {menuOpen && (
-        <div className="menu-overlay">
-          <div className="menu-top">
+        <div className="fixed inset-0 z-90 flex flex-col bg-[rgba(15,14,10,0.96)] p-6 text-bone backdrop-blur-[28px] [animation:pageIn_0.5s_var(--ease-cove)_both]">
+          <div className="flex h-10 items-center justify-between">
             <Image
+              className="h-5 w-auto invert"
               src="/assets/mark-01.png"
               alt=""
               width={613}
               height={533}
             />
             <button
-              className="menu-toggle"
+              className="h-[38px] cursor-pointer rounded-full border border-[rgba(239,232,217,0.34)] bg-transparent px-4 text-[10px] font-medium tracking-[0.22em] text-sand uppercase"
               type="button"
               aria-label="Close menu"
               onClick={() => setMenuOpen(false)}
@@ -129,13 +127,17 @@ const Header = () => {
           </div>
 
           <nav
-            className="menu-nav"
+            className="flex flex-1 flex-col justify-center gap-1 [&_a]:font-display [&_a]:text-[clamp(40px,13vw,72px)] [&_a]:leading-[1.02] [&_a]:uppercase"
             aria-label="Mobile"
             onClick={() => setMenuOpen(false)}
           >
             {nav.map(({ label, href, external }, index) =>
               external ? (
                 <ExternalLink
+                  className="[animation:menuIn_0.6s_var(--ease-cove)_both]"
+                  style={{
+                    animationDelay: `${0.04 + index * 0.05}s`,
+                  }}
                   key={href}
                   href={href}
                 >
@@ -143,6 +145,10 @@ const Header = () => {
                 </ExternalLink>
               ) : (
                 <Link
+                  className="[animation:menuIn_0.6s_var(--ease-cove)_both]"
+                  style={{
+                    animationDelay: `${0.04 + index * 0.05}s`,
+                  }}
                   key={href}
                   href={href}
                   ref={index === 0 ? firstMenuLink : undefined}
@@ -154,7 +160,7 @@ const Header = () => {
           </nav>
 
           <ExternalLink
-            className="menu-cta"
+            className="flex items-center justify-between rounded-full bg-sand py-3.5 pr-3.5 pl-6 text-xs font-medium tracking-[0.22em] text-ink uppercase [animation:menuIn_0.6s_var(--ease-cove)_0.3s_both] hover:text-ink [&>span]:ml-0 [&>span]:size-8 [&>span]:bg-[rgba(20,18,13,0.1)] [&>span]:text-[13px]"
             href={links.newsletter}
           >
             Sign up

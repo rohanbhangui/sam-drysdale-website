@@ -19,13 +19,19 @@ const SignupForm = () => {
   return (
     <>
       <form
-        className="signup-form"
+        className="grid-signup grid w-full max-w-[620px] items-end gap-3 text-left"
         onSubmit={onSubmit}
         noValidate
       >
-        <div className="field">
-          <label htmlFor="sd-email">Email</label>
+        <div className="flex flex-col gap-2">
+          <label
+            className="text-[10px] font-medium tracking-[0.24em] text-[rgba(239,232,217,0.72)] uppercase"
+            htmlFor="sd-email"
+          >
+            Email
+          </label>
           <input
+            className="rounded-full border border-[rgba(239,232,217,0.34)] bg-[rgba(239,232,217,0.08)] px-5 py-3.5 text-sm font-light text-bone outline-none placeholder:text-[rgba(239,232,217,0.4)] focus:border-sand"
             id="sd-email"
             name="email"
             type="email"
@@ -37,14 +43,14 @@ const SignupForm = () => {
             spacer label to line the baselines up; the form's `align-items:end`
             does that properly. */}
         <button
-          className="signup-btn"
+          className="cursor-pointer rounded-full border-0 bg-sand px-6 py-3.5 text-xs font-medium tracking-[0.2em] text-ink uppercase transition-transform duration-600 ease-cove hover:-translate-y-0.5 active:scale-[0.98]"
           type="submit"
         >
           Join
         </button>
       </form>
       <p
-        className="signup-success"
+        className="m-0 text-[11px] font-normal tracking-[0.18em] text-teal-light uppercase"
         hidden={!submitted}
         role="status"
       >

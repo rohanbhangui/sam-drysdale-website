@@ -6,6 +6,7 @@ import ExternalLink from "@/components/ExternalLink"
 import { Display } from "@/components/Type"
 import { dates, links } from "@/lib/site"
 import { EventsJsonLd } from "@/components/JsonLd"
+import { buttonStyles } from "@/components/buttonStyles"
 
 export const metadata: Metadata = {
   title: "Live",
@@ -29,17 +30,14 @@ export const metadata: Metadata = {
   DateRow markup as-is so the design survives real data.
 */
 const LivePage = () => (
-  <main className="page page-interior">
+  <main className="pt-(--header-h) [animation:pageIn_0.8s_var(--ease-cove)_both]">
     <EventsJsonLd />
-    <section className="section-sand section-interior">
-      <div className="wrap stack stack-md">
-        <Display
-          as="h1"
-          step="title"
-        >
+    <section className="bg-sand px-(--gutter) pt-[clamp(56px,9vh,110px)] pb-[clamp(64px,10vh,130px)]">
+      <div className="mx-auto flex max-w-[1400px] flex-col gap-[clamp(28px,5vh,52px)]">
+        <Display as="h1" step="title">
           Live
         </Display>
-        <div className="dates">
+        <div className="flex flex-col">
           {dates.map((show) => (
             <DateRow
               key={show.date + show.city}
@@ -47,18 +45,19 @@ const LivePage = () => (
               variant="live"
             />
           ))}
-          <div className="dates-end" />
+          <div className="border-t border-[rgba(20,18,13,0.16)]" />
         </div>
-        <div className="dates-footnote">
+        <div className="flex flex-wrap items-center gap-[18px]">
           <ExternalLink
-            className="btn btn-primary"
+            className={buttonStyles.primary}
             href={links.bandsintown}
           >
             Bandsintown
             <Arrow />
           </ExternalLink>
-          <span className="caption">
-            Dates above are placeholders. Live page should pull from Bandsintown.
+          <span className="m-0 text-[10px] font-normal tracking-[0.2em] text-[rgba(20,18,13,0.45)] uppercase">
+            Dates above are placeholders. Live page should pull from
+            Bandsintown.
           </span>
         </div>
       </div>

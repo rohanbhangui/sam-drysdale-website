@@ -8,17 +8,16 @@
                 type step below is usable as a utility (bg-sand, text-ink,
                 font-display, text-display-hero) as well as via var().
    - @layer base        the reset.
-   - @layer components  the component classes.
+   - @layer components  the small set of shared structural primitives.
 
-   The component rules live in a LAYER on purpose. Unlayered CSS outranks any
-   layered rule regardless of specificity, so leaving them unlayered would mean
-   a Tailwind utility could never override a component class. Inside
-   `components`, utilities win — which is what makes the two systems composable.
+   Ordinary component styling lives in Tailwind classes beside its markup.
+   Selector-heavy, single-owner visuals live in colocated CSS Modules. The few
+   shared structural rules below remain layered so Tailwind utilities can still
+   override them.
 
    What deliberately stays hand-written: the fluid type ramp, the intrinsic
-   `minmax(min(100%, …), 1fr)` grids, the layered photo scrims, the SVG
-   displacement filter and the backdrop-blur chrome. Those are the design's
-   backbone and become unreadable as arbitrary-value utility strings.
+   `minmax(min(100%, …), 1fr)` grids and shared image wells. Those become
+   unreadable as arbitrary-value utility strings.
    ========================================================================== */
 
 @import "tailwindcss";
@@ -49,12 +48,36 @@
      The divisor is a bare number, so the division yields a length that scales
      0 → 1px across the ramp. Retune the two bounds and the entire scale moves
      together — that is the point of routing every size through here. */
-  --text-display-hero: clamp(48px, calc(48px + 120 * var(--fluid-t)), 168px);
-  --text-display-title: clamp(44px, calc(44px + 106 * var(--fluid-t)), 150px);
-  --text-display-section: clamp(40px, calc(40px + 92 * var(--fluid-t)), 132px);
-  --text-display-feature: clamp(38px, calc(38px + 82 * var(--fluid-t)), 120px);
-  --text-display-sub: clamp(30px, calc(30px + 56 * var(--fluid-t)), 86px);
-  --text-display-card: clamp(22px, calc(22px + 26 * var(--fluid-t)), 48px);
+  --text-display-hero: clamp(
+    48px,
+    calc(48px + 120 * var(--fluid-t)),
+    168px
+  );
+  --text-display-title: clamp(
+    44px,
+    calc(44px + 106 * var(--fluid-t)),
+    150px
+  );
+  --text-display-section: clamp(
+    40px,
+    calc(40px + 92 * var(--fluid-t)),
+    132px
+  );
+  --text-display-feature: clamp(
+    38px,
+    calc(38px + 82 * var(--fluid-t)),
+    120px
+  );
+  --text-display-sub: clamp(
+    30px,
+    calc(30px + 56 * var(--fluid-t)),
+    86px
+  );
+  --text-display-card: clamp(
+    22px,
+    calc(22px + 26 * var(--fluid-t)),
+    48px
+  );
 
   --text-lead: clamp(16px, calc(16px + 6 * var(--fluid-t)), 22px);
   --text-body: clamp(14px, calc(14px + 3 * var(--fluid-t)), 17px);
@@ -77,51 +100,41 @@
 
 @layer base {
   /* --- Reset --------------------------------------------------------------- */
-html {
-  scroll-behavior: smooth;
-  background: var(--color-sand);
-}
-body {
-  margin: 0;
-  background: var(--color-sand);
-  color: var(--color-ink);
-  font-family: var(--font-mono);
-  -webkit-font-smoothing: antialiased;
-}
-* {
-  box-sizing: border-box;
-}
-/* Without these, any link added later renders browser-default blue. */
-a {
-  color: inherit;
-  text-decoration: none;
-}
-a:hover {
-  color: var(--color-teal);
-}
-input,
-button {
-  font-family: inherit;
-}
-img {
-  border-style: none;
-}
+  html {
+    scroll-behavior: smooth;
+    background: var(--color-sand);
+  }
+  body {
+    margin: 0;
+    background: var(--color-sand);
+    color: var(--color-ink);
+    font-family: var(--font-mono);
+    -webkit-font-smoothing: antialiased;
+  }
+  * {
+    box-sizing: border-box;
+  }
+  /* Without these, any link added later renders browser-default blue. */
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+  a:hover {
+    color: var(--color-teal);
+  }
+  input,
+  button {
+    font-family: inherit;
+  }
+  img {
+    border-style: none;
+  }
 }
 
 @keyframes pageIn {
   from {
     opacity: 0;
     transform: translate3d(0, 14px, 0);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
-@keyframes rise {
-  from {
-    opacity: 0;
-    transform: translate3d(0, 26px, 0);
   }
   to {
     opacity: 1;
@@ -150,1089 +163,166 @@ img {
 }
 
 @layer components {
-  /* --- Typography ---------------------------------------------------------- */
-.display {
-  font-family: var(--font-display);
-  font-weight: 400;
-  text-transform: uppercase;
-  margin: 0;
-}
-/* Six steps, all off the one ramp. Letter-spacing tightens only on the two
-   largest — at the smaller steps it would close the counters up. */
-.h-hero {
-  font-size: var(--text-display-hero);
-  line-height: 0.88;
-  letter-spacing: -0.015em;
-}
-.h-title {
-  font-size: var(--text-display-title);
-  line-height: 0.9;
-  letter-spacing: -0.015em;
-}
-.h-section {
-  font-size: var(--text-display-section);
-  line-height: 0.9;
-}
-.h-feature {
-  font-size: var(--text-display-feature);
-  line-height: 0.92;
-}
-.h-sub {
-  font-size: var(--text-display-sub);
-  line-height: 0.92;
-}
-.h-card {
-  font-size: var(--text-display-card);
-  line-height: 1;
-}
-
-.eyebrow {
-  margin: 0;
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
-}
-.eyebrow-ink {
-  color: rgba(20, 18, 13, 0.6);
-}
-.caption {
-  margin: 0;
-  font-size: 10px;
-  font-weight: 400;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: rgba(20, 18, 13, 0.45);
-}
-.meta {
-  margin: 0;
-  font-size: var(--text-row);
-  font-weight: 300;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: rgba(20, 18, 13, 0.68);
-}
-.prose-lead {
-  margin: 0;
-  font-size: var(--text-lead);
-  font-weight: 300;
-  line-height: 1.55;
-  text-wrap: pretty;
-}
-.prose {
-  margin: 0;
-  font-size: var(--text-body);
-  font-weight: 300;
-  line-height: 1.7;
-  color: rgba(20, 18, 13, 0.72);
-  text-wrap: pretty;
-}
-.on-dark .eyebrow {
-  color: rgba(247, 243, 233, 0.72);
-}
-.on-dark .caption {
-  color: rgba(239, 232, 217, 0.45);
-}
-
-/* --- Buttons ------------------------------------------------------------- */
-/* Only the primary variant carries the trailing arrow circle. That asymmetry
-   is what makes hierarchy legible without a colour change. */
-.btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  border-radius: 999px;
-  font-size: 12px;
-  font-weight: 500;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  white-space: nowrap;
-  border: none;
-  cursor: pointer;
-  transition:
-    transform 0.6s var(--ease-cove),
-    background 0.6s var(--ease-cove);
-}
-.btn:hover {
-  transform: translateY(-2px);
-}
-.btn:active {
-  transform: scale(0.98);
-}
-
-.btn-primary {
-  background: var(--color-ink);
-  color: var(--color-sand);
-  padding: 12px 12px 12px 24px;
-}
-.btn-primary:hover {
-  color: var(--color-sand);
-}
-.btn-primary .arrow {
-  background: rgba(239, 232, 217, 0.16);
-}
-
-.btn-primary-light {
-  background: var(--color-bone);
-  color: var(--color-ink);
-  padding: 12px 12px 12px 24px;
-}
-.btn-primary-light:hover {
-  color: var(--color-ink);
-}
-.btn-primary-light .arrow {
-  background: rgba(20, 18, 13, 0.09);
-}
-
-.btn-outline {
-  border: 1px solid rgba(20, 18, 13, 0.28);
-  padding: 12px 24px;
-  background: none;
-  color: var(--color-ink);
-}
-.btn-outline:hover {
-  background: rgba(20, 18, 13, 0.06);
-  color: var(--color-ink);
-  transform: none;
-}
-
-.btn-outline-light {
-  border: 1px solid rgba(247, 243, 233, 0.5);
-  padding: 12px 24px;
-  background: none;
-  color: var(--color-bone);
-}
-.btn-outline-light:hover {
-  background: rgba(247, 243, 233, 0.12);
-  color: var(--color-bone);
-  transform: none;
-}
-
-/*
-  Wide tracking puts a phantom space after the label's LAST letter too, so the
-  gap before the arrow circle measured visually wider than the padding on the
-  other side of it. Pulling the circle back by one tracking unit cancels that
-  and makes the pill read symmetrically. Each variant matches its own
-  letter-spacing below.
-*/
-.arrow {
-  width: 30px;
-  height: 30px;
-  border-radius: 999px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 12px;
-  line-height: 1;
-  flex: 0 0 auto;
-  margin-left: -0.2em;
-}
-.btn-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-}
-.btn-row-center {
-  justify-content: center;
-}
-
-/* --- Header -------------------------------------------------------------- */
-/* Dark glass: lets the hero photograph read full-bleed behind it and
-   bookends the dark footer. */
-.site-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 80;
-  height: var(--header-h);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 clamp(16px, 4vw, 40px);
-  background: rgba(15, 14, 10, 0.72);
-  -webkit-backdrop-filter: blur(22px) saturate(140%);
-  backdrop-filter: blur(22px) saturate(140%);
-  border-bottom: 1px solid rgba(239, 232, 217, 0.12);
-  color: var(--color-sand);
-}
-.brand {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  flex: 0 0 auto;
-}
-/* mark-01.png is dark-on-transparent, so it is inverted for the dark header */
-.brand img {
-  display: block;
-  height: 22px;
-  width: auto;
-  filter: invert(1);
-}
-.brand span {
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
-}
-.nav {
-  display: flex;
-  align-items: center;
-  gap: clamp(18px, 2.6vw, 34px);
-}
-.nav a {
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  padding: 6px 0;
-  transition: opacity 0.5s var(--ease-cove);
-}
-.nav a[aria-current="page"] {
-  opacity: 0.55;
-}
-.nav-cta {
-  display: inline-flex;
-  align-items: center;
-  gap: 14px;
-  background: var(--color-sand);
-  color: var(--color-ink);
-  border-radius: 999px;
-  /* The ends are fully round, so each cap curves away from its neighbour and
-     eats into the apparent padding — the label and the circle both read
-     compressed if the horizontal padding only matches the vertical. The 11px
-     vertical (and so the 46px height) and the 14px gap above are deliberate;
-     only the outer edges are opened up. */
-  padding: 11px 18px 11px 38px;
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  transition: transform 0.5s var(--ease-cove);
-}
-.nav-cta:hover {
-  transform: translateY(-1px);
-  color: var(--color-ink);
-}
-.nav-cta:active {
-  transform: scale(0.98);
-}
-.nav-cta .arrow {
-  width: 24px;
-  height: 24px;
-  font-size: 11px;
-  background: rgba(20, 18, 13, 0.1);
-  margin-left: -0.22em;
-}
-
-.menu-toggle {
-  display: none;
-  background: none;
-  border: 1px solid rgba(239, 232, 217, 0.34);
-  border-radius: 999px;
-  height: 38px;
-  padding: 0 16px;
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--color-sand);
-  cursor: pointer;
-}
-
-@media (max-width: 900px) {
-  .nav {
-    display: none;
+  body[data-menu-open="true"] {
+    overflow: hidden;
   }
-  .menu-toggle {
-    display: block;
-  }
-}
 
-/* --- Mobile menu --------------------------------------------------------- */
-.menu-overlay {
-  position: fixed;
-  inset: 0;
-  z-index: 90;
-  background: rgba(15, 14, 10, 0.96);
-  -webkit-backdrop-filter: blur(28px);
-  backdrop-filter: blur(28px);
-  color: var(--color-bone);
-  display: flex;
-  flex-direction: column;
-  padding: 24px;
-  animation: pageIn 0.5s var(--ease-cove) both;
-}
-.menu-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 40px;
-}
-.menu-top img {
-  height: 20px;
-  width: auto;
-  filter: invert(1);
-}
-/* The close control is a .menu-toggle, which is display:none above 900px. */
-.menu-top .menu-toggle {
-  display: block;
-}
-.menu-nav {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 4px;
-}
-.menu-nav a {
-  font-family: var(--font-display);
-  font-size: clamp(40px, 13vw, 72px);
-  line-height: 1.02;
-  text-transform: uppercase;
-}
-.menu-nav a:nth-child(1) {
-  animation: menuIn 0.6s var(--ease-cove) 0.04s both;
-}
-.menu-nav a:nth-child(2) {
-  animation: menuIn 0.6s var(--ease-cove) 0.09s both;
-}
-.menu-nav a:nth-child(3) {
-  animation: menuIn 0.6s var(--ease-cove) 0.14s both;
-}
-.menu-nav a:nth-child(4) {
-  animation: menuIn 0.6s var(--ease-cove) 0.19s both;
-}
-.menu-nav a:nth-child(5) {
-  animation: menuIn 0.6s var(--ease-cove) 0.24s both;
-}
-.menu-cta {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background: var(--color-sand);
-  color: var(--color-ink);
-  border-radius: 999px;
-  padding: 14px 14px 14px 24px;
-  font-size: 12px;
-  font-weight: 500;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  animation: menuIn 0.6s var(--ease-cove) 0.3s both;
-}
-.menu-cta:hover {
-  color: var(--color-ink);
-}
-.menu-cta .arrow {
-  width: 32px;
-  height: 32px;
-  font-size: 13px;
-  background: rgba(20, 18, 13, 0.1);
-  /* menu-cta is space-between, so no tracking compensation needed. */
-  margin-left: 0;
-}
-body[data-menu-open="true"] {
-  overflow: hidden;
-}
-
-/* --- Layout -------------------------------------------------------------- */
-.page {
-  animation: pageIn 0.8s var(--ease-cove) both;
-}
-.page-interior {
-  padding-top: var(--header-h);
-}
-
-.section {
-  padding: clamp(80px, 12vh, 150px) var(--gutter);
-}
-.section-sand {
-  background: var(--color-sand);
-}
-.section-sand-deep {
-  background: var(--color-sand-deep);
-}
-.section-ink {
-  background: var(--color-ink);
-  color: var(--color-sand);
-}
-
-.section-interior {
-  padding: clamp(56px, 9vh, 110px) var(--gutter) clamp(64px, 10vh, 130px);
-}
-.section-album {
-  padding: clamp(56px, 9vh, 120px) var(--gutter) clamp(48px, 7vh, 90px);
-}
-.section-tracks {
-  border-top: 1px solid rgba(20, 18, 13, 0.1);
-  padding: clamp(64px, 10vh, 130px) var(--gutter);
-}
-
-.wrap {
-  max-width: 1400px;
-  margin: 0 auto;
-}
-.wrap-wide {
-  max-width: 1500px;
-  margin: 0 auto;
-}
-.wrap-narrow {
-  max-width: 900px;
-  margin: 0 auto;
-}
-
-.stack {
-  display: flex;
-  flex-direction: column;
-}
-.stack-sm {
-  gap: clamp(16px, 2.6vh, 28px);
-}
-.stack-md {
-  gap: clamp(28px, 5vh, 52px);
-}
-.stack-lg {
-  gap: clamp(32px, 5vh, 64px);
-}
-.stack-xl {
-  gap: clamp(36px, 6vh, 72px);
-}
-
-/* Intrinsic grids. The min(100%, …) is what prevents overflow on narrow
+  /* Intrinsic grids. The min(100%, …) is what prevents overflow on narrow
    screens — do not replace these with breakpoint columns. */
-.grid {
-  display: grid;
-}
-.grid-2-album {
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 400px), 1fr));
-  gap: clamp(32px, 5vw, 80px);
-  align-items: center;
-}
-.grid-2-merch {
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr));
-  gap: clamp(32px, 5vw, 72px);
-  align-items: center;
-}
-.grid-2-about {
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr));
-  gap: clamp(28px, 4vw, 64px);
-  align-items: start;
-}
-.grid-videos {
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
-  gap: clamp(20px, 2.6vw, 40px);
-}
-.grid-store {
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
-  gap: clamp(20px, 2.6vw, 40px);
-}
-/* auto-fill, not auto-fit, so 13 tracks don't stretch to fill the last row */
-.grid-tracks {
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 190px), 1fr));
-  gap: clamp(16px, 2vw, 28px);
-}
-.grid-footer {
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
-  gap: clamp(28px, 4vw, 56px);
-}
+  .grid-2-album {
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(min(100%, 400px), 1fr)
+    );
+    gap: clamp(32px, 5vw, 80px);
+    align-items: center;
+  }
+  .grid-2-merch {
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(min(100%, 380px), 1fr)
+    );
+    gap: clamp(32px, 5vw, 72px);
+    align-items: center;
+  }
+  .grid-2-about {
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(min(100%, 340px), 1fr)
+    );
+    gap: clamp(28px, 4vw, 64px);
+    align-items: start;
+  }
+  .grid-videos {
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(min(100%, 320px), 1fr)
+    );
+    gap: clamp(20px, 2.6vw, 40px);
+  }
+  .grid-store {
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(min(100%, 300px), 1fr)
+    );
+    gap: clamp(20px, 2.6vw, 40px);
+  }
+  /* auto-fill, not auto-fit, so 13 tracks don't stretch to fill the last row */
+  .grid-tracks {
+    grid-template-columns: repeat(
+      auto-fill,
+      minmax(min(100%, 190px), 1fr)
+    );
+    gap: clamp(16px, 2vw, 28px);
+  }
+  .grid-footer {
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(min(100%, 220px), 1fr)
+    );
+    gap: clamp(28px, 4vw, 56px);
+  }
+  .grid-date {
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(min(100%, 180px), 1fr)
+    );
+  }
+  .grid-date-live {
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(min(100%, 170px), 1fr)
+    );
+  }
+  .grid-signup {
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(min(100%, 220px), 1fr)
+    );
+  }
 
-/* --- Image plate --------------------------------------------------------- */
-/* Reads as a physical mount board — keeps the album art from looking like a
+  /* --- Image plate --------------------------------------------------------- */
+  /* Reads as a physical mount board — keeps the album art from looking like a
    stock web card. */
-.plate {
-  background: var(--color-sand-deep);
-  border: 1px solid rgba(20, 18, 13, 0.1);
-  padding: clamp(12px, 1.4vw, 18px);
-  border-radius: 4px;
-}
-.plate > img {
-  display: block;
-  width: 100%;
-  height: auto;
-  border-radius: 2px;
-}
-.plate-album {
-  width: 100%;
-  max-width: 620px;
-  justify-self: center;
-  box-shadow: 0 30px 60px -30px rgba(20, 18, 13, 0.28);
-}
-.plate-well {
-  position: relative;
-  aspect-ratio: 1 / 1;
-  border-radius: 2px;
-  overflow: hidden;
-  background: var(--color-sand-deep);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4);
-}
-.plate-well > img,
-.media > img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
+  .plate {
+    background: var(--color-sand-deep);
+    border: 1px solid rgba(20, 18, 13, 0.1);
+    padding: clamp(12px, 1.4vw, 18px);
+    border-radius: 4px;
+  }
+  .plate > img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 2px;
+  }
+  .plate-album {
+    width: 100%;
+    max-width: 620px;
+    justify-self: center;
+    box-shadow: 0 30px 60px -30px rgba(20, 18, 13, 0.28);
+  }
+  .plate-well {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    border-radius: 2px;
+    overflow: hidden;
+    background: var(--color-sand-deep);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  }
+  .plate-well > img,
+  .media > img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 
-/* Placeholder standing in for artwork the client still owes. Replace the
+  /* Placeholder standing in for artwork the client still owes. Replace the
    whole element with a real <Image> once assets land. */
-.slot {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 24px;
-  background: repeating-linear-gradient(
-    45deg,
-    rgba(20, 18, 13, 0.035) 0 10px,
-    rgba(20, 18, 13, 0) 10px 20px
-  );
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: rgba(20, 18, 13, 0.4);
-}
-/* On a card the well is ink-black, so the dark-on-sand treatment above would
+  .slot {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 24px;
+    background: repeating-linear-gradient(
+      45deg,
+      rgba(20, 18, 13, 0.035) 0 10px,
+      rgba(20, 18, 13, 0) 10px 20px
+    );
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(20, 18, 13, 0.4);
+  }
+  /* On a card the well is ink-black, so the dark-on-sand treatment above would
    be invisible. (The reference build had this bug on /store.) */
-.media > .slot {
-  background: repeating-linear-gradient(
-    45deg,
-    rgba(247, 243, 233, 0.05) 0 10px,
-    rgba(247, 243, 233, 0) 10px 20px
-  );
-  color: rgba(247, 243, 233, 0.45);
-}
+  .media > .slot {
+    background: repeating-linear-gradient(
+      45deg,
+      rgba(247, 243, 233, 0.05) 0 10px,
+      rgba(247, 243, 233, 0) 10px 20px
+    );
+    color: rgba(247, 243, 233, 0.45);
+  }
 
-/* --- Hero ---------------------------------------------------------------- */
-.hero {
-  position: relative;
-  min-height: 100dvh;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  overflow: hidden;
-  background: var(--color-ink-black);
-}
-/* The oversize inset is the parallax travel room — without it the edges show
-   through as the image moves. The transform is written here rather than on
-   the <img> itself so next/image can own the inner element. */
-.hero-img {
-  position: absolute;
-  inset: -4%;
-  width: 108%;
-  height: 108%;
-  transform: translate3d(0, 0, 0);
-  will-change: transform;
-}
-.hero-img img {
-  object-fit: cover;
-  object-position: 60% 50%;
-}
-.hero-scrim {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to top,
-    rgba(8, 7, 5, 0.86) 0%,
-    rgba(8, 7, 5, 0.34) 42%,
-    rgba(8, 7, 5, 0.42) 100%
-  );
-}
-.hero-copy {
-  position: relative;
-  padding: 0 var(--gutter) clamp(48px, 8vh, 88px);
-  display: flex;
-  flex-direction: column;
-  gap: clamp(20px, 3vh, 32px);
-  max-width: 1500px;
-  transform: translate3d(0, 0, 0);
-  will-change: transform;
-}
-.hero-title {
-  color: var(--color-bone);
-  filter: url(#sd-rough);
-}
-.hero-date {
-  margin: 0;
-  font-size: var(--text-row);
-  font-weight: 300;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: rgba(239, 232, 217, 0.86);
-}
+  .media {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    border-radius: 2px;
+    overflow: hidden;
+    background: var(--color-ink-black);
+  }
+  .media-square {
+    aspect-ratio: 1 / 1;
+  }
 
-/* --- Full-bleed single --------------------------------------------------- */
-.bleed {
-  position: relative;
-  overflow: hidden;
-  background: var(--color-ink-black);
-  min-height: 100dvh;
-  padding: clamp(96px, 14vh, 180px) var(--gutter);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  gap: clamp(18px, 3vh, 30px);
-}
-.bleed-bg {
-  position: absolute;
-  inset: 0;
-}
-.bleed-bg img {
-  object-fit: cover;
-  object-position: 62% 62%;
-}
-/* One even scrim across the whole frame. The reference build stacked a linear
-   over a centred radial, which read as a visible dark blob in the middle of a
-   flat photograph — this covers the image evenly instead. The faint linear on
-   top only deepens the very top and bottom so the section still seats against
-   the header and the block below it. */
-.bleed-scrim {
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(
-      to bottom,
-      rgba(8, 7, 5, 0.22) 0%,
-      rgba(8, 7, 5, 0) 28%,
-      rgba(8, 7, 5, 0) 72%,
-      rgba(8, 7, 5, 0.26) 100%
-    ),
-    rgba(8, 7, 5, 0.52);
-}
-/* Every foreground child has to sit above the scrim. */
-.bleed > *:not(.bleed-bg):not(.bleed-scrim) {
-  position: relative;
-}
-.bleed-icon {
-  width: clamp(110px, 17vw, 190px);
-  height: auto;
-  opacity: 0.92;
-  animation: rise 0.9s var(--ease-cove) both;
-}
-.bleed-title {
-  color: var(--color-bone);
-}
-
-/* --- Date rows ----------------------------------------------------------- */
-.dates {
-  display: flex;
-  flex-direction: column;
-}
-.date-row {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr));
-  gap: 8px 24px;
-  align-items: baseline;
-  padding: clamp(20px, 3vh, 30px) 0;
-  border-top: 1px solid rgba(20, 18, 13, 0.16);
-  transition: padding-left 0.6s var(--ease-cove);
-}
-.date-row:hover {
-  padding-left: 14px;
-  color: inherit;
-}
-/* Bare rule so the last row still closes with a bottom border. */
-.dates-end {
-  border-top: 1px solid rgba(20, 18, 13, 0.16);
-}
-.date-when {
-  font-size: var(--text-row);
-  font-weight: 500;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-}
-.date-city,
-.date-venue {
-  font-size: var(--text-row);
-  font-weight: 300;
-  letter-spacing: 0.06em;
-}
-.date-venue {
-  color: rgba(20, 18, 13, 0.62);
-}
-.date-tickets {
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--color-teal);
-}
-.date-row-live {
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 170px), 1fr));
-}
-.dates-footnote {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 18px;
-}
-
-/* --- Cards --------------------------------------------------------------- */
-.card {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  background: var(--color-sand-deep);
-  border: 1px solid rgba(20, 18, 13, 0.1);
-  border-radius: 4px;
-  padding: clamp(10px, 1.3vw, 18px);
-  transition: transform 0.7s var(--ease-cove);
-}
-/* Lift is translateY, never scale — scale blurs the photography inside. */
-.card:hover {
-  transform: translateY(-3px);
-  color: inherit;
-}
-
-.media {
-  position: relative;
-  aspect-ratio: 16 / 9;
-  border-radius: 2px;
-  overflow: hidden;
-  background: var(--color-ink-black);
-}
-.media-square {
-  aspect-ratio: 1 / 1;
-}
-
-.play {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: 56px;
-  height: 56px;
-  border-radius: 999px;
-  border: 1px solid rgba(247, 243, 233, 0.7);
-  background: rgba(11, 10, 7, 0.35);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--color-bone);
-  font-size: 13px;
-  line-height: 1;
-}
-.play-lg {
-  width: clamp(64px, 7vw, 92px);
-  height: clamp(64px, 7vw, 92px);
-  font-size: 18px;
-  -webkit-backdrop-filter: blur(6px);
-  backdrop-filter: blur(6px);
-}
-
-.card-meta {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  padding: 0 6px 6px;
-}
-.card-title {
-  font-size: 13px;
-  font-weight: 500;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-}
-.card-sub {
-  font-size: 10px;
-  font-weight: 400;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: rgba(20, 18, 13, 0.5);
-}
-.card-price {
-  font-size: 11px;
-  font-weight: 300;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: rgba(20, 18, 13, 0.55);
-}
-.card-cta {
-  margin: 0 6px 6px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  background: var(--color-ink);
-  color: var(--color-sand);
-  border-radius: 999px;
-  padding: 11px 11px 11px 20px;
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  transition: transform 0.6s var(--ease-cove);
-}
-.card-cta:hover {
-  transform: translateY(-2px);
-  color: var(--color-sand);
-}
-.card-cta:active {
-  transform: scale(0.98);
-}
-.card-cta .arrow {
-  width: 28px;
-  height: 28px;
-  font-size: 11px;
-  background: rgba(239, 232, 217, 0.16);
-}
-
-/* Videos hero caption sits baseline-aligned, title left, meta right */
-.video-hero {
-  gap: 18px;
-  padding: clamp(12px, 1.4vw, 18px);
-}
-.video-hero-caption {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 10px;
-  padding: 0 6px 6px;
-}
-.video-hero-title {
-  font-family: var(--font-display);
-  font-size: var(--text-display-card);
-  line-height: 1;
-  text-transform: uppercase;
-}
-.video-hero-meta {
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
-  color: rgba(20, 18, 13, 0.55);
-  align-self: flex-end;
-}
-
-/* --- Track grid ---------------------------------------------------------- */
-.track {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  background: var(--color-sand);
-  border: 1px solid rgba(20, 18, 13, 0.1);
-  border-radius: 4px;
-  padding: clamp(14px, 1.6vw, 22px);
-  transition: transform 0.6s var(--ease-cove);
-}
-.track:hover {
-  transform: translateY(-3px);
-}
-.track-icon {
-  aspect-ratio: 1 / 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--color-sand-deep);
-  border-radius: 2px;
-  padding: 16%;
-}
-.track-icon img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  opacity: 0.88;
-}
-.track-title {
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-}
-
-/* --- Sign-up ------------------------------------------------------------- */
-.signup {
-  padding: clamp(80px, 13vh, 170px) var(--gutter);
-}
-.signup-inner {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: clamp(20px, 3.5vh, 36px);
-}
-.signup-title {
-  color: var(--color-sand);
-}
-.signup-form {
-  width: 100%;
-  max-width: 620px;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
-  gap: 12px;
-  align-items: end;
-  text-align: left;
-}
-.field {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-.field label {
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
-  color: rgba(239, 232, 217, 0.72);
-}
-.field input {
-  background: rgba(239, 232, 217, 0.08);
-  border: 1px solid rgba(239, 232, 217, 0.34);
-  border-radius: 999px;
-  padding: 14px 20px;
-  font-size: 14px;
-  font-weight: 300;
-  color: var(--color-bone);
-  outline: none;
-}
-.field input::placeholder {
-  color: rgba(239, 232, 217, 0.4);
-}
-.field input:focus {
-  border-color: var(--color-sand);
-}
-.signup-btn {
-  background: var(--color-sand);
-  color: var(--color-ink);
-  border: none;
-  border-radius: 999px;
-  padding: 14px 24px;
-  font-size: 12px;
-  font-weight: 500;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: transform 0.6s var(--ease-cove);
-}
-.signup-btn:hover {
-  transform: translateY(-2px);
-}
-.signup-btn:active {
-  transform: scale(0.98);
-}
-.signup-success {
-  margin: 0;
-  font-size: 11px;
-  font-weight: 400;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--color-teal-light);
-}
-[hidden] {
-  display: none !important;
-}
-
-/* --- Footer -------------------------------------------------------------- */
-.site-footer {
-  background: var(--color-ink);
-  color: rgba(239, 232, 217, 0.78);
-  padding: clamp(48px, 7vh, 80px) var(--gutter) 28px;
-}
-.footer-inner {
-  display: flex;
-  flex-direction: column;
-  gap: clamp(32px, 5vh, 56px);
-}
-.footer-col {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-.footer-brand {
-  gap: 16px;
-}
-/* width:auto + align-self are load-bearing — the flex column will otherwise
-   stretch the mark out of its native 613x533 ratio. */
-.footer-brand img {
-  display: block;
-  align-self: flex-start;
-  height: 34px;
-  width: auto;
-  max-width: 100%;
-  object-fit: contain;
-  opacity: 0.92;
-}
-.footer-brand span {
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
-  color: rgba(239, 232, 217, 0.5);
-}
-.footer-heading {
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
-  color: rgba(239, 232, 217, 0.45);
-}
-.footer-links {
-  display: flex;
-  flex-direction: column;
-  gap: 9px;
-}
-.footer-links a {
-  font-size: 12px;
-  font-weight: 300;
-  letter-spacing: 0.1em;
-}
-.footer-contacts {
-  display: flex;
-  flex-direction: column;
-  gap: 11px;
-  font-size: 11px;
-  font-weight: 300;
-  line-height: 1.5;
-  color: rgba(239, 232, 217, 0.62);
-}
-.footer-bottom {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 14px 26px;
-  justify-content: space-between;
-  align-items: center;
-  padding-top: 22px;
-  border-top: 1px solid rgba(239, 232, 217, 0.14);
-}
-.footer-utility {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: rgba(239, 232, 217, 0.5);
-}
-.footer-copy {
-  font-size: 10px;
-  font-weight: 400;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: rgba(239, 232, 217, 0.38);
-}
-
-/* --- Utilities ----------------------------------------------------------- */
-.self-start {
-  align-self: flex-start;
-}
-.prose-col {
-  gap: 22px;
-  max-width: 60ch;
-}
-.visually-hidden {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0 0 0 0);
-  white-space: nowrap;
-  border: 0;
-}
+  [hidden] {
+    display: none !important;
+  }
 }
