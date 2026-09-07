@@ -5,7 +5,7 @@ import Script from "next/script"
 
 import "./globals.css"
 
-import { siteUrl } from "@/lib/site"
+import { openGraphBase, siteUrl } from "@/lib/site"
 import Header from "@/components/Header"
 import Footer from "@/components/Footer"
 import { SiteJsonLd } from "@/components/JsonLd"
@@ -123,12 +123,10 @@ export const metadata: Metadata = {
   /* Share images come from the opengraph-image.tsx route in each segment, so
      no `images` key here — setting one would override the generated card. */
   openGraph: {
-    type: "website",
+    ...openGraphBase,
     url: siteUrl,
-    siteName: "Sam Drysdale",
     title: "Sam Drysdale — Purgatory Cove",
     description,
-    locale: "en_CA",
   },
   twitter: {
     card: "summary_large_image",

@@ -4,7 +4,7 @@ import Image from "next/image"
 import Arrow from "@/components/Arrow"
 import ExternalLink from "@/components/ExternalLink"
 import { Display, Text } from "@/components/Type"
-import { album, links, tracks } from "@/lib/site"
+import { album, links, openGraphBase, tracks } from "@/lib/site"
 import { AlbumJsonLd } from "@/components/JsonLd"
 import { buttonStyles } from "@/components/buttonStyles"
 
@@ -12,9 +12,10 @@ export const metadata: Metadata = {
   title: "Music",
   description: `${album.title} is the debut album from Sam Drysdale — thirteen songs, out ${album.releaseDate}. Pre-order the vinyl or pre-save the record.`,
   alternates: { canonical: "/music" },
-  /* Without its own openGraph block a page inherits the root one wholesale,
-     so every share preview would read "Sam Drysdale — Purgatory Cove". */
+  /* Next replaces (not merges) the root openGraph when a page declares one,
+     so the shared site-level fields come in via the spread. */
   openGraph: {
+    ...openGraphBase,
     title: "Music — Sam Drysdale",
     url: "/music",
   },

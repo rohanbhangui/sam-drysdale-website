@@ -5,7 +5,7 @@ import DateRow from "@/components/DateRow"
 import ExternalLink from "@/components/ExternalLink"
 import { Display, Text } from "@/components/Type"
 import { getLiveShows } from "@/lib/bandsintown"
-import { links } from "@/lib/site"
+import { links, openGraphBase } from "@/lib/site"
 import { EventsJsonLd } from "@/components/JsonLd"
 import { buttonStyles } from "@/components/buttonStyles"
 
@@ -14,9 +14,10 @@ export const metadata: Metadata = {
   description:
     "Sam Drysdale tour dates and tickets, including Toronto, Montreal, Halifax, Ottawa, Vancouver and New York.",
   alternates: { canonical: "/live" },
-  /* Without its own openGraph block a page inherits the root one wholesale,
-     so every share preview would read "Sam Drysdale — Purgatory Cove". */
+  /* Next replaces (not merges) the root openGraph when a page declares one,
+     so the shared site-level fields come in via the spread. */
   openGraph: {
+    ...openGraphBase,
     title: "Live — Sam Drysdale",
     url: "/live",
   },

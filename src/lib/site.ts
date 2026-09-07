@@ -1,3 +1,5 @@
+import type { Metadata } from "next"
+
 /*
   Single source of truth for copy and links. Everything the client still owes
   is marked TODO so the placeholders are findable in one file rather than
@@ -24,6 +26,30 @@ export const links = {
 
 /** Bandsintown artist id. Tour dates are fetched in lib/bandsintown.ts. */
 export const bandsintownArtistId = "15565154-sam-drysdale"
+
+/*
+  Spread this into every page's `openGraph` block.
+
+  Next.js merges metadata shallowly: a page that declares `openGraph` REPLACES
+  the root one outright rather than merging into it. Before this existed, every
+  subpage silently dropped og:type, og:site_name and og:locale — only the home
+  page carried them. Pages add their own `title` and `url` on top.
+*/
+export const openGraphBase = {
+  type: "website",
+  siteName: "Sam Drysdale",
+  locale: "en_CA",
+  videos: [
+    {
+      // Absolute on both: scrapers do not resolve relative og:video URLs.
+      url: `${siteUrl}/assets/hero.mp4`,
+      secureUrl: `${siteUrl}/assets/hero.mp4`,
+      type: "video/mp4",
+      width: 1920,
+      height: 1080,
+    },
+  ],
+} satisfies Metadata["openGraph"]
 
 export const album = {
   title: "Purgatory Cove",

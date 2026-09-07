@@ -3,16 +3,17 @@ import type { Metadata } from "next"
 import Arrow from "@/components/Arrow"
 import ExternalLink from "@/components/ExternalLink"
 import { Display, Text } from "@/components/Type"
-import { products } from "@/lib/site"
+import { openGraphBase, products } from "@/lib/site"
 
 export const metadata: Metadata = {
   title: "Store",
   description:
     "Purgatory Cove limited edition vinyl, CD and merch from Sam Drysdale.",
   alternates: { canonical: "/store" },
-  /* Without its own openGraph block a page inherits the root one wholesale,
-     so every share preview would read "Sam Drysdale — Purgatory Cove". */
+  /* Next replaces (not merges) the root openGraph when a page declares one,
+     so the shared site-level fields come in via the spread. */
   openGraph: {
+    ...openGraphBase,
     title: "Store — Sam Drysdale",
     url: "/store",
   },

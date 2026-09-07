@@ -1,6 +1,11 @@
 "use client"
 
-import { useEffect, useRef } from "react"
+import {
+  useEffect,
+  useRef,
+  useState,
+  useSyncExternalStore,
+} from "react"
 import Image from "next/image"
 
 import Arrow from "@/components/Arrow"
@@ -9,6 +14,48 @@ import { Display, Text } from "@/components/Type"
 import { album, links } from "@/lib/site"
 import { buttonStyles } from "@/components/buttonStyles"
 import styles from "./Hero.module.css"
+
+const REDUCED_MOTION = "(prefers-reduced-motion: reduce)"
+const SMALL_SCREEN = "(max-width: 768px)"
+
+/* 1080p ~2.1MB with audio; 720p ~565KB, silent. Both cut from the 4K master. */
+const HERO_VIDEO = "/assets/hero.mp4"
+const HERO_VIDEO_SMALL = "/assets/hero-mobile.mp4"
+
+/*
+  Which loop this visitor gets, or none at all.
+
+  Read through useSyncExternalStore rather than an effect so the server
+  snapshot is always null: no video is in the SSR markup, and the browser only
+  fetches one once the client has decided which. Phones get the smaller cut —
+  they are the ones on cellular data, and a 1080p loop on a 390px screen is
+  mostly pixels nobody sees.
+*/
+const subscribeToVideoSource = (onChange: () => void) => {
+  const queries = [
+    window.matchMedia(REDUCED_MOTION),
+    window.matchMedia(SMALL_SCREEN),
+  ]
+  queries.forEach((query) =>
+    query.addEventListener("change", onChange),
+  )
+  return () =>
+    queries.forEach((query) =>
+      query.removeEventListener("change", onChange),
+    )
+}
+
+const getVideoSource = () => {
+  if (window.matchMedia(REDUCED_MOTION).matches) return null
+  // Data Saver / metered connection — a decorative loop is not worth it.
+  const connection = (
+    navigator as Navigator & { connection?: { saveData?: boolean } }
+  ).connection
+  if (connection?.saveData) return null
+  return window.matchMedia(SMALL_SCREEN).matches
+    ? HERO_VIDEO_SMALL
+    : HERO_VIDEO
+}
 
 type HeroProps = {
   /** Displacement scale of the headline roughness, 0–8. */
@@ -27,6 +74,32 @@ const Hero = ({ roughness = 2.6 }: HeroProps) => {
   const copyRef = useRef<HTMLDivElement>(null)
   const noiseRef = useRef<SVGFETurbulenceElement>(null)
   const dispRef = useRef<SVGFEDisplacementMapElement>(null)
+
+  const videoRef = useRef<HTMLVideoElement>(null)
+  const [videoReady, setVideoReady] = useState(false)
+  const videoSrc = useSyncExternalStore(
+    subscribeToVideoSource,
+    getVideoSource,
+    () => null,
+  )
+
+  /*
+    Safari, iOS especially, only honours autoplay when the element is muted at
+    the moment play() is called — and React sets `muted` as a DOM property, so
+    the attribute alone is not enough. Setting it imperatively and then calling
+    play() ourselves covers that. play() rejects rather than throws when the
+    browser declines, so the catch is required or it surfaces as an unhandled
+    rejection; if it does decline we simply keep showing the still.
+  */
+  const onCanPlay = () => {
+    const video = videoRef.current
+    if (!video) return
+    video.muted = true
+    void video.play().then(
+      () => setVideoReady(true),
+      () => {},
+    )
+  }
 
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches)
@@ -156,13 +229,39 @@ const Hero = ({ roughness = 2.6 }: HeroProps) => {
 
       <section className={styles.hero} data-screen-label="01 Hero">
         <div className={styles.image} ref={imgRef}>
+          {/* Frame 0 of hero.mp4, not a separate photograph. The old still
+              was the same location but a different framing — the cave mouth
+              sat lower in the frame — so no single object-position could line
+              the two layers up and the crossfade visibly jumped. Taking the
+              poster from the loop's own first frame makes them identical by
+              construction. */}
           <Image
-            src="/assets/cove-brighter-3.jpg"
+            src="/assets/hero-poster.jpg"
             alt="Purgatory Cove"
             fill
             sizes="108vw"
             priority
           />
+          {/* Same shot as the still above, so the crossfade is seamless.
+              Decorative and silent, so it is hidden from assistive tech and
+              taken out of the tab order. */}
+          {videoSrc && (
+            <video
+              className={`${styles.video} ${videoReady ? styles.videoReady : ""}`}
+              ref={videoRef}
+              src={videoSrc}
+              // Same frame again, in case the element paints before the fade.
+              poster="/assets/hero-poster.jpg"
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="auto"
+              aria-hidden="true"
+              tabIndex={-1}
+              onCanPlay={onCanPlay}
+            />
+          )}
         </div>
         <div className={styles.scrim} />
 

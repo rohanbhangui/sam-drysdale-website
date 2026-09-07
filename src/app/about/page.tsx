@@ -4,7 +4,7 @@ import Link from "next/link"
 
 import Arrow from "@/components/Arrow"
 import { Display, Text } from "@/components/Type"
-import { album } from "@/lib/site"
+import { album, openGraphBase } from "@/lib/site"
 import { AboutJsonLd } from "@/components/JsonLd"
 import { buttonStyles } from "@/components/buttonStyles"
 
@@ -13,9 +13,10 @@ export const metadata: Metadata = {
   description:
     "Sam Drysdale is a Toronto singer-songwriter. His debut album Purgatory Cove arrives October 23.",
   alternates: { canonical: "/about" },
-  /* Without its own openGraph block a page inherits the root one wholesale,
-     so every share preview would read "Sam Drysdale — Purgatory Cove". */
+  /* Next replaces (not merges) the root openGraph when a page declares one,
+     so the shared site-level fields come in via the spread. */
   openGraph: {
+    ...openGraphBase,
     title: "About — Sam Drysdale",
     url: "/about",
   },

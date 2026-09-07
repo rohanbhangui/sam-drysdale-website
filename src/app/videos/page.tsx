@@ -3,7 +3,7 @@ import Image from "next/image"
 
 import ExternalLink from "@/components/ExternalLink"
 import { Display } from "@/components/Type"
-import { featuredVideo, videos } from "@/lib/site"
+import { featuredVideo, openGraphBase, videos } from "@/lib/site"
 import { VideosJsonLd } from "@/components/JsonLd"
 
 export const metadata: Metadata = {
@@ -11,9 +11,10 @@ export const metadata: Metadata = {
   description:
     "Official videos and live sessions from Sam Drysdale, including A Place, The Cage, The Window and Cold Water.",
   alternates: { canonical: "/videos" },
-  /* Without its own openGraph block a page inherits the root one wholesale,
-     so every share preview would read "Sam Drysdale — Purgatory Cove". */
+  /* Next replaces (not merges) the root openGraph when a page declares one,
+     so the shared site-level fields come in via the spread. */
   openGraph: {
+    ...openGraphBase,
     title: "Videos — Sam Drysdale",
     url: "/videos",
   },
