@@ -1,6 +1,11 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react"
+import {
+  useEffect,
+  useRef,
+  useState,
+  useSyncExternalStore,
+} from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
@@ -10,8 +15,28 @@ import ExternalLink from "@/components/ExternalLink"
 import { links, nav } from "@/lib/site"
 
 /*
+  Past this many pixels the header takes on its glass. Small on purpose — the
+  bar should commit the moment the page moves, not drift in.
+*/
+const SCROLL_THRESHOLD = 8
+
+const subscribeToScroll = (onChange: () => void) => {
+  window.addEventListener("scroll", onChange, { passive: true })
+  return () => window.removeEventListener("scroll", onChange)
+}
+
+/* A boolean, so React re-renders on the crossing rather than every pixel. */
+const getScrolled = () => window.scrollY > SCROLL_THRESHOLD
+
+/*
   Dark glass on a light site, deliberately: it lets the hero photograph read
   full-bleed behind the header and bookends the dark footer.
+
+  On the home page the bar starts bare — no tint, no blur, no rule — so the
+  hero loop runs edge to edge, and fades its glass in on the first scroll.
+  Everywhere else it stays glass from the start: the header type is `text-sand`
+  and every other page opens on a `bg-sand` section, so a transparent bar there
+  would be light-on-light and unreadable.
 
   This is a client component only because of the mobile menu — the markup it
   renders is otherwise static.
@@ -19,6 +44,14 @@ import { links, nav } from "@/lib/site"
 const Header = () => {
   const pathname = usePathname()
   const [menuOpen, setMenuOpen] = useState(false)
+  const scrolled = useSyncExternalStore(
+    subscribeToScroll,
+    getScrolled,
+    // Server render assumes the top of the page.
+    () => false,
+  )
+  // The open mobile overlay needs the bar solid regardless of scroll.
+  const glass = pathname !== "/" || scrolled || menuOpen
   const firstMenuLink = useRef<HTMLAnchorElement>(null)
 
   /*
@@ -49,7 +82,13 @@ const Header = () => {
 
   return (
     <>
-      <header className="fixed inset-x-0 top-0 z-80 flex h-(--header-h) items-center justify-between border-b border-[rgba(239,232,217,0.12)] bg-[rgba(15,14,10,0.72)] px-[clamp(16px,4vw,40px)] text-sand backdrop-blur-[22px] backdrop-saturate-[140%]">
+      <header
+        className={`fixed inset-x-0 top-0 z-80 flex h-(--header-h) items-center justify-between border-b px-[clamp(16px,4vw,40px)] text-sand transition-[background-color,border-color,backdrop-filter] duration-500 ease-cove ${
+          glass
+            ? "border-[rgba(239,232,217,0.12)] bg-[rgba(15,14,10,0.72)] backdrop-blur-[22px] backdrop-saturate-[140%]"
+            : "border-transparent bg-transparent"
+        }`}
+      >
         <Link
           className="flex shrink-0 items-center gap-3 [&>span]:text-[11px] [&>span]:font-medium [&>span]:tracking-[0.24em] [&>span]:uppercase"
           href="/"

@@ -63,17 +63,6 @@
   opacity: 1;
 }
 
-.scrim {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to top,
-    rgba(8, 7, 5, 0.86) 0%,
-    rgba(8, 7, 5, 0.34) 42%,
-    rgba(8, 7, 5, 0.42) 100%
-  );
-}
-
 .copy {
   position: relative;
   padding: 0 var(--gutter) clamp(48px, 8vh, 88px);

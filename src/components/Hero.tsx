@@ -263,7 +263,6 @@ const Hero = ({ roughness = 2.6 }: HeroProps) => {
             />
           )}
         </div>
-        <div className={styles.scrim} />
 
         <div className={styles.copy} ref={copyRef}>
           <Text
