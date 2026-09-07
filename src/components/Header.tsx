@@ -126,7 +126,7 @@ const Header = () => {
             ),
           )}
           <ExternalLink
-            className="ml-1 inline-flex items-center gap-3 rounded-full bg-sand py-[11px] pr-1.5 pl-5 text-ink transition-transform duration-500 ease-cove hover:-translate-y-px hover:text-ink active:scale-[0.98] [&>span]:-ml-[0.22em] [&>span]:size-6 [&>span]:bg-[rgba(20,18,13,0.1)] [&>span]:text-[11px]"
+            className="ml-1 inline-flex items-center gap-3 rounded-full bg-sand py-[11px] pr-1.5 pl-4 text-ink transition-transform duration-500 ease-cove hover:-translate-y-px hover:text-ink active:scale-[0.98] [&>span]:-ml-[0.22em] [&>span]:size-6 [&>span]:bg-[rgba(20,18,13,0.1)] [&>span]:text-[11px]"
             href={links.newsletter}
           >
             Sign up
