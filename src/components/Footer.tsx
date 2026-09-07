@@ -2,13 +2,15 @@ import Image from "next/image"
 import Link from "next/link"
 
 import ExternalLink from "@/components/ExternalLink"
-import { album, contacts, nav, socials } from "@/lib/site"
+import { album, contacts, links, nav, socials } from "@/lib/site"
 
 /*
   Socials are text links in Ballinger Mono rather than icons. That was a
   deliberate departure from the client brief — it reads cleaner and avoids
   approximated brand marks. Flagged for the client to revisit.
 */
+const siteNav = nav.filter(({ href }) => href !== links.shop)
+
 const Footer = () => (
   <footer className="bg-ink px-(--gutter) pt-[clamp(48px,7vh,80px)] pb-7 text-[rgba(239,232,217,0.78)]">
     <div className="mx-auto flex max-w-[1500px] flex-col gap-[clamp(32px,5vh,56px)]">
@@ -45,7 +47,10 @@ const Footer = () => (
             Site
           </span>
           <div className="flex flex-col gap-[9px] [&_a]:text-xs [&_a]:font-light [&_a]:tracking-[0.1em]">
-            {nav.map(({ label, href, external }) =>
+            {/* Store is dropped here on purpose — the header still carries
+                it, and the footer already sends people off-site under Follow.
+                Header and footer share one `nav`, hence the filter. */}
+            {siteNav.map(({ label, href, external }) =>
               external ? (
                 <ExternalLink key={href} href={href}>
                   {label}

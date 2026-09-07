@@ -2,14 +2,14 @@ import type { Metadata } from "next"
 import Image from "next/image"
 
 import ExternalLink from "@/components/ExternalLink"
-import { Display, Text } from "@/components/Type"
+import { Display } from "@/components/Type"
 import { featuredVideo, videos } from "@/lib/site"
 import { VideosJsonLd } from "@/components/JsonLd"
 
 export const metadata: Metadata = {
   title: "Videos",
   description:
-    "Official videos, live sessions and the album trailer from Sam Drysdale, including The Cage and Cold Water.",
+    "Official videos and live sessions from Sam Drysdale, including A Place, The Cage, The Window and Cold Water.",
   alternates: { canonical: "/videos" },
   /* Without its own openGraph block a page inherits the root one wholesale,
      so every share preview would read "Sam Drysdale — Purgatory Cove". */
@@ -22,6 +22,14 @@ export const metadata: Metadata = {
   },
 }
 
+/*
+  Cards link straight out to YouTube in a new tab. A lightbox overlay was
+  considered and deliberately declined — revisit only if the client asks.
+  If it comes back: mount the iframe on click (never in the grid, five live
+  players would wreck LCP), use <dialog>.showModal() for the free focus trap
+  and Escape handling, and youtube-nocookie.com so no tracking cookie is set
+  until a fan actually presses play.
+*/
 const VideosPage = () => (
   <main className="pt-(--header-h) [animation:pageIn_0.8s_var(--ease-cove)_both]">
     <VideosJsonLd />
@@ -65,7 +73,7 @@ const VideosPage = () => (
             <ExternalLink
               className="flex flex-col gap-4 rounded-sm border border-[rgba(20,18,13,0.1)] bg-sand-deep p-[clamp(10px,1.3vw,18px)] transition-transform duration-700 ease-cove hover:-translate-y-[3px] hover:text-inherit"
               href={href}
-              key={title}
+              key={href}
             >
               <div className="media">
                 <Image
@@ -92,9 +100,6 @@ const VideosPage = () => (
             </ExternalLink>
           ))}
         </div>
-        <Text step="caption">
-          Thumbnails are placeholders pending video stills
-        </Text>
       </div>
     </section>
   </main>

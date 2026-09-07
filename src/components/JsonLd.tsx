@@ -1,7 +1,7 @@
+import type { LiveShow } from "@/lib/bandsintown"
 import {
   album,
   contacts,
-  dates,
   links,
   siteUrl,
   socials,
@@ -47,7 +47,10 @@ export const SiteJsonLd = () => (
           name: "Sam Drysdale",
           url: siteUrl,
           genre: ["Indie Folk", "Singer-Songwriter", "Alternative"],
-          foundingLocation: { "@type": "Place", name: "Toronto, Ontario, Canada" },
+          foundingLocation: {
+            "@type": "Place",
+            name: "Toronto, Ontario, Canada",
+          },
           image: `${siteUrl}/assets/og-bg.jpg`,
           sameAs: socials.map(({ href }) => href),
           album: { "@id": albumId },
@@ -97,45 +100,87 @@ export const AlbumJsonLd = () => (
 )
 
 /*
-  TODO: these carry placeholder venues and no real start times, so they are
-  deliberately marked EventScheduled with a city-level location only. Once the
-  Bandsintown fetch lands, feed it real `startDate` and venue names — an Event
-  with a fabricated time is worse than no Event at all.
+  Tour dates.
+
+  Fed by the Bandsintown fetch, which is the only source of a trustworthy
+  `startDate` — an Event with a fabricated time is worse than no Event at all.
+  So the placeholder list emits nothing: `LivePage` passes `shows` only when
+  the data is real, and a real-but-empty schedule renders no graph either.
 */
-export const EventsJsonLd = () => (
-  <JsonLd
-    data={{
-      "@context": "https://schema.org",
-      "@graph": dates.map(({ date, city, venue, href }) => ({
-        "@type": "MusicEvent",
-        name: `Sam Drysdale — ${city}`,
-        performer: { "@id": artistId },
-        eventStatus: "https://schema.org/EventScheduled",
-        eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
-        location: {
-          "@type": "Place",
-          name: venue,
-          address: { "@type": "PostalAddress", addressLocality: city },
-        },
-        url: href,
-        description: `${date} · ${city}`,
-      })),
-    }}
-  />
-)
+export const EventsJsonLd = ({ shows }: { shows: LiveShow[] }) => {
+  if (shows.length === 0) return null
+
+  return (
+    <JsonLd
+      data={{
+        "@context": "https://schema.org",
+        "@graph": shows.map((show) => ({
+          "@type": "MusicEvent",
+          name: `Sam Drysdale — ${show.city}`,
+          performer: { "@id": artistId },
+          /* Bandsintown datetimes are venue wall-clock with no offset, which
+             is exactly what schema.org wants for a local event time. */
+          startDate: show.datetime,
+          ...(show.endsAt ? { endDate: show.endsAt } : {}),
+          eventStatus: "https://schema.org/EventScheduled",
+          eventAttendanceMode:
+            "https://schema.org/OfflineEventAttendanceMode",
+          location: {
+            "@type": "Place",
+            name: show.venue,
+            address: show.address
+              ? {
+                  "@type": "PostalAddress",
+                  addressLocality: show.address.city,
+                  addressRegion: show.address.region,
+                  addressCountry: show.address.country,
+                  ...(show.address.streetAddress
+                    ? { streetAddress: show.address.streetAddress }
+                    : {}),
+                  ...(show.address.postalCode
+                    ? { postalCode: show.address.postalCode }
+                    : {}),
+                }
+              : {
+                  "@type": "PostalAddress",
+                  addressLocality: show.city,
+                },
+          },
+          url: show.href,
+          offers: {
+            "@type": "Offer",
+            url: show.href,
+            availability: show.soldOut
+              ? "https://schema.org/SoldOut"
+              : "https://schema.org/InStock",
+            ...(show.onSaleDatetime
+              ? { validFrom: show.onSaleDatetime }
+              : {}),
+          },
+        })),
+      }}
+    />
+  )
+}
 
 export const VideosJsonLd = () => (
   <JsonLd
     data={{
       "@context": "https://schema.org",
-      "@graph": [featuredVideo, ...videos].map(({ title, meta, image, href }) => ({
-        "@type": "VideoObject",
-        name: `${title} — ${meta}`,
-        description: `${title} by Sam Drysdale. ${meta}.`,
-        thumbnailUrl: `${siteUrl}${image}`,
-        contentUrl: href,
-        uploadDate: "2026-09-01",
-      })),
+      "@graph": [featuredVideo, ...videos].map(
+        ({ title, meta, image, href, uploadDate }) => ({
+          "@type": "VideoObject",
+          name: `${title} — ${meta}`,
+          description: `${title} by Sam Drysdale. ${meta}.`,
+          thumbnailUrl: `${siteUrl}${image}`,
+          /* Real YouTube watch URL, and the video's actual publish date —
+             both required for a VideoObject to be eligible for rich results. */
+          contentUrl: href,
+          embedUrl: href.replace("watch?v=", "embed/"),
+          uploadDate,
+          author: { "@id": artistId },
+        }),
+      ),
     }}
   />
 )

@@ -18,17 +18,39 @@ import { SiteJsonLd } from "@/components/JsonLd"
   TODO: confirm a web/@font-face licence for both before launch.
 */
 const worldstar = localFont({
-  src: [{ path: "../../public/fonts/Worldstar.woff2", weight: "400", style: "normal" }],
+  src: [
+    {
+      path: "../../public/fonts/Worldstar.woff2",
+      weight: "400",
+      style: "normal",
+    },
+  ],
   variable: "--font-worldstar",
   display: "swap",
 })
 
 const ballinger = localFont({
   src: [
-    { path: "../../public/fonts/BallingerMono-Light.woff2", weight: "300", style: "normal" },
-    { path: "../../public/fonts/BallingerMono-Regular.woff2", weight: "400", style: "normal" },
-    { path: "../../public/fonts/BallingerMono-Medium.woff2", weight: "500", style: "normal" },
-    { path: "../../public/fonts/BallingerMono-Bold.woff2", weight: "700", style: "normal" },
+    {
+      path: "../../public/fonts/BallingerMono-Light.woff2",
+      weight: "300",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/BallingerMono-Regular.woff2",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/BallingerMono-Medium.woff2",
+      weight: "500",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/BallingerMono-Bold.woff2",
+      weight: "700",
+      style: "normal",
+    },
   ],
   variable: "--font-ballinger",
   display: "swap",
@@ -40,7 +62,7 @@ const ballinger = localFont({
   rather than reading as ad copy.
 */
 const description =
-  "Purgatory Cove is the debut album from Toronto singer-songwriter Sam Drysdale, out October 23. Hear the single The Cage, pre-order the vinyl, and find live dates."
+  "Purgatory Cove is the debut album from Toronto singer-songwriter Sam Drysdale, out October 23. Hear the single A Place, pre-order the vinyl, and find live dates."
 
 export const viewport: Viewport = {
   themeColor: "#0F0E0A",
@@ -58,6 +80,7 @@ export const metadata: Metadata = {
     "Sam Drysdale",
     "Purgatory Cove",
     "The Cage",
+    "A Place",
     "debut album",
     "Toronto singer-songwriter",
     "indie folk",
@@ -73,11 +96,25 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       { url: "/favicon.ico" },
-      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
-      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+      {
+        url: "/favicon-32x32.png",
+        sizes: "32x32",
+        type: "image/png",
+      },
+      {
+        url: "/favicon-16x16.png",
+        sizes: "16x16",
+        type: "image/png",
+      },
     ],
     apple: "/apple-touch-icon.png",
-    other: [{ rel: "mask-icon", url: "/safari-pinned-tab.svg", color: "#14120D" }],
+    other: [
+      {
+        rel: "mask-icon",
+        url: "/safari-pinned-tab.svg",
+        color: "#14120D",
+      },
+    ],
   },
   other: {
     "msapplication-TileColor": "#0F0E0A",
@@ -101,7 +138,12 @@ export const metadata: Metadata = {
   robots: {
     index: true,
     follow: true,
-    googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 },
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
 }
 
@@ -111,10 +153,7 @@ const RootLayout = ({ children }: { children: ReactNode }) => (
     className={`${worldstar.variable} ${ballinger.variable}`}
   >
     <body>
-      <Script
-        id="meta-pixel"
-        strategy="afterInteractive"
-      >
+      <Script id="meta-pixel" strategy="afterInteractive">
         {`
           !function(f,b,e,v,n,t,s)
           {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
