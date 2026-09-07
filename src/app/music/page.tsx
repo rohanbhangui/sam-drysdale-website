@@ -74,29 +74,34 @@ const MusicPage = () => (
     <section className="border-t border-[rgba(20,18,13,0.1)] bg-sand-deep px-(--gutter) py-[clamp(64px,10vh,130px)]">
       <div className="mx-auto flex max-w-[1400px] flex-col gap-[clamp(28px,5vh,52px)]">
         <Display step="sub">Thirteen songs</Display>
-        <div className="grid grid-tracks">
-          {tracks.map(({ title, icon }) => (
-            <div
-              className="flex flex-col gap-3.5 rounded-sm border border-[rgba(20,18,13,0.1)] bg-sand p-[clamp(14px,1.6vw,22px)] transition-transform duration-600 ease-cove hover:-translate-y-[3px]"
-              key={icon}
-            >
-              <div className="flex aspect-square items-center justify-center rounded-xs bg-sand-deep p-[16%]">
-                {/* Dark glyphs, for the sandstone background. Tiny PNGs —
-                    next/image optimisation would cost more than it saves. */}
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  className="size-full object-contain opacity-[0.88]"
-                  src={`/assets/icons-black/${icon}.png`}
-                  alt=""
-                />
-              </div>
-              <span className="text-[11px] font-medium tracking-[0.16em] uppercase">
-                {title}
-              </span>
-            </div>
+        {/* Rows mirror DateRow: same hover indent, same right-aligned
+            action. They deliberately do NOT link to a track — nothing is
+            streamable yet — they point at the album pre-save, the same
+            place as the button at the top of the page. Swap the label to
+            "Listen" and the href to per-track links after release. The glyph
+            grid this replaced is preserved in git, its art in
+            public/assets/icons-black — see the note in lib/site.ts. */}
+        <ol className="flex flex-col">
+          {tracks.map(({ title }, index) => (
+            <li key={title}>
+              <ExternalLink
+                className="grid-track grid w-full items-baseline gap-x-5 border-t border-[rgba(20,18,13,0.16)] py-[clamp(14px,2.2vh,24px)] transition-[padding] duration-600 ease-cove hover:pl-3.5 hover:text-inherit"
+                href={links.album}
+              >
+                <span className="text-[11px] font-medium tracking-[0.18em] text-[rgba(20,18,13,0.42)] tabular-nums">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <span className="text-row font-light tracking-[0.06em]">
+                  {title}
+                </span>
+                <span className="text-[11px] font-medium tracking-[0.22em] text-teal uppercase">
+                  Pre-save
+                </span>
+              </ExternalLink>
+            </li>
           ))}
-        </div>
-        <Text step="caption">Track order to be confirmed</Text>
+          <li className="border-t border-[rgba(20,18,13,0.16)]" />
+        </ol>
       </div>
     </section>
   </main>

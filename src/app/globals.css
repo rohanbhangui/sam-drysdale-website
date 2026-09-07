@@ -207,13 +207,9 @@
     );
     gap: clamp(20px, 2.6vw, 40px);
   }
-  /* auto-fill, not auto-fit, so 13 tracks don't stretch to fill the last row */
-  .grid-tracks {
-    grid-template-columns: repeat(
-      auto-fill,
-      minmax(min(100%, 190px), 1fr)
-    );
-    gap: clamp(16px, 2vw, 28px);
+  /* Fixed number gutter, elastic title, action hugging the right edge. */
+  .grid-track {
+    grid-template-columns: 1.75rem minmax(0, 1fr) auto;
   }
   .grid-footer {
     grid-template-columns: repeat(
@@ -234,13 +230,6 @@
       minmax(min(100%, 170px), 1fr)
     );
   }
-  .grid-signup {
-    grid-template-columns: repeat(
-      auto-fit,
-      minmax(min(100%, 220px), 1fr)
-    );
-  }
-
   /* --- Image plate --------------------------------------------------------- */
   /* Reads as a physical mount board — keeps the album art from looking like a
    stock web card. */

@@ -8,7 +8,7 @@ export const siteUrl = "https://www.samdrysdalemusic.com"
 
 export const links = {
   album: "https://onerpm.link/PurgatoryCove",
-  newsletter: "https://laylo.com/samdrysdalemusic/CSLIaz",
+  newsletter: "https://laylo.com/samdrysdalemusic",
   bandsintown: "https://www.bandsintown.com/a/15565154-sam-drysdale",
   instagram: "https://www.instagram.com/samdrysdalemusic",
   tiktok: "https://www.tiktok.com/@samdrysdalemusic",
@@ -48,27 +48,39 @@ export const nav: NavItem[] = [
 
 export type Track = { title: string; icon: string }
 
-/* TODO: sequence is not confirmed by the client — get the real order. */
+/*
+  Confirmed sequence, from the album microsite. Two titles were also wrong
+  here before: "Apples" is "Apples and Oranges", and "Who's Gonna Love You"
+  is "Who's Gonna Love You the Way I Do?".
+
+  `icon` is retained but not rendered. The client's note was that the glyph
+  grid does not make sense until the record is actually out, so /music shows
+  a plain tracklist for now — the art stays in public/assets/icons-black so
+  the grid can come back after release without redoing this.
+*/
 export const tracks: Track[] = [
-  { title: "Purgatory Cove", icon: "purgatory-cove" },
-  { title: "The Cage", icon: "the-cage" },
-  { title: "Cold Water", icon: "cold-water" },
-  { title: "Black Dog", icon: "black-dog" },
   { title: "A Place", icon: "a-place" },
-  { title: "Apples", icon: "apples" },
-  { title: "Boys", icon: "boys" },
   { title: "The Window", icon: "the-window" },
   { title: "The Astronaut", icon: "the-astronaut" },
-  { title: "Rusty Knight", icon: "rusty-knight" },
+  { title: "The Cage", icon: "the-cage" },
   {
     title: "Conversations With No One",
     icon: "conversations-with-no-one",
   },
+  { title: "Rusty Knight", icon: "rusty-knight" },
+  { title: "Boys", icon: "boys" },
+  { title: "Cold Water", icon: "cold-water" },
+  {
+    title: "Who's Gonna Love You the Way I Do?",
+    icon: "whos-gonna-love-you",
+  },
+  { title: "Apples and Oranges", icon: "apples" },
+  { title: "Black Dog", icon: "black-dog" },
   {
     title: "Love You Into Loving Me",
     icon: "love-you-into-loving-me",
   },
-  { title: "Who's Gonna Love You", icon: "whos-gonna-love-you" },
+  { title: "Purgatory Cove", icon: "purgatory-cove" },
 ]
 
 export type Video = {

@@ -5,7 +5,6 @@ import Arrow from "@/components/Arrow"
 import DateRow from "@/components/DateRow"
 import ExternalLink from "@/components/ExternalLink"
 import Hero from "@/components/Hero"
-import SignupForm from "@/components/SignupForm"
 import { Display, Text } from "@/components/Type"
 import { getLiveShows } from "@/lib/bandsintown"
 import { album, links } from "@/lib/site"
@@ -148,7 +147,15 @@ const HomePage = async () => {
             <br />
             the loop
           </Display>
-          <SignupForm />
+          {/* Laylo owns the capture — no form here. The old inline form
+              only faked success and never sent the address anywhere. */}
+          <ExternalLink
+            className={buttonStyles.primaryLight}
+            href={links.newsletter}
+          >
+            Join the list
+            <Arrow />
+          </ExternalLink>
         </div>
       </section>
     </main>
