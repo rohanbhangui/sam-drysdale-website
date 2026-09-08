@@ -1,239 +1,317 @@
+/* ==========================================================================
+   Sam Drysdale — Purgatory Cove
+
+   Ported from the static reference build (export/css/site.css).
+
+   Structure, and why:
+   - @theme     design tokens, published to Tailwind. Every colour, family and
+                type step below is usable as a utility (bg-sand, text-ink,
+                font-display, text-display-hero) as well as via var().
+   - @layer base        the reset.
+   - @layer components  the small set of shared structural primitives.
+
+   Ordinary component styling lives in Tailwind classes beside its markup.
+   Selector-heavy, single-owner visuals live in colocated CSS Modules. The few
+   shared structural rules below remain layered so Tailwind utilities can still
+   override them.
+
+   What deliberately stays hand-written: the fluid type ramp, the intrinsic
+   `minmax(min(100%, …), 1fr)` grids and shared image wells. Those become
+   unreadable as arbitrary-value utility strings.
+   ========================================================================== */
+
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #4b6450;
-  --color-secondary: #ccad80;
-  --color-dark: #030000;
-  --color-light: #ffffff;
-  --color-text: #000000;
+  /* --- Colour ------------------------------------------------------------ */
+  --color-sand: #efe8d9;
+  --color-sand-deep: #e6dcc6;
+  --color-ink: #14120d;
+  --color-ink-black: #0b0a07;
+  --color-bone: #f7f3e9;
+  --color-teal: #2c6b75;
+  --color-teal-light: #8fb8be;
 
-  --breakpoint-small: 576px;
-  --breakpoint-medium: 768px;
-  --breakpoint-xlarge: 1200px;
-  --breakpoint-xxlarge: 1440px;
-  --breakpoint-xxxlarge: 1600px;
+  /* --- Families ---------------------------------------------------------- */
+  /* Worldstar is display only, never below ~24px, always uppercase.
+     Ballinger Mono carries everything else. Two families, no exceptions. */
+  --font-display: var(--font-worldstar), serif;
+  --font-mono: var(--font-ballinger), ui-monospace, monospace;
 
-  --font-sans: var(--font-general-sans), serif;
-  --font-general-sans-italic: var(--font-general-sans-italic), serif;
-  --font-lora: var(--font-lora), serif;
-  --font-vogue: var(--font-vogue), serif;
-  --font-across-the-road: var(--font-across-the-road), serif;
+  /* --- Type scale -------------------------------------------------------- */
+  /* One ramp for the whole site. Every step interpolates linearly between
+     --fluid-min-w and 1440px and then STOPS, so nothing keeps growing on an
+     ultrawide display. Mins are tuned for a 360px phone.
+
+       clamp(min, calc(min + (max - min) * ((100vw - minW) / (maxW - minW))), max)
+
+     The divisor is a bare number, so the division yields a length that scales
+     0 → 1px across the ramp. Retune the two bounds and the entire scale moves
+     together — that is the point of routing every size through here. */
+  --text-display-hero: clamp(
+    48px,
+    calc(48px + 120 * var(--fluid-t)),
+    168px
+  );
+  --text-display-title: clamp(
+    44px,
+    calc(44px + 106 * var(--fluid-t)),
+    150px
+  );
+  --text-display-section: clamp(
+    40px,
+    calc(40px + 92 * var(--fluid-t)),
+    132px
+  );
+  --text-display-feature: clamp(
+    38px,
+    calc(38px + 82 * var(--fluid-t)),
+    120px
+  );
+  --text-display-sub: clamp(
+    30px,
+    calc(30px + 56 * var(--fluid-t)),
+    86px
+  );
+  --text-display-card: clamp(
+    22px,
+    calc(22px + 26 * var(--fluid-t)),
+    48px
+  );
+
+  --text-lead: clamp(16px, calc(16px + 6 * var(--fluid-t)), 22px);
+  --text-body: clamp(14px, calc(14px + 3 * var(--fluid-t)), 17px);
+  --text-row: clamp(13px, calc(13px + 3 * var(--fluid-t)), 16px);
+
+  /* --- Motion ------------------------------------------------------------ */
+  /* One easing curve everywhere. */
+  --ease-cove: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/*
-  "large" isn't a simple min-width breakpoint like the rest — the source
-  app also gates it on min-height so an iPad mini/iPad sharing the 1024
-  viewport width don't both match it.
-*/
-@custom-variant large {
-  @media (min-width: 1025px) and (min-height: 768px) {
-    @slot;
-  }
+/* Internal to the ramp above — not a design token, so not in @theme. */
+:root {
+  --fluid-min-w: 360px;
+  --fluid-span: 1080; /* 1440 - 360 */
+  --fluid-t: calc((100vw - var(--fluid-min-w)) / var(--fluid-span));
+
+  --gutter: clamp(20px, 5vw, 80px);
+  --header-h: 64px;
 }
 
-/*
-  These sit in Tailwind's own `base` layer so utility classes (layered
-  into `utilities`) still win the cascade over these defaults — an
-  unlayered rule here would beat every Tailwind utility regardless of
-  specificity, since unlayered CSS always outranks layered CSS.
-*/
 @layer base {
-  /*
-    GeneralSans-Variable.woff2 is a true variable font (wght 200-700) but
-    its default named instance is pinned to Bold (700), and browsers
-    don't reliably auto-map the CSS `font-weight` value onto a variable
-    font's axis. Driving `font-variation-settings` directly off
-    Tailwind's own `--tw-font-weight` (set by every font-weight utility)
-    guarantees the requested weight actually renders instead of falling
-    back to the font's baked-in Bold default.
-  */
-  * {
-    font-size: 1rem;
-    font-family: var(--font-sans);
-    color: var(--color-text);
-    font-weight: 550;
-    font-variation-settings: "wght" var(--tw-font-weight, 550);
-  }
-
+  /* --- Reset --------------------------------------------------------------- */
   html {
-    font-size: calc(60% + 0.8vmin);
     scroll-behavior: smooth;
+    background: var(--color-sand);
   }
-
   body {
-    background: var(--color-light);
-  }
-
-  a {
     margin: 0;
+    background: var(--color-sand);
+    color: var(--color-ink);
+    font-family: var(--font-mono);
+    -webkit-font-smoothing: antialiased;
   }
-
-  @media (hover: hover) {
-    .scrollbars * {
-      scrollbar-width: thin;
-      scrollbar-color: rgba(255, 255, 255, 0.33) rgba(0, 0, 0, 0);
-    }
-
-    .scrollbars *::-webkit-scrollbar {
-      width: 8px;
-      height: 8px;
-    }
-
-    .scrollbars *::-webkit-scrollbar-track {
-      background: rgba(0, 0, 0, 0);
-    }
-
-    .scrollbars *::-webkit-scrollbar-thumb {
-      background-color: rgba(255, 255, 255, 0.33);
-      border-radius: 10px;
-      border: 0px solid var(--color-dark);
-    }
-
-    .scrollbars *::-webkit-scrollbar-thumb:hover {
-      background-color: rgba(255, 255, 255, 0.66);
-    }
+  * {
+    box-sizing: border-box;
   }
-
-  p {
-    font-weight: 500;
-    font-variation-settings: "wght" 500;
-    margin-top: 0.75rem;
-    line-height: 1.4;
-    font-size: 1.2rem;
+  /* Without these, any link added later renders browser-default blue. */
+  a {
+    color: inherit;
+    text-decoration: none;
   }
-
-  @media (min-width: 576px) {
-    p {
-      font-size: 1.1rem;
-    }
+  a:hover {
+    color: var(--color-teal);
   }
-
-  @media (min-width: 768px) {
-    p {
-      font-size: 0.9rem;
-    }
+  input,
+  button {
+    font-family: inherit;
   }
-
-  h1,
-  .h1,
-  h2,
-  .h2 {
-    font-family: var(--font-sans);
-    text-transform: uppercase;
-    font-weight: 550;
-    font-variation-settings: "wght" 550;
+  img {
+    border-style: none;
   }
+}
 
-  h3,
-  .h3,
-  h4,
-  .h4 {
-    font-family: var(--font-sans);
-    font-weight: 500;
-    font-variation-settings: "wght" 500;
-  }
-
-  h1,
-  .h1 {
-    font-size: 3.5rem;
-    line-height: 0.9;
-    letter-spacing: -0.1rem;
-  }
-
-  @media (min-width: 1025px) and (min-height: 768px) {
-    h1,
-    .h1 {
-      font-size: 4rem;
-    }
-  }
-
-  @media (min-width: 1200px) {
-    h1,
-    .h1 {
-      font-size: 4.75rem;
-    }
-  }
-
-  h1.big,
-  .h1.big {
-    font-size: 5.5rem;
-    line-height: 0.8;
-    letter-spacing: -0.4rem;
-  }
-
-  @media (min-width: 576px) {
-    h1.big,
-    .h1.big {
-      font-size: 7rem;
-    }
-  }
-
-  @media (min-width: 768px) {
-    h1.big,
-    .h1.big {
-      font-size: 8rem;
-    }
-  }
-
-  @media (min-width: 1025px) and (min-height: 768px) {
-    h1.big,
-    .h1.big {
-      font-size: 9.5rem;
-    }
-  }
-
-  @media (min-width: 1200px) {
-    h1.big,
-    .h1.big {
-      font-size: 12rem;
-    }
-  }
-
-  h2,
-  .h2 {
-    font-size: 2.5rem;
-    line-height: 1;
-    letter-spacing: -0.02rem;
-  }
-
-  h3,
-  .h3 {
-    font-weight: 550;
-    font-variation-settings: "wght" 550;
-    margin-top: 0.75rem;
-    line-height: 1.5rem;
-    font-size: 1.3rem;
-    letter-spacing: -0.05rem;
-  }
-
-  @media (min-width: 576px) {
-    h3,
-    .h3 {
-      font-size: 1rem;
-    }
-  }
-
-  h4,
-  .h4 {
-    font-weight: 600;
-    font-variation-settings: "wght" 600;
-    margin-top: 0.75rem;
-    line-height: 1rem;
-    font-size: 0.6rem;
-    letter-spacing: 0.02rem;
-  }
-
-  /* Toggled imperatively (not via React state) when scrolled into view */
-  .reveal {
-    transform: translateY(5rem);
+@keyframes pageIn {
+  from {
     opacity: 0;
-    transition:
-      opacity 1s cubic-bezier(0.77, 0, 0.175, 1),
-      transform 1s cubic-bezier(0.77, 0, 0.175, 1);
+    transform: translate3d(0, 14px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes menuIn {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 24px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+@layer components {
+  body[data-menu-open="true"] {
+    overflow: hidden;
   }
 
-  .reveal.active {
-    opacity: 1;
-    transform: translateY(0);
+  /* Intrinsic grids. The min(100%, …) is what prevents overflow on narrow
+   screens — do not replace these with breakpoint columns. */
+  .grid-2-album {
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(min(100%, 400px), 1fr)
+    );
+    gap: clamp(32px, 5vw, 80px);
+    align-items: center;
+  }
+  .grid-2-merch {
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(min(100%, 380px), 1fr)
+    );
+    gap: clamp(32px, 5vw, 72px);
+    align-items: center;
+  }
+  .grid-2-about {
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(min(100%, 340px), 1fr)
+    );
+    gap: clamp(28px, 4vw, 64px);
+    align-items: start;
+  }
+  .grid-videos {
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(min(100%, 320px), 1fr)
+    );
+    gap: clamp(20px, 2.6vw, 40px);
+  }
+  .grid-store {
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(min(100%, 300px), 1fr)
+    );
+    gap: clamp(20px, 2.6vw, 40px);
+  }
+  /* Fixed number gutter, elastic title, action hugging the right edge. */
+  .grid-track {
+    grid-template-columns: 1.75rem minmax(0, 1fr) auto;
+  }
+  .grid-footer {
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(min(100%, 220px), 1fr)
+    );
+    gap: clamp(28px, 4vw, 56px);
+  }
+  .grid-date {
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(min(100%, 180px), 1fr)
+    );
+  }
+  .grid-date-live {
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(min(100%, 170px), 1fr)
+    );
+  }
+  /* --- Image plate --------------------------------------------------------- */
+  /* Reads as a physical mount board — keeps the album art from looking like a
+   stock web card. */
+  .plate {
+    background: var(--color-sand-deep);
+    border: 1px solid rgba(20, 18, 13, 0.1);
+    padding: clamp(12px, 1.4vw, 18px);
+    border-radius: 4px;
+  }
+  .plate > img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 2px;
+  }
+  .plate-album {
+    width: 100%;
+    max-width: 620px;
+    justify-self: center;
+    box-shadow: 0 30px 60px -30px rgba(20, 18, 13, 0.28);
+  }
+  .plate-well {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    border-radius: 2px;
+    overflow: hidden;
+    background: var(--color-sand-deep);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  }
+  .plate-well > img,
+  .media > img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* Placeholder standing in for artwork the client still owes. Replace the
+   whole element with a real <Image> once assets land. */
+  .slot {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 24px;
+    background: repeating-linear-gradient(
+      45deg,
+      rgba(20, 18, 13, 0.035) 0 10px,
+      rgba(20, 18, 13, 0) 10px 20px
+    );
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(20, 18, 13, 0.4);
+  }
+  /* On a card the well is ink-black, so the dark-on-sand treatment above would
+   be invisible. (The reference build had this bug on /store.) */
+  .media > .slot {
+    background: repeating-linear-gradient(
+      45deg,
+      rgba(247, 243, 233, 0.05) 0 10px,
+      rgba(247, 243, 233, 0) 10px 20px
+    );
+    color: rgba(247, 243, 233, 0.45);
+  }
+
+  .media {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    border-radius: 2px;
+    overflow: hidden;
+    background: var(--color-ink-black);
+  }
+  .media-square {
+    aspect-ratio: 1 / 1;
+  }
+
+  [hidden] {
+    display: none !important;
   }
 }

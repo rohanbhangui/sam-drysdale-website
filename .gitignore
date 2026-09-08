@@ -18,10 +18,9 @@
 # misc
 .DS_Store
 *.pem
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
+# No env file is ever committed — see README.md → Environment.
+.env
+.env.*
 
 npm-debug.log*
 yarn-debug.log*
@@ -34,3 +33,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Font subsets are generated for the OG cards; kept in-tree so builds are
+# reproducible without the source .ttf/.otf.
