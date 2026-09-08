@@ -119,19 +119,29 @@ const HomePage = async () => {
               Cove
             </Display>
             <Text step="meta">Limited edition vinyl</Text>
-            <Link
+            <ExternalLink
               className={`${buttonStyles.primary} self-start`}
-              href="/store"
+              href={links.vinyl}
             >
               Pre-order
               <Arrow />
-            </Link>
+            </ExternalLink>
           </div>
-          <div className="plate">
-            <div className="plate-well">
-              {/* TODO: replace with the real vinyl mock-up. */}
-              <span className="slot">Vinyl mock-up</span>
-            </div>
+          {/* Plate painted to match the mock-up's own backdrop rather than
+              sand-deep, so the padding ring reads as part of the shot.
+              `.plate` is in @layer components, so the utility wins. */}
+          <div className="plate bg-[#f9f9f9]">
+            {/* Client-corrected mock-up: one flat #f9f9f9 ground, no seam.
+                Deliberately no blend mode — the backdrop already matches the
+                plate exactly, and multiply would darken it to #f3f3f3 and
+                show an edge against the padding. */}
+            <Image
+              src="/assets/vinyl-black-blue.jpg"
+              alt="Purgatory Cove limited edition vinyl"
+              width={1600}
+              height={1600}
+              sizes="(max-width: 800px) 100vw, 660px"
+            />
           </div>
         </div>
       </section>

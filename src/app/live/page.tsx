@@ -62,7 +62,9 @@ const LivePage = async () => {
               className={buttonStyles.primary}
               href={links.bandsintown}
             >
-              Bandsintown
+              {/* Not "see more" — this page already lists every upcoming
+                  date. The link's job is tour alerts, not more dates. */}
+              Follow on Bandsintown
               <Arrow />
             </ExternalLink>
           </div>
