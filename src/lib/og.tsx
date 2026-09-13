@@ -18,7 +18,18 @@ import { join } from "node:path"
 export const size = { width: 1200, height: 630 }
 export const contentType = "image/png"
 
-const asset = (...segments: string[]) => readFile(join(process.cwd(), ...segments))
+/*
+  Two fixed base dirs rather than one generic join(cwd, ...segments) helper:
+  Turbopack's file tracer couldn't see through the rest-param spread, so it
+  fell back to tracing the entire project — public/ videos included — into
+  every route that imports this module. A literal subfolder segment at each
+  call site is what the tracer needs to scope to just that folder instead.
+*/
+const ogFontsDir = join(process.cwd(), "src/og-fonts")
+const publicAssetsDir = join(process.cwd(), "public/assets")
+
+const ogFont = (name: string) => readFile(join(ogFontsDir, name))
+const publicAsset = (name: string) => readFile(join(publicAssetsDir, name))
 
 /* Read once per build, not once per card. Worldstar is subset to uppercase
    only and Ballinger to the glyphs these cards use — the full Worldstar is
@@ -27,9 +38,17 @@ let assets: Promise<[Buffer, Buffer, string]> | undefined
 
 const loadAssets = () => {
   assets ??= Promise.all([
-    asset("src/og-fonts/Worldstar-subset.ttf"),
-    asset("src/og-fonts/BallingerMono-Medium-subset.otf"),
-    asset("public/assets/og-bg.jpg").then(
+    ogFont("Worldstar-subset.ttf"),
+    ogFont("BallingerMono-Medium-subset.otf"),
+    /* og-cover.jpg is cover-digital.jpg pre-cropped to this card's exact
+       1200x630, so satori isn't decoding a 1400x1400 print master just to
+       throw most of it away. Rendered PNG weight (~2.3MB either way) is
+       driven by the rock texture's detail, not the source file's size or
+       dimensions — cropping tighter didn't move it. A blurred copy gets it
+       down to ~1.4MB but visibly softens the photo, so that trade was left
+       for whoever owns the card's look to decide. Regenerate this from
+       cover-digital.jpg if the cover art changes. */
+    publicAsset("og-cover.jpg").then(
       (buffer) => `data:image/jpeg;base64,${buffer.toString("base64")}`,
     ),
   ])
