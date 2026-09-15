@@ -1,4 +1,0 @@
-User-Agent: *
-Disallow:
-Allow: *.css
-Sitemap: https://samdrysdalemusic.com/sitemap.xml

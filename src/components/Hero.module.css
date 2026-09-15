@@ -1,0 +1,80 @@
+.hero {
+  position: relative;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  overflow: hidden;
+  background: var(--color-ink-black);
+}
+
+/*
+  Oversizing provides travel room for the pointer parallax.
+
+  The extra height is what lets the framing move. Both the still and the loop
+  are 16:9, and the hero is taller than that on most screens, so `cover`
+  already crops horizontally and the Y half of `object-position` has nothing
+  to act on. Making the layer taller than the hero creates that vertical
+  overflow; anchoring the media to the top then pushes the subject down the
+  page and crops the foreground rock at the foot instead.
+
+  --hero-zoom is the single knob: 1 restores the original centred framing,
+  higher moves Sam further down and enlarges him. Past ~1.6 the 1080p source
+  starts to soften.
+*/
+.image {
+  --hero-zoom: 1.35;
+
+  position: absolute;
+  top: -4%;
+  left: -4%;
+  width: 108%;
+  height: calc(108% * var(--hero-zoom));
+  transform: translate3d(0, 0, 0);
+  will-change: transform;
+}
+
+/* Identical framing for both layers, or the crossfade jumps. */
+.image img,
+.video {
+  object-fit: cover;
+  object-position: 60% 0%;
+}
+
+/*
+  Sits over the still inside the same parallax layer, so it drifts with the
+  photo. Starts transparent and fades in only once the browser says it can
+  play — otherwise the first paint is a black frame, or a stutter. The still
+  underneath stays the LCP element and remains the permanent fallback: if the
+  video never loads, is blocked, or is skipped for reduced motion, nothing
+  about the hero looks broken.
+*/
+.video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 1.4s var(--ease-cove);
+  pointer-events: none;
+}
+
+.videoReady {
+  opacity: 1;
+}
+
+.copy {
+  position: relative;
+  padding: 0 var(--gutter) clamp(48px, 8vh, 88px);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(20px, 3vh, 32px);
+  max-width: 1500px;
+  transform: translate3d(0, 0, 0);
+  will-change: transform;
+}
+
+.title {
+  color: var(--color-bone);
+  filter: url(#sd-rough);
+}

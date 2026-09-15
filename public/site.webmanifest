@@ -1,19 +1,13 @@
 {
-    "name": "",
-    "short_name": "",
-    "icons": [
-        {
-            "src": "android-chrome-192x192.png",
-            "sizes": "192x192",
-            "type": "image/png"
-        },
-        {
-            "src": "android-chrome-512x512.png",
-            "sizes": "512x512",
-            "type": "image/png"
-        }
-    ],
-    "theme_color": "#e30000",
-    "background_color": "#e30000",
-    "display": "standalone"
+  "name": "Sam Drysdale",
+  "short_name": "Sam Drysdale",
+  "description": "Purgatory Cove, the debut album from Sam Drysdale.",
+  "start_url": "/",
+  "icons": [
+    { "src": "/android-chrome-192x192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/android-chrome-512x512.png", "sizes": "512x512", "type": "image/png" }
+  ],
+  "theme_color": "#0F0E0A",
+  "background_color": "#EFE8D9",
+  "display": "standalone"
 }
