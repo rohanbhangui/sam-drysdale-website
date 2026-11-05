@@ -278,21 +278,21 @@ const Hero = ({ roughness = 2.6 }: HeroProps) => {
             Cove
           </Display>
           <p className="m-0 text-row font-light tracking-[0.12em] text-[rgba(239,232,217,0.86)] uppercase">
-            {album.releaseDate}
+            Out now
           </p>
           <div className="flex flex-wrap gap-3">
             <ExternalLink
               className={buttonStyles.primaryLight}
               href={links.album}
             >
-              Pre-order
+              Listen
               <Arrow />
             </ExternalLink>
             <ExternalLink
               className={buttonStyles.outlineLight}
-              href={links.album}
+              href={links.vinyl}
             >
-              Pre-save
+              Vinyl
             </ExternalLink>
           </div>
         </div>

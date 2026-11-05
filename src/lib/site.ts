@@ -18,7 +18,7 @@ export const links = {
   // Live Shopify storefront. The /store route stays built but unlinked for
   // now — point the nav back at it once that page has real products.
   shop: "https://shop.samdrysdalemusic.com/",
-  /* The vinyl product itself. `album` is the streaming pre-save, which is a
+  /* The vinyl product itself. `album` is the streaming smart link, which is a
      different action — don't collapse the two. */
   vinyl:
     "https://shop.samdrysdalemusic.com/products/purgatory-cove-this-water-is-home-black-blue-limited-edition",

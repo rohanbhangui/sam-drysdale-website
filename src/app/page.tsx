@@ -123,7 +123,7 @@ const HomePage = async () => {
               className={`${buttonStyles.primary} self-start`}
               href={links.vinyl}
             >
-              Pre-order
+              Get the vinyl
               <Arrow />
             </ExternalLink>
           </div>

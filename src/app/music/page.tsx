@@ -10,7 +10,7 @@ import { buttonStyles } from "@/components/buttonStyles"
 
 export const metadata: Metadata = {
   title: "Music",
-  description: `${album.title} is the debut album from Sam Drysdale — thirteen songs, out ${album.releaseDate}. Pre-order the vinyl or pre-save the record.`,
+  description: `${album.title} is the debut album from Sam Drysdale — thirteen songs, out now. Stream the record or get the vinyl.`,
   alternates: { canonical: "/music" },
   /* Next replaces (not merges) the root openGraph when a page declares one,
      so the shared site-level fields come in via the spread. */
@@ -52,20 +52,20 @@ const MusicPage = () => (
             <br />
             Cove
           </Display>
-          <Text step="meta">{album.releaseDate}</Text>
+          <Text step="meta">Out now</Text>
           <div className="flex flex-wrap gap-3">
             <ExternalLink
               className={buttonStyles.primary}
               href={links.album}
             >
-              Pre-order
+              Listen
               <Arrow />
             </ExternalLink>
             <ExternalLink
               className={buttonStyles.outline}
-              href={links.album}
+              href={links.vinyl}
             >
-              Pre-save
+              Vinyl
             </ExternalLink>
           </div>
         </div>
@@ -76,12 +76,11 @@ const MusicPage = () => (
       <div className="mx-auto flex max-w-[1400px] flex-col gap-[clamp(28px,5vh,52px)]">
         <Display step="sub">Thirteen songs</Display>
         {/* Rows mirror DateRow: same hover indent, same right-aligned
-            action. They deliberately do NOT link to a track — nothing is
-            streamable yet — they point at the album pre-save, the same
-            place as the button at the top of the page. Swap the label to
-            "Listen" and the href to per-track links after release. The glyph
-            grid this replaced is preserved in git, its art in
-            public/assets/icons-black — see the note in lib/site.ts. */}
+            action. Every row points at the album smart link, the same
+            place as the Listen button at the top of the page — swap in
+            per-track links if we get them. The glyph grid this replaced is
+            preserved in git, its art in public/assets/icons-black — see the
+            note in lib/site.ts. */}
         <ol className="flex flex-col">
           {tracks.map(({ title }, index) => (
             <li key={title}>
@@ -96,7 +95,7 @@ const MusicPage = () => (
                   {title}
                 </span>
                 <span className="text-[11px] font-medium tracking-[0.22em] text-teal uppercase">
-                  Pre-save
+                  Listen
                 </span>
               </ExternalLink>
             </li>

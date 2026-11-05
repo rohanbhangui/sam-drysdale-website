@@ -93,7 +93,7 @@ export const AlbumJsonLd = () => (
       offers: {
         "@type": "Offer",
         url: links.album,
-        availability: "https://schema.org/PreOrder",
+        availability: "https://schema.org/InStock",
       },
     }}
   />

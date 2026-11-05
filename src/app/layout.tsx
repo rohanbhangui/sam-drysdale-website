@@ -62,7 +62,7 @@ const ballinger = localFont({
   rather than reading as ad copy.
 */
 const description =
-  "Purgatory Cove is the debut album from Toronto singer-songwriter Sam Drysdale, out October 23. Hear the single A Place, pre-order the vinyl, and find live dates."
+  "Purgatory Cove is the debut album from Toronto singer-songwriter Sam Drysdale, out now. Stream the record, get the vinyl, and find live dates."
 
 export const viewport: Viewport = {
   themeColor: "#0F0E0A",
@@ -84,7 +84,7 @@ export const metadata: Metadata = {
     "debut album",
     "Toronto singer-songwriter",
     "indie folk",
-    "vinyl pre-order",
+    "vinyl",
     "tour dates",
   ],
   title: {

@@ -38,15 +38,15 @@ const buildLlmsTxt = () => {
     "# Sam Drysdale",
     "",
     `> Toronto singer-songwriter Sam Drysdale's debut album, ${album.title}, ` +
-      `arrives ${album.releaseDate}. Official site: music, tour dates, ` +
+      `is out now (released ${album.releaseDate}). Official site: music, tour dates, ` +
       "videos and store.",
     "",
     bio,
     "",
     "## Pages",
     "",
-    `- [Home](${siteUrl}/): Overview, current single ("${album.currentSingle}") and pre-order links.`,
-    `- [Music](${siteUrl}/music): ${album.title} tracklist, pre-order and pre-save links.`,
+    `- [Home](${siteUrl}/): Overview, current single ("${album.currentSingle}") and listen/vinyl links.`,
+    `- [Music](${siteUrl}/music): ${album.title} tracklist, listen and vinyl links.`,
     `- [Live](${siteUrl}/live): Upcoming tour dates and ticket links, kept current — do not rely on a cached copy of this document for dates.`,
     `- [Videos](${siteUrl}/videos): Official videos and live sessions.`,
     `- [About](${siteUrl}/about): Full artist biography and press/industry contacts.`,
@@ -57,7 +57,7 @@ const buildLlmsTxt = () => {
     "- Artist: Sam Drysdale (Toronto, Ontario, Canada)",
     "- Genre: Indie folk, singer-songwriter, alternative",
     "- Label: ONErpm Nashville",
-    `- Debut album: ${album.title} — ${tracks.length} tracks — releases ${album.releaseDate}`,
+    `- Debut album: ${album.title} — ${tracks.length} tracks — released ${album.releaseDate}`,
     `- Current single: "${album.currentSingle}"`,
     `- Tracklist: ${tracks.map(({ title }) => title).join(", ")}`,
     `- Streaming: [Spotify](${links.spotify}), [Apple Music](${links.appleMusic})`,
