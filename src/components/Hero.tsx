@@ -292,7 +292,7 @@ const Hero = ({ roughness = 2.6 }: HeroProps) => {
               className={buttonStyles.outlineLight}
               href={links.vinyl}
             >
-              Vinyl
+              Buy on vinyl
             </ExternalLink>
           </div>
         </div>

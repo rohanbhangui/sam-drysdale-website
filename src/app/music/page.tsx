@@ -65,7 +65,7 @@ const MusicPage = () => (
               className={buttonStyles.outline}
               href={links.vinyl}
             >
-              Vinyl
+              Buy on vinyl
             </ExternalLink>
           </div>
         </div>
