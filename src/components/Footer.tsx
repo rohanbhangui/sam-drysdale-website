@@ -47,9 +47,7 @@ const Footer = () => (
             Site
           </span>
           <div className="flex flex-col gap-[9px] [&_a]:text-xs [&_a]:font-light [&_a]:tracking-[0.1em]">
-            {/* Store is dropped here on purpose — the header still carries
-                it, and the footer already sends people off-site under Follow.
-                Header and footer share one `nav`, hence the filter. */}
+            {/* store is kept as is because we use it but we make sure we cna use it  */}
             {siteNav.map(({ label, href, external }) =>
               external ? (
                 <ExternalLink key={href} href={href}>
