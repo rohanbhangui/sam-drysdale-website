@@ -51,7 +51,7 @@ const StorePage = () => (
                 className="mx-1.5 mb-1.5 flex items-center justify-between gap-3 rounded-full bg-ink py-[11px] pr-[11px] pl-5 text-[11px] font-medium tracking-[0.2em] text-sand uppercase transition-transform duration-600 ease-cove hover:-translate-y-0.5 hover:text-sand active:scale-[0.98] [&>span]:size-7 [&>span]:bg-[rgba(239,232,217,0.16)] [&>span]:text-[11px]"
                 href={href}
               >
-                Pre-order
+                Shop
                 <Arrow />
               </ExternalLink>
             </div>

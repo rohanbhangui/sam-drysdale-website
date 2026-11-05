@@ -11,7 +11,7 @@ import { buttonStyles } from "@/components/buttonStyles"
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Toronto singer-songwriter Sam Drysdale — 425,000 monthly Spotify listeners, signed to ONErpm Nashville. New album Purgatory Cove arrives October 23, 2026.",
+    "Toronto singer-songwriter Sam Drysdale — 425,000 monthly Spotify listeners, signed to ONErpm Nashville. New album Purgatory Cove is out now.",
   alternates: { canonical: "/about" },
   /* Next replaces (not merges) the root openGraph when a page declares one,
      so the shared site-level fields come in via the spread. */
@@ -58,7 +58,7 @@ const AboutPage = () => (
             <Text step="lead">
               Sam Drysdale writes songs about the places people go
               when they need to be alone. {album.title}, his new
-              album, arrives {album.releaseDate}.
+              album, is out now.
             </Text>
             <Text step="body">
               Toronto-based singer-songwriter Sam Drysdale pairs a
@@ -96,7 +96,7 @@ const AboutPage = () => (
               </cite>
               . His new album,{" "}
               <cite className={workTitle}>Purgatory Cove</cite>,
-              arrives October 23, 2026. Led by &ldquo;A Place&rdquo;
+              is out now. Led by &ldquo;A Place&rdquo;
               and &ldquo;The Window,&rdquo; the record explores
               heartbreak as a liminal state and the friendships,
               memories and hard-won perspective that eventually guide

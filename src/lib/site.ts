@@ -185,13 +185,13 @@ export type Product = {
 export const products: Product[] = [
   {
     title: "Purgatory Cove, Limited Edition Vinyl",
-    price: "Pre-order",
+    price: "Available now",
     slot: "Vinyl mock-up",
     href: links.album,
   },
   {
     title: "Purgatory Cove, CD",
-    price: "Pre-order",
+    price: "Available now",
     slot: "CD mock-up",
     href: links.album,
   },
